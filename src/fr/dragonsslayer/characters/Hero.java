@@ -13,7 +13,7 @@ public class Hero {
         this.name = name;
         setLife();
         setAttackLevel();
-        setWeapon(weapon);
+        setWeapon();
     }
 
     public String getType() {
@@ -60,12 +60,19 @@ public class Hero {
         }
     }
 
-    public void setWeapon(String weapon) {
+    public void setWeapon() {
         if (this.type != null && this.type.equals("Warrior")) {
             this.weapon = "weapon";
         } else {
             this.weapon = "spell";
         }
+    }
+
+    public void modify(String type, String name) {
+        this.type = type;
+        this.name = name;
+        setType(type);
+        setName(name);
     }
 
     public String toString() {
