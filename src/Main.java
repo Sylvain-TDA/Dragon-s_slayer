@@ -17,8 +17,7 @@ public class Main {
                     menu.manageHero(hero);
                     break;
                     case 2: //Jouer
-                        int dice = game.Dice();
-                        System.out.println(dice);
+                        game.startingAGame();
                         break;
                 case 3: // Quitter
                     exit = true;
