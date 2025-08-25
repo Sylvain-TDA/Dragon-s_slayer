@@ -57,7 +57,7 @@ public class Menu {
         String userInput;
 
         while (true) {
-            typeSelection = "Entrer le type (Warroir ou Magician) : ";
+            typeSelection = "Entrer le type (Warrior ou Magician) : ";
             System.out.println(toString(typeSelection));
             userInput = scanner.nextLine().trim();
 
@@ -146,7 +146,7 @@ public class Menu {
      * @param hero information modify or not modify
      */
 
-    public void manageHero(Hero hero) {
+    public void manageHero(Hero hero)  throws InterruptedException {
         boolean play = false;
         Game game = new Game();
 

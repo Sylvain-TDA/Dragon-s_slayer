@@ -2,6 +2,7 @@ package fr.dragonsslayer;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.lang.Thread;
 
 /**
  *  This class handle the game in itself. I will start the game, initialize the board, display ennemies, rolling the dice...
@@ -31,26 +32,34 @@ public class Game {
      * @return the position of the player
      */
 
-    public int startingAGame() {
+    public int startingAGame()  throws InterruptedException {
         playerPosition = 0;
-        System.out.println("                          ");
-        System.out.println("Votre aventure débute...");
-        System.out.println("                          ");
-        System.out.println("Vous êtes ensevelis sous un monticule de formes desquelles suintent un liquide étrange.");
-        System.out.println("Après avoir réveillé vos yeux, ce liquide semble être le sang qui s'écoule des cadavres qui vous entourent.");
-        System.out.println("Prenant votre courage à deux mains, vous dégagez celle d'un héro précédent pour vous mettre sur vos deux jambes, bien entières.");
-        System.out.println("                          ");
-        System.out.println("Votre position est : " + playerPosition);
+        String intro = "                          " + "\n" +
+                "Votre aventure débute..." + "\n" +
+                "                          " + "\n" +
+                "Vous êtes ensevelis sous un monticule de formes desquelles suintent un liquide étrange." + "\n" +
+                "Après avoir réveillé vos yeux, ce liquide semble être le sang qui s'écoule des cadavres qui vous entourent." + "\n" +
+                "Prenant votre courage à deux mains, vous dégagez celle d'un héro précédent pour vous mettre sur vos deux jambes, bien entières." +  "\n" +
+                "                          " +  "\n" +
+                "Votre position est : " + "\n" +
+                + playerPosition;
+        System.out.println(intro);
+        Thread.sleep(2000);
+
         while (playerPosition < 64) {
+            Thread.sleep(1000);
             int diceValue = Dice();
             System.out.println("                          ");
             System.out.println("Vous lancez le dé. Et vous faites : " + diceValue);
+            Thread.sleep(700);
+
             playerPosition = playerPosition + diceValue;
             System.out.println("Vous avancez en case : " + playerPosition);
             System.out.println("                          ");
         }
 
         if (playerPosition >= 64) {
+            Thread.sleep(1000);
             System.out.println("Bravo, vous avez gagné!");
         }
 

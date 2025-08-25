@@ -5,7 +5,7 @@ import fr.dragonsslayer.equipment.DefensiveEquipment;
 import fr.dragonsslayer.equipment.OffensiveEquipment;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args)  throws InterruptedException {
         Menu menu = new Menu();
         Hero hero = null;
         Game game = new Game();
