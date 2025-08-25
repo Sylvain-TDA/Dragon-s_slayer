@@ -2,6 +2,7 @@ package fr.dragonsslayer;
 
 import fr.dragonsslayer.characters.Hero;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -89,16 +90,33 @@ public class Menu {
      */
 
     public int printMenu() {
-        String menu = "                          " + "\n" +
-                "===== Menu Principal =====" + "\n" +
-                "                          " + "\n" +
-                "1. Nouveau personnage" + "\n" +
-                "2. Jouer" + "\n" +
-                "3. Quitter" + "\n" +
-                "Votre choix : ";
 
-        System.out.print(toString(menu));
-        return keyboard.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int choix = 0;
+        boolean valide = false;
+        while (!valide) {
+            try {
+                String menu = "                          " + "\n" +
+                        "===== Menu Principal =====" + "\n" +
+                        "                          " + "\n" +
+                        "1. Nouveau personnage" + "\n" +
+                        "2. Jouer" + "\n" +
+                        "3. Quitter" + "\n" +
+                        "Votre choix : ";
+
+                System.out.print(menu);
+                choix = scanner.nextInt();
+                if (choix >= 1 && choix <= 3) {
+                    valide = true;
+                } else {
+                    System.out.println("Veuillez entrer 1, 2 ou 3.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Entrée invalide. Veuillez entrer un nombre (1, 2 ou 3).");
+                scanner.next(); // Nettoie l'entrée invalide
+            }
+        }
+        return choix;
     }
 
     /**
@@ -146,7 +164,7 @@ public class Menu {
      * @param hero information modify or not modify
      */
 
-    public void manageHero(Hero hero)  throws InterruptedException {
+    public void manageHero(Hero hero) throws InterruptedException {
         boolean play = false;
         Game game = new Game();
 

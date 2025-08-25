@@ -9,8 +9,10 @@ public class Main {
         Menu menu = new Menu();
         Hero hero = null;
         Game game = new Game();
+
         boolean exit = false;
         boolean playerCreated = false;
+
         while (!exit) {
             switch (menu.printMenu()) {
                 case 1: // Création personnage
