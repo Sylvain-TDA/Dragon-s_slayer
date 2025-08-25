@@ -16,16 +16,23 @@ public class Game {
         return dice;
     }
 
-    public void startingAGame() {
+    public int startingAGame() {
         playerPosition = 0;
         System.out.println("Votre aventure débute...");
         System.out.println("Comme tous les jeux, vous commencer au début.");
         System.out.println("Votre position est : " + playerPosition);
-        int diceValue = Dice();
-        System.out.println("Vous lancez le dé. Et vous faites : " + diceValue);
-        playerPosition = playerPosition + diceValue;
-        System.out.println("Vous avancez en case : " + playerPosition);
+        while (playerPosition < 64) {
+            int diceValue = Dice();
+            System.out.println("Vous lancez le dé. Et vous faites : " + diceValue);
+            playerPosition = playerPosition + diceValue;
+            System.out.println("Vous avancez en case : " + playerPosition);
+        }
 
+        if (playerPosition >= 64) {
+            System.out.println("Bravo, vous avez gagné!");
+        }
+
+        return playerPosition;
     }
 
     public int getPlayerPosition() {
