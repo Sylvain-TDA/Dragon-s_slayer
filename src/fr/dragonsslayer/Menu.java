@@ -19,8 +19,8 @@ public class Menu {
      */
 
     public Menu() {
-        System.out.println("Bienvenue dans Dragon's Slayer !");
-        System.out.println("Vous sentez-vous prêt à combattre des ordes d'ennemis et de dragons ?");
+        String intro = "Bienvenue dans Dragon's Slayer !" + "\n" + "Vous sentez-vous prêt à combattre des ordes d'ennemis et de dragons ?";
+        System.out.println(toString(intro));
     }
 
     public String getName() {
@@ -46,7 +46,8 @@ public class Menu {
 
     public String askType() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Entrez le type (Warrior ou Magician) : ");
+        String typeSelection = "Entrez le type (Warrior ou Magician) : ";
+        System.out.print(toString(typeSelection));
         return scanner.nextLine();
     }
 
@@ -57,7 +58,8 @@ public class Menu {
 
     public String askName() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Entrez le nom : ");
+        String name = "Entrez le nom : ";
+        System.out.print(toString(name));
         return scanner.nextLine();
     }
 
@@ -67,13 +69,15 @@ public class Menu {
      */
 
     public int printMenu() {
-        System.out.println("                          ");
-        System.out.println("===== Menu Principal =====");
-        System.out.println("                          ");
-        System.out.println("1. Nouveau personnage");
-        System.out.println("2. Jouer");
-        System.out.println("3. Quitter");
-        System.out.print("Votre choix : ");
+        String menu = "                          " + "\n" +
+                "===== Menu Principal =====" + "\n" +
+                "                          " + "\n" +
+                "1. Nouveau personnage" + "\n" +
+                "2. Jouer" + "\n" +
+                "3. Quitter" + "\n" +
+                "Votre choix : ";
+
+        System.out.print(toString(menu));
         return keyboard.nextInt();
     }
 
@@ -83,11 +87,12 @@ public class Menu {
      */
 
     public int printCharacterMenu() {
-        System.out.println("===== Menu Personnage =====");
-        System.out.println("1. Afficher les infos");
-        System.out.println("2. Modifier le personnage");
-        System.out.println("3. Jouer");
-        System.out.print("Votre choix : ");
+        String characteMenu = "===== Menu Personnage =====" + "\n" +
+                "1. Afficher les infos" + "\n" +
+        "2. Modifier le personnage" + "\n" +
+                "3. Jouer" + "\n" +
+                "Votre choix : ";
+        System.out.println(toString(characteMenu));
         return keyboard.nextInt();
     }
 
@@ -137,6 +142,10 @@ public class Menu {
                     System.out.println("Choix invalide !");
             }
         }
+    }
+
+    public String toString(String message) {
+        return message;
     }
 }
 
