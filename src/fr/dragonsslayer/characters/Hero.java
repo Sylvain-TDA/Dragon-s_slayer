@@ -1,5 +1,10 @@
 package fr.dragonsslayer.characters;
 
+
+/**
+ * The class is handling the hero : name, type, life, attack level and weapon.
+ */
+
 public class Hero {
 
     private String type;
@@ -7,6 +12,12 @@ public class Hero {
     private int life;
     private int attackLevel;
     private String weapon;
+
+    /**
+     * Creating the hero.
+     * @param type choosing the type of the hero.
+     * @param name choosing the name of the hero.
+     */
 
     public Hero(String type, String name) {
         this.type = type;
@@ -68,12 +79,23 @@ public class Hero {
         }
     }
 
+    /**
+     * Method to modify the hero by changing the name or the type.
+     * @param type choosing the type of the hero.
+     * @param name choosing the name of the hero.
+     */
+
     public void modify(String type, String name) {
         this.type = type;
         this.name = name;
         setType(type);
         setName(name);
     }
+
+    /**
+     * Allow to print the hero's information
+     * @return cutomize the hero's information
+     */
 
     public String toString() {
         return "Hero{" +
