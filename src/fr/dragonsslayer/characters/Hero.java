@@ -15,6 +15,7 @@ public class Hero {
 
     /**
      * Creating the hero.
+     *
      * @param type choosing the type of the hero.
      * @param name choosing the name of the hero.
      */
@@ -81,6 +82,7 @@ public class Hero {
 
     /**
      * Method to modify the hero by changing the name or the type.
+     *
      * @param type choosing the type of the hero.
      * @param name choosing the name of the hero.
      */
@@ -94,16 +96,17 @@ public class Hero {
 
     /**
      * Allow to print the hero's information
+     *
      * @return cutomize the hero's information
      */
 
     public String toString() {
-        return "Hero{" +
-                "type='" + type + '\'' +
-                ", name='" + name + '\'' +
-                ", life=" + life +
-                ", attackLevel=" + attackLevel +
-                ", weapon='" + weapon + '\'' +
+        return "Hero{" + "\n" +
+                "type='" + type + '\'' + "\n" +
+                "name='" + name + '\'' + "\n" +
+                "life=" + life + "\n" +
+                "attackLevel=" + attackLevel + "\n" +
+                "weapon='" + weapon + '\'' + "\n" +
                 '}';
     }
 

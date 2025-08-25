@@ -1,4 +1,5 @@
 package fr.dragonsslayer;
+
 import fr.dragonsslayer.characters.Hero;
 
 import java.util.Scanner;
@@ -19,7 +20,12 @@ public class Menu {
      */
 
     public Menu() {
-        String intro = "Bienvenue dans Dragon's Slayer !" + "\n" + "Vous sentez-vous prêt à combattre des ordes d'ennemis et de dragons ?";
+        //String intro = "Bienvenue dans Dragon's Slayer !" + "\n" + "Vous sentez-vous prêt à combattre des ordes d'ennemis et de dragons ?";
+        String intro = " /~_______________~\\ \n" +
+                " .-----------------. \n" +
+                "(| Dragon's slayer |)\n" +
+                " '-----------------' \n" +
+                " \\_~~~~~~~~~~~~~~~_/ ";
         System.out.println(toString(intro));
     }
 
@@ -41,18 +47,31 @@ public class Menu {
 
     /**
      * Ask the player what type he wants to play
+     *
      * @return the type selected
      */
 
     public String askType() {
         Scanner scanner = new Scanner(System.in);
-        String typeSelection = "Entrez le type (Warrior ou Magician) : ";
-        System.out.print(toString(typeSelection));
-        return scanner.nextLine();
+        String typeSelection;
+        String userInput;
+
+        while (true) {
+            typeSelection = "Entrer le type (Warroir ou Magician) : ";
+            System.out.println(toString(typeSelection));
+            userInput = scanner.nextLine().trim();
+
+            if (userInput.equalsIgnoreCase("Warrior") || userInput.equalsIgnoreCase("Magician")) {
+                return userInput.substring(0, 1).toUpperCase() + userInput.substring(1).toLowerCase();
+            } else {
+                System.out.println("Vous devez entrer soit 'Warrior' soit 'Magician'");
+            }
+        }
     }
 
     /**
      * Ask the player the name of his hero
+     *
      * @return the name entered
      */
 
@@ -65,6 +84,7 @@ public class Menu {
 
     /**
      * Display the menu selection
+     *
      * @return the selected menu
      */
 
@@ -82,14 +102,15 @@ public class Menu {
     }
 
     /**
-     *  Display the character menu where you can print infos, modify the character created or play
+     * Display the character menu where you can print infos, modify the character created or play
+     *
      * @return the selected menu
      */
 
     public int printCharacterMenu() {
         String characteMenu = "===== Menu Personnage =====" + "\n" +
                 "1. Afficher les infos" + "\n" +
-        "2. Modifier le personnage" + "\n" +
+                "2. Modifier le personnage" + "\n" +
                 "3. Jouer" + "\n" +
                 "Votre choix : ";
         System.out.println(toString(characteMenu));
@@ -98,6 +119,7 @@ public class Menu {
 
     /**
      * Creating the hero by choosing the type and the name
+     *
      * @return A new hero with a type and a name
      */
 
@@ -107,6 +129,7 @@ public class Menu {
 
     /**
      * Est-ce que cette méthode est encore utile ???
+     *
      * @param keyboard
      * @param message
      * @return
@@ -119,6 +142,7 @@ public class Menu {
 
     /**
      * Handle the character menu and choose between printing the hero's info, modify it of play the game
+     *
      * @param hero information modify or not modify
      */
 
