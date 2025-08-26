@@ -3,7 +3,6 @@ package fr.dragonsslayer;
 import fr.dragonsslayer.Menu;
 import java.util.Arrays;
 import java.util.Random;
-import java.lang.Thread;
 
 /**
  *  This class handle the game in itself. I will start the game, initialize the board, display ennemies, rolling the dice...
@@ -22,11 +21,8 @@ public class Game {
      * @return the result of the dice that have been rolled.
      */
 
-    public int Dice() {
-        int dice = 0;
-        Random randomObj = new Random();
-        dice = randomObj.nextInt(6) + 1;
-        return dice;
+    public int dice() {
+        return new Random().nextInt(6) + 1;
     }
 
     /**
@@ -51,7 +47,7 @@ public class Game {
 
         while (playerPosition < 64) {
             Thread.sleep(1000);
-            int diceValue = Dice();
+            int diceValue = dice();
             menu.toString(voidText + "Vous lancez le dé. Et vous faites : " + diceValue);
             Thread.sleep(700);
 
@@ -77,7 +73,7 @@ public class Game {
         return board;
     }
 
-    public int[] getEnnemiesposition() {
+    public int[] getEnnemyPosition() {
         return ennemiesposition;
     }
 
@@ -89,20 +85,20 @@ public class Game {
         Arrays.fill(board, "empty");
     }
 
-    public void setEnnemiesposition() {
+    public void setEnnemyPosition() {
         Random random = new Random();
         int count = 0;
 
         while (count < 10) {
             int pos = random.nextInt(board.length);
-            if (board[pos] == null) {
+            if (board[pos].equals("empty")) {
                 board[pos] = "enemy";
                 count++;
             }
         }
     }
 
-    public void setChestposition() {
+    public void setChestPosition() {
         Random random = new Random();
         int count = 0;
 
