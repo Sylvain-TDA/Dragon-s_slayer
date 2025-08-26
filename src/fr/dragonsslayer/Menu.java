@@ -37,14 +37,6 @@ public class Menu {
         return type;
     }
 
-    public void setName() {
-        this.name = requestInput(keyboard, "Avant de vous jetter corps et âmes dans une aventure fantastique, veuillez entrer votre nom");
-    }
-
-    public void setType() {
-        this.type = requestInput(keyboard, "Quel type de combattant êtes-vous ? Plutôt Warrior ou plutôt Magician ?");
-    }
-
     /**
      * Ask the player what type he wants to play
      *
@@ -52,14 +44,13 @@ public class Menu {
      */
 
     public String askType() {
-        Scanner scanner = new Scanner(System.in);
         String typeSelection;
         String userInput;
 
         while (true) {
             typeSelection = "Entrer le type (Warrior ou Magician) : ";
             toString(typeSelection);
-            userInput = scanner.nextLine().trim();
+            userInput = keyboard.nextLine().trim();
 
             if (userInput.equalsIgnoreCase("Warrior") || userInput.equalsIgnoreCase("Magician")) {
                 return userInput.substring(0, 1).toUpperCase() + userInput.substring(1).toLowerCase();
@@ -77,10 +68,9 @@ public class Menu {
      */
 
     public String askName() {
-        Scanner scanner = new Scanner(System.in);
         String name = "Entrez le nom : ";
         toString(name);
-        return scanner.nextLine();
+        return keyboard.nextLine();
     }
 
     /**
@@ -91,7 +81,6 @@ public class Menu {
 
     public int printMenu() {
 
-        Scanner scanner = new Scanner(System.in);
         int choice = 0;
         boolean valide = false;
         while (!valide) {
@@ -105,7 +94,7 @@ public class Menu {
                         "Votre choix : ";
 
                 toString(menu);
-                choice = scanner.nextInt();
+                choice = keyboard.nextInt();
                 if (choice >= 1 && choice <= 3) {
                     valide = true;
                 } else {
@@ -115,7 +104,7 @@ public class Menu {
             } catch (InputMismatchException e) {
                 String errorText = "Entrée invalide. Veuillez entrer un nombre (1, 2 ou 3).";
                 toString(errorText);
-                scanner.next();
+                keyboard.next();
             }
         }
         return choice;
