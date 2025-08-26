@@ -23,18 +23,18 @@ Le but est de combattre des ennemis, trouver des trésors et survivre jusqu’à
 
 ## Structure du Projet
 
-dragon-slayer/
-├── src/
-│   ├── fr/
-│   │   └── dragonsslayer/
-│   │       ├── character/      # Gestion du héros principal
-│   │       ├── ennemy/         # Gestion des ennemis
-│   │       ├── equipment/      # Gestion de l'équipement
-│   │       ├── Game.java       # Logique concernant le jeu
-│   │       ├── Menu.java       # Affiche et gestion du menu
-│   │       └── Main.java       # Point d'entrée minimaliste
-├── README.md                  # Documentation
-└── LICENSE                    # Licence (si présente)
+- dragon-slayer/
+    - src/
+        - fr/
+            - dragonsslayer/
+                - character/      # Gestion du héros principal
+                - ennemy/         # Gestion des ennemis
+                - equipment/      # Gestion de l'équipement
+                - Game.java       # Logique concernant le jeu
+                - Menu.java       # Affiche et gestion du menu
+                - Main.java       # Point d'entrée minimaliste
+    - README.md              # Documentation
+
 
 ## Comment jouer ?
 
