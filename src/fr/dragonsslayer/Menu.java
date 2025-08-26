@@ -1,7 +1,6 @@
 package fr.dragonsslayer;
 
 import fr.dragonsslayer.characters.Hero;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -129,12 +128,12 @@ public class Menu {
      */
 
     public int printCharacterMenu() {
-        String characteMenu = "===== Menu Personnage =====" + "\n" +
+        String characterMenu = "===== Menu Personnage =====" + "\n" +
                 "1. Afficher les infos" + "\n" +
                 "2. Modifier le personnage" + "\n" +
                 "3. Jouer" + "\n" +
                 "Votre choix : ";
-        toString(characteMenu);
+        toString(characterMenu);
         return keyboard.nextInt();
     }
 
@@ -189,6 +188,11 @@ public class Menu {
             }
         }
     }
+
+    /**
+     * This method handle everything that need to be printed out.
+     * @param message that will be display
+     */
 
     public  void toString(String message) {
         System.out.println(message);

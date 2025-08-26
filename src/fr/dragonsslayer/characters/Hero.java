@@ -1,6 +1,5 @@
 package fr.dragonsslayer.characters;
 
-
 /**
  * The class is handling the hero : name, type, life, attack level and weapon.
  */

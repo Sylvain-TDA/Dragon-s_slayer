@@ -1,7 +1,6 @@
 package fr.dragonsslayer;
 
 import fr.dragonsslayer.Menu;
-
 import java.util.Arrays;
 import java.util.Random;
 import java.lang.Thread;

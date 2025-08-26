@@ -38,8 +38,6 @@ Le but est de combattre des ennemis, trouver des trésors et survivre jusqu’à
 
 ## Comment jouer ?
 
-Comment Jouer ?
-
 1-Créer un personnage : Choisis entre un Guerrier (plus de points de vie) ou un Magicien (plus de magie).  
 2-Explorer le plateau : 64 cases générées aléatoirement avec des ennemis et des trésors.  
 3-Combattre : Utilise tes armes et tes compétences pour vaincre les ennemis.  
