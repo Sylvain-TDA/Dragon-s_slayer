@@ -27,7 +27,7 @@ public class Menu {
                 "(| Dragon's slayer |)\n" +
                 " '-----------------' \n" +
                 " \\_~~~~~~~~~~~~~~~_/ ";
-        System.out.println(toString(intro));
+        toString(intro);
     }
 
     public String getName() {
@@ -59,13 +59,14 @@ public class Menu {
 
         while (true) {
             typeSelection = "Entrer le type (Warrior ou Magician) : ";
-            System.out.println(toString(typeSelection));
+            toString(typeSelection);
             userInput = scanner.nextLine().trim();
 
             if (userInput.equalsIgnoreCase("Warrior") || userInput.equalsIgnoreCase("Magician")) {
                 return userInput.substring(0, 1).toUpperCase() + userInput.substring(1).toLowerCase();
             } else {
-                System.out.println("Vous devez entrer soit 'Warrior' soit 'Magician'");
+                String errorText = "Vous devez entrer soit 'Warrior' soit 'Magician'";
+                toString(errorText);
             }
         }
     }
@@ -79,7 +80,7 @@ public class Menu {
     public String askName() {
         Scanner scanner = new Scanner(System.in);
         String name = "Entrez le nom : ";
-        System.out.print(toString(name));
+        toString(name);
         return scanner.nextLine();
     }
 
@@ -92,7 +93,7 @@ public class Menu {
     public int printMenu() {
 
         Scanner scanner = new Scanner(System.in);
-        int choix = 0;
+        int choice = 0;
         boolean valide = false;
         while (!valide) {
             try {
@@ -104,19 +105,21 @@ public class Menu {
                         "3. Quitter" + "\n" +
                         "Votre choix : ";
 
-                System.out.print(menu);
-                choix = scanner.nextInt();
-                if (choix >= 1 && choix <= 3) {
+                toString(menu);
+                choice = scanner.nextInt();
+                if (choice >= 1 && choice <= 3) {
                     valide = true;
                 } else {
-                    System.out.println("Veuillez entrer 1, 2 ou 3.");
+                    String selectionText = "Veuillez entrer 1, 2 ou 3.";
+                    toString(selectionText);
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Entrée invalide. Veuillez entrer un nombre (1, 2 ou 3).");
-                scanner.next(); // Nettoie l'entrée invalide
+                String errorText = "Entrée invalide. Veuillez entrer un nombre (1, 2 ou 3).";
+                toString(errorText);
+                scanner.next();
             }
         }
-        return choix;
+        return choice;
     }
 
     /**
@@ -131,7 +134,7 @@ public class Menu {
                 "2. Modifier le personnage" + "\n" +
                 "3. Jouer" + "\n" +
                 "Votre choix : ";
-        System.out.println(toString(characteMenu));
+        toString(characteMenu);
         return keyboard.nextInt();
     }
 
@@ -154,7 +157,7 @@ public class Menu {
      */
 
     public String requestInput(Scanner keyboard, String message) {
-        System.out.println(message);
+        toString(message);
         return keyboard.nextLine();
     }
 
@@ -181,13 +184,14 @@ public class Menu {
                     game.startingAGame();
                     break;
                 default:
-                    System.out.println("Choix invalide !");
+                    String invalidChoice = "Choix invalide !";
+                    toString(invalidChoice);
             }
         }
     }
 
-    public String toString(String message) {
-        return message;
+    public  void toString(String message) {
+        System.out.println(message);
     }
 }
 

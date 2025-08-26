@@ -24,16 +24,18 @@ public class Main {
                     if (playerCreated) {
                         game.startingAGame();
                     } else {
-                        System.out.println("Vous devez créer un personnage avant de vous lancer dans l'aventure");
+                        String errorText = "Vous devez créer un personnage avant de vous lancer dans l'aventure";
+                        menu.toString(errorText);
                     }
                     break;
-
                 case 3: // Quitter
                     exit = true;
-                    System.out.println("Oh non... À toute !");
+                    String exitText = "Oh non... À toute !";
+                    menu.toString(exitText);
                     break;
                 default:
-                    System.out.println("Choix invalide !");
+                    String invalidChoise = "Choix invalide !";
+                    menu.toString(invalidChoise);
             }
         }
     }

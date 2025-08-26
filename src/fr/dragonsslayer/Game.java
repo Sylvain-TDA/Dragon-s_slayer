@@ -1,5 +1,7 @@
 package fr.dragonsslayer;
 
+import fr.dragonsslayer.Menu;
+
 import java.util.Arrays;
 import java.util.Random;
 import java.lang.Thread;
@@ -13,6 +15,8 @@ public class Game {
     private String[] board = new String[64];
     private int[] ennemiesposition = new int[5];
     private int[] chestPosition = new int[5];
+    Menu menu = new Menu();
+    String voidText = "                          ";
 
     /**
      * Initialize the dice and "roll it" by randomizing a number between 1 and 6.
@@ -43,24 +47,24 @@ public class Game {
                 "                          " +  "\n" +
                 "Votre position est : " + "\n" +
                 + playerPosition;
-        System.out.println(intro);
+        menu.toString(intro);
         Thread.sleep(2000);
 
         while (playerPosition < 64) {
             Thread.sleep(1000);
             int diceValue = Dice();
-            System.out.println("                          ");
-            System.out.println("Vous lancez le dé. Et vous faites : " + diceValue);
+            menu.toString(voidText + "Vous lancez le dé. Et vous faites : " + diceValue);
             Thread.sleep(700);
 
             playerPosition = playerPosition + diceValue;
-            System.out.println("Vous avancez en case : " + playerPosition);
-            System.out.println("                          ");
+            String movingForward = "Vous avancez en case : " + playerPosition + voidText;
+            menu.toString(movingForward);
         }
 
         if (playerPosition >= 64) {
             Thread.sleep(1000);
-            System.out.println("Bravo, vous avez gagné!");
+            String winGame = "Bravo, vous avez gagné!";
+            menu.toString(winGame);
         }
 
         return playerPosition;
