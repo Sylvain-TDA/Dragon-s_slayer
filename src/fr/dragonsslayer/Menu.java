@@ -1,6 +1,9 @@
 package fr.dragonsslayer;
 
 import fr.dragonsslayer.characters.Hero;
+import fr.dragonsslayer.characters.Warrior;
+import fr.dragonsslayer.characters.Magician;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -133,20 +136,14 @@ public class Menu {
      */
 
     public Hero createHero() {
-        return new Hero(askType(), askName());
-    }
 
-    /**
-     * Est-ce que cette méthode est encore utile ???
-     *
-     * @param keyboard
-     * @param message
-     * @return
-     */
-
-    public String requestInput(Scanner keyboard, String message) {
-        toString(message);
-        return keyboard.nextLine();
+        if (askType().equalsIgnoreCase("Warrior")){
+            return new Warrior("Warrior", askName());
+        }
+        else
+        {
+            return new Magician("Magician", askName());
+        }
     }
 
     /**
