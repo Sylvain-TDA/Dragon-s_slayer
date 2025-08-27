@@ -170,7 +170,11 @@ public class Menu {
                     break;
                 case 3:
                     play = true;
-                    game.startingAGame();
+                    try {
+                        game.startingAGame();
+                    } catch (HeroOutOfTheBoardException e) {
+                        toString(e.getMessage());
+                    }
                     break;
                 default:
                     String invalidChoice = "Choix invalide !";

@@ -1,4 +1,5 @@
 import fr.dragonsslayer.Game;
+import fr.dragonsslayer.HeroOutOfTheBoardException;
 import fr.dragonsslayer.Menu;
 import fr.dragonsslayer.characters.Hero;
 import fr.dragonsslayer.equipment.DefensiveEquipment;
@@ -23,7 +24,11 @@ public class Main {
                     break;
                 case 2: //Jouer
                     if (playerCreated) {
-                        game.startingAGame();
+                        try {
+                            game.startingAGame();
+                        } catch (HeroOutOfTheBoardException e) {
+                            menu.toString(e.getMessage());
+                        }
                     } else {
                         String errorText = "Vous devez créer un personnage avant de vous lancer dans l'aventure";
                         menu.toString(errorText);
