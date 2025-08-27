@@ -23,6 +23,9 @@ public class Menu {
      */
 
     public Menu() {
+    }
+
+    public void printIntro (){
         String intro = " /~_______________~\\ \n" +
                 " .-----------------. \n" +
                 "(| Dragon's slayer |)\n" +

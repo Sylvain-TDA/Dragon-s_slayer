@@ -9,6 +9,7 @@ public class Main {
         Menu menu = new Menu();
         Hero hero;
         Game game = new Game();
+        menu.printIntro();
 
         boolean exit = false;
         boolean playerCreated = false;
