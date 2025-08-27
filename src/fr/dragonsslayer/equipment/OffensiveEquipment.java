@@ -1,5 +1,9 @@
 package fr.dragonsslayer.equipment;
 
+/**
+ * Super class to define offensive equipment
+ */
+
 public abstract class OffensiveEquipment {
     private String type;
     private String name;

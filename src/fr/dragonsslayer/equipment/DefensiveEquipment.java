@@ -1,11 +1,15 @@
 package fr.dragonsslayer.equipment;
 
+/**
+ * Super class to define defensive equipment
+ */
+
 public abstract class DefensiveEquipment {
     private String type;
     private String name;
     private int DefenseLevel;
 
-    public DefensiveEquipment(String name, String type, int defenseLevel) {
+        public DefensiveEquipment(String name, String type, int defenseLevel) {
         this.name = name;
         this.type = type;
         setDefenseLevel(defenseLevel);
