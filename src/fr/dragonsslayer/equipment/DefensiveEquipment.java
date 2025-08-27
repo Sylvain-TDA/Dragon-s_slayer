@@ -38,8 +38,8 @@ public abstract class DefensiveEquipment {
     public String toString() {
         return "DefensiveEquipment{" +
                 "type='" + type + '\'' +
-                ", name='" + name + '\'' +
-                ", DefenseLevel=" + DefenseLevel +
+                ", nom='" + name + '\'' +
+                ", Niveau de defense=" + DefenseLevel +
                 '}';
     }
 }

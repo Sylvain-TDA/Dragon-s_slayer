@@ -38,8 +38,8 @@ public abstract class OffensiveEquipment {
     public String toString() {
         return "OffensiveEquipment{" +
                 "type='" + type + '\'' +
-                ", name='" + name + '\'' +
-               ", attackLevel=" + attackLevel +
+                ", nom='" + name + '\'' +
+               ", Niveau d'attaque=" + attackLevel +
                 '}';
     }
 }

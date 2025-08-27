@@ -100,11 +100,11 @@ public abstract class Hero {
 
     public String toString() {
         return "Hero{" + "\n" +
-                "type='" + type + '\'' + "\n" +
-                "name='" + name + '\'' + "\n" +
-                "life=" + life + "\n" +
-                "attackLevel=" + attackLevel + "\n" +
-                "weapon='" + weapon + '\'' + "\n" +
+                "classe : '" + type + '\'' + "\n" +
+                "nom : '" + name + '\'' + "\n" +
+                "points de vie : " + life + "\n" +
+                "niveau d'attaque : " + attackLevel + "\n" +
+                "arme :'" + weapon + '\'' + "\n" +
                 '}';
     }
 
