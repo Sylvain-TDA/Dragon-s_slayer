@@ -1,14 +1,14 @@
 package fr.dragonsslayer.equipment;
 
-public class DefensiveEquipment {
+public abstract class DefensiveEquipment {
     private String type;
     private String name;
     private int DefenseLevel;
 
-    public DefensiveEquipment(String name, String type) {
+    public DefensiveEquipment(String name, String type, int defenseLevel) {
         this.name = name;
         this.type = type;
-        setDefenseLevel();
+        setDefenseLevel(defenseLevel);
     }
 
     public String getType() {
@@ -31,12 +31,8 @@ public class DefensiveEquipment {
         this.name = name;
     }
 
-    public void setDefenseLevel() {
-        if (this.type != null && this.type.equals("Shield")) {
-            this.DefenseLevel = 1;
-        } else if(this.type != null && this.type.equals("Potion")) {
-            this.DefenseLevel = 2;
-        }
+    public void setDefenseLevel(int defenseLevel) {
+        this.DefenseLevel = defenseLevel;
     }
 
     public String toString() {

@@ -1,6 +1,6 @@
 package fr.dragonsslayer.equipment;
 
-public class OffensiveEquipment {
+public abstract class OffensiveEquipment {
     private String type;
     private String name;
     private int attackLevel;
@@ -8,7 +8,7 @@ public class OffensiveEquipment {
     public OffensiveEquipment(String name, String type) {
         this.name = name;
         this.type = type;
-        setAttackLevel();
+        setAttackLevel(attackLevel);
     }
 
     public String getType() {
@@ -31,16 +31,8 @@ public class OffensiveEquipment {
         this.name = name;
     }
 
-    public void setAttackLevel() {
-        if (this.type != null && this.type.equals("Sword")) {
-            this.attackLevel = 5;
-        } else if(this.type != null && this.type.equals("Club")) {
-            this.attackLevel = 3;
-        } else if(this.type != null && this.type.equals("FireBall")) {
-            this.attackLevel = 7;
-        } else if(this.type != null && this.type.equals("Lightning")) {
-            this.attackLevel = 2;
-        }
+    public void setAttackLevel(int attackLevel) {
+      this.attackLevel = attackLevel;
     }
 
     public String toString() {
