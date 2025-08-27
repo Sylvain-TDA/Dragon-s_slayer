@@ -10,9 +10,9 @@ import java.util.Random;
 
 public class Game {
     private int playerPosition;
-    private String[] board = new String[64];
-    private int[] ennemiesposition = new int[5];
-    private int[] chestPosition = new int[5];
+    private final String[] board = new String[64];
+    private final int[] ennemiesPosition = new int[5];
+    private final int[] chestPosition = new int[5];
     Menu menu = new Menu();
     String voidText = "                          ";
 
@@ -61,7 +61,6 @@ public class Game {
             String winGame = "Bravo, vous avez gagné!";
             menu.toString(winGame);
         }
-
         return playerPosition;
     }
 
@@ -74,7 +73,7 @@ public class Game {
     }
 
     public int[] getEnnemyPosition() {
-        return ennemiesposition;
+        return ennemiesPosition;
     }
 
     public int[] getChestPosition() {

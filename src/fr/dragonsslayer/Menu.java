@@ -12,7 +12,7 @@ import java.util.Scanner;
  */
 
 public class Menu {
-    private Scanner keyboard = new Scanner(System.in);
+    private final Scanner keyboard = new Scanner(System.in);
 
     private String name;
     private String type;
@@ -23,7 +23,6 @@ public class Menu {
      */
 
     public Menu() {
-        //String intro = "Bienvenue dans Dragon's Slayer !" + "\n" + "Vous sentez-vous prêt à combattre des ordes d'ennemis et de dragons ?";
         String intro = " /~_______________~\\ \n" +
                 " .-----------------. \n" +
                 "(| Dragon's slayer |)\n" +
@@ -83,9 +82,9 @@ public class Menu {
      */
 
     public int printMenu() {
-
         int choice = 0;
         boolean valide = false;
+
         while (!valide) {
             try {
                 String menu = "                          " + "\n" +
@@ -98,6 +97,8 @@ public class Menu {
 
                 toString(menu);
                 choice = keyboard.nextInt();
+                keyboard.nextLine();
+
                 if (choice >= 1 && choice <= 3) {
                     valide = true;
                 } else {
@@ -126,7 +127,9 @@ public class Menu {
                 "3. Jouer" + "\n" +
                 "Votre choix : ";
         toString(characterMenu);
-        return keyboard.nextInt();
+        int choice = keyboard.nextInt();
+        keyboard.nextLine();
+        return choice;
     }
 
     /**
@@ -137,11 +140,9 @@ public class Menu {
 
     public Hero createHero() {
 
-        if (askType().equalsIgnoreCase("Warrior")){
+        if (askType().equalsIgnoreCase("Warrior")) {
             return new Warrior("Warrior", askName());
-        }
-        else
-        {
+        } else {
             return new Magician("Magician", askName());
         }
     }
@@ -177,10 +178,11 @@ public class Menu {
 
     /**
      * This method handle everything that need to be printed out.
+     *
      * @param message that will be display
      */
 
-    public  void toString(String message) {
+    public void toString(String message) {
         System.out.println(message);
     }
 }

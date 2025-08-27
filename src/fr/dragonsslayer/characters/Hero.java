@@ -74,11 +74,23 @@ public abstract class Hero {
 
 
     public void modify(String type, String name) {
-        this.type = type;
         this.name = name;
+        setTypeAndDefaults(type); // <-- réapplique les stats en fonction du type
     }
 
-
+    private void setTypeAndDefaults(String type) {
+        if (type.equalsIgnoreCase("Warrior")) {
+            this.type = "Warrior";
+            this.life = 10;
+            this.attackLevel = 5;
+            this.weapon = "weapon";
+        } else if (type.equalsIgnoreCase("Magician")) {
+            this.type = "Magician";
+            this.life = 6;
+            this.attackLevel = 8;
+            this.weapon = "spell";
+        }
+    }
 
     /**
      * Allow to print the hero's information

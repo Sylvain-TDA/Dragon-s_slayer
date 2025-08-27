@@ -8,18 +8,7 @@ public class Warrior extends Hero {
      * @param name choosing the name of the hero.
      */
     public Warrior(String type, String name) {
-    super("Warrior", name);
-        setLife(10);
-        setAttackLevel(5);
-        setWeapon("weapon");
+        super("Warrior", name);
+        modify("Warrior", name);
     }
-
-    public void modify(String type, String name) {
-        setType(type);
-        setName(name);
-        setLife(10);
-        setAttackLevel(5);
-        setWeapon("weapon");
-    }
-
 }

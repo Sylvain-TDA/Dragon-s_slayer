@@ -9,16 +9,6 @@ public class Magician extends Hero {
      */
     public Magician(String type, String name) {
         super("Magician", name);
-        setLife(6);
-        setAttackLevel(8);
-        setWeapon("spell");
-    }
-
-    public void modify(String type, String name) {
-        setType(type);
-        setName(name);
-        setLife(6);
-        setAttackLevel(8);
-        setWeapon("spell");
-    }
+        modify("Magician", name);
+        }
 }
