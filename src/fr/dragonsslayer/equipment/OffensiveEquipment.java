@@ -5,7 +5,7 @@ public abstract class OffensiveEquipment {
     private String name;
     private int attackLevel;
 
-    public OffensiveEquipment(String name, String type) {
+    public OffensiveEquipment(String name, String type, int attackLevel) {
         this.name = name;
         this.type = type;
         setAttackLevel(attackLevel);
