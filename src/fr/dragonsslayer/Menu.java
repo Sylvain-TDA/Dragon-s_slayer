@@ -172,6 +172,7 @@ public class Menu {
                     play = true;
                     try {
                         game.startingAGame();
+                        game.playingTheGame();
                     } catch (HeroOutOfTheBoardException e) {
                         toString(e.getMessage());
                     }

@@ -34,7 +34,7 @@ public class Game {
      * @return the position of the player
      */
 
-    public int startingAGame() throws InterruptedException, HeroOutOfTheBoardException {
+    public void startingAGame() throws InterruptedException {
         playerPosition = 0;
         String intro = "                          " + "\n" +
                 "Votre aventure débute..." + "\n" +
@@ -47,27 +47,29 @@ public class Game {
                 playerPosition;
         menu.toString(intro);
         Thread.sleep(700);
+       }
 
-        while (true) {
-            Thread.sleep(700);
-            int diceValue = dice();
-            menu.toString(voidText + "Vous lancez le dé. Et vous faites : " + diceValue);
-            Thread.sleep(700);
+       public int playingTheGame () throws InterruptedException, HeroOutOfTheBoardException {
+           while (true) {
+               Thread.sleep(700);
+               int diceValue = dice();
+               menu.toString(voidText + "Vous lancez le dé. Et vous faites : " + diceValue);
+               Thread.sleep(700);
 
-            playerPosition += diceValue;
+               playerPosition += diceValue;
 
-            if (playerPosition > 64) {
-                throw new HeroOutOfTheBoardException("Oups, vous êtes au-delà des méandres du vide !");
-            } else if (playerPosition == 64) {
-                String winGame = "Bravo, vous avez gagné !";
-                menu.toString(winGame);
-                return playerPosition;
-            }
+               if (playerPosition > 64) {
+                   throw new HeroOutOfTheBoardException("Oups, vous êtes au-delà des méandres du vide !");
+               } else if (playerPosition == 64) {
+                   String winGame = "Bravo, vous avez gagné !";
+                   menu.toString(winGame);
+                   return playerPosition;
+               }
 
-            String movingForward = "Vous avancez en case : " + playerPosition + voidText;
-            menu.toString(movingForward);
-        }
-    }
+               String movingForward = "Vous avancez en case : " + playerPosition + voidText;
+               menu.toString(movingForward);
+           }
+       }
 
 
     public int getPlayerPosition() {

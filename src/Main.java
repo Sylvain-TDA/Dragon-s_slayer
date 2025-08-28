@@ -26,6 +26,7 @@ public class Main {
                     if (playerCreated) {
                         try {
                             game.startingAGame();
+                            game.playingTheGame();
                         } catch (HeroOutOfTheBoardException e) {
                             menu.toString(e.getMessage());
                         }
