@@ -9,8 +9,8 @@ public abstract class Hero {
     private String type;
     private String name;
     private int life;
-    protected int attackLevel;
-    protected String weapon;
+    private int attackLevel;
+    private String weapon;
 
     /**
      * Creating the hero.
@@ -56,7 +56,6 @@ public abstract class Hero {
         this.name = name;
     }
 
-
     public void setAttackLevel(int attackLevel) {
        this.attackLevel = attackLevel;
     }
@@ -99,13 +98,12 @@ public abstract class Hero {
      */
 
     public String toString() {
-        return "Hero{" + "\n" +
-                "classe : '" + type + '\'' + "\n" +
+        return "Hero ->" + "\n" +
                 "nom : '" + name + '\'' + "\n" +
+                "classe : '" + type + '\'' + "\n" +
                 "points de vie : " + life + "\n" +
                 "niveau d'attaque : " + attackLevel + "\n" +
-                "arme :'" + weapon + '\'' + "\n" +
-                '}';
+                "arme :'" + weapon + '\'' + "\n";
     }
 
 }

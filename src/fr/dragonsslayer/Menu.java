@@ -13,10 +13,7 @@ import java.util.Scanner;
 
 public class Menu {
     private final Scanner keyboard = new Scanner(System.in);
-
-    private String name;
-    private String type;
-
+    private Hero hero;
 
     /**
      * Printing the introduction of the game
@@ -25,21 +22,22 @@ public class Menu {
     public Menu() {
     }
 
-    public void printIntro (){
-        String intro = " /~_______________~\\ \n" +
-                " .-----------------. \n" +
-                "(| Dragon's slayer |)\n" +
-                " '-----------------' \n" +
-                " \\_~~~~~~~~~~~~~~~_/ ";
+    public void displayIntro() {
+        String intro = """
+                 /~_______________~\\\s
+                 .-----------------.\s
+                (| Dragon's slayer |)
+                 '-----------------'\s
+                 \\_~~~~~~~~~~~~~~~_/\s""";
         toString(intro);
     }
 
     public String getName() {
-        return name;
+        return hero.getName();
     }
 
     public String getType() {
-        return type;
+        return hero.getType();
     }
 
     /**
@@ -84,19 +82,20 @@ public class Menu {
      * @return the selected menu
      */
 
-    public int printMenu() {
+    public int displayMenu() {
         int choice = 0;
         boolean valide = false;
 
         while (!valide) {
             try {
-                String menu = "                          " + "\n" +
-                        "===== Menu Principal =====" + "\n" +
-                        "                          " + "\n" +
-                        "1. Nouveau personnage" + "\n" +
-                        "2. Jouer" + "\n" +
-                        "3. Quitter" + "\n" +
-                        "Votre choix : ";
+                String menu = """
+                                                 \s
+                        ===== Menu Principal =====
+                                                 \s
+                        1. Nouveau personnage
+                        2. Jouer
+                        3. Quitter
+                        Votre choix :\s""";
 
                 toString(menu);
                 choice = keyboard.nextInt();
@@ -123,12 +122,13 @@ public class Menu {
      * @return the selected menu
      */
 
-    public int printCharacterMenu() {
-        String characterMenu = "===== Menu Personnage =====" + "\n" +
-                "1. Afficher les infos" + "\n" +
-                "2. Modifier le personnage" + "\n" +
-                "3. Jouer" + "\n" +
-                "Votre choix : ";
+    public int displayCharacterMenu() {
+        String characterMenu = """
+                ===== Menu Personnage =====
+                1. Afficher les infos
+                2. Modifier le personnage
+                3. Jouer
+                Votre choix :\s""";
         toString(characterMenu);
         int choice = keyboard.nextInt();
         keyboard.nextLine();
@@ -161,7 +161,7 @@ public class Menu {
         Game game = new Game();
 
         while (!play) {
-            switch (printCharacterMenu()) {
+            switch (displayCharacterMenu()) {
                 case 1:
                     System.out.println(hero);
                     break;

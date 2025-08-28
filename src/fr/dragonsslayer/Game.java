@@ -1,7 +1,5 @@
 package fr.dragonsslayer;
 
-import fr.dragonsslayer.HeroOutOfTheBoardException;
-
 import java.util.Arrays;
 import java.util.Random;
 
@@ -15,7 +13,7 @@ public class Game {
     private final int[] ennemiesPosition = new int[5];
     private final int[] chestPosition = new int[5];
     Menu menu = new Menu();
-    String voidText = "                          ";
+    public String voidText = "                          ";
 
     /**
      * Initialize the dice and "roll it" by randomizing a number between 1 and 6.
@@ -30,19 +28,17 @@ public class Game {
     /**
      * Start the game with a text introduction and the player's position at 0.
      * Then it rolls the dice and move the player.
-     *
-     * @return the position of the player
      */
 
     public void startingAGame() throws InterruptedException {
         playerPosition = 0;
-        String intro = "                          " + "\n" +
+        String intro = voidText + "\n" +
                 "Votre aventure débute..." + "\n" +
-                "                          " + "\n" +
+                voidText + "\n" +
                 "Vous êtes ensevelis sous un monticule de formes desquelles suintent un liquide étrange." + "\n" +
                 "Après avoir réveillé vos yeux, ce liquide semble être le sang qui s'écoule des cadavres qui vous entourent." + "\n" +
                 "Prenant votre courage à deux mains, vous dégagez celle d'un héro précédent pour vous mettre sur vos deux jambes, bien entières." + "\n" +
-                "                          " + "\n" +
+                voidText + "\n" +
                 "Votre position est : " + "\n" +
                 playerPosition;
         menu.toString(intro);

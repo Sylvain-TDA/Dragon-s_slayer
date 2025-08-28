@@ -10,13 +10,13 @@ public class Main {
         Menu menu = new Menu();
         Hero hero;
         Game game = new Game();
-        menu.printIntro();
+        menu.displayIntro();
 
         boolean exit = false;
         boolean playerCreated = false;
 
         while (!exit) {
-            switch (menu.printMenu()) {
+            switch (menu.displayMenu()) {
                 case 1: // Création personnage
                     hero = menu.createHero();
                     menu.manageHero(hero);
