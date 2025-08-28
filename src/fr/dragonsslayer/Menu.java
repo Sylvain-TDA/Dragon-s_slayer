@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class Menu {
     private final Scanner keyboard = new Scanner(System.in);
     private Hero hero;
+    Game game = new Game();
 
     /**
      * Printing the introduction of the game
@@ -30,7 +31,7 @@ public class Menu {
                 (| Dragon's slayer |)
                  '-----------------'\s
                  \\_~~~~~~~~~~~~~~~_/\s""";
-        toString(intro);
+        displayMessage(intro);
     }
 
     public String getName() {
@@ -53,14 +54,14 @@ public class Menu {
 
         while (true) {
             typeSelection = "Entrer le type (Warrior ou Magician) : ";
-            toString(typeSelection);
+            displayMessage(typeSelection);
             userInput = keyboard.nextLine().trim();
 
             if (userInput.equalsIgnoreCase("Warrior") || userInput.equalsIgnoreCase("Magician")) {
                 return userInput.substring(0, 1).toUpperCase() + userInput.substring(1).toLowerCase();
             } else {
                 String errorText = "Vous devez entrer soit 'Warrior' soit 'Magician'";
-                toString(errorText);
+                displayMessage(errorText);
             }
         }
     }
@@ -73,7 +74,7 @@ public class Menu {
 
     public String askName() {
         String name = "Entrez le nom : ";
-        toString(name);
+        displayMessage(name);
         return keyboard.nextLine();
     }
 
@@ -98,7 +99,7 @@ public class Menu {
                         3. Quitter
                         Votre choix :\s""";
 
-                toString(menu);
+                displayMessage(menu);
                 choice = keyboard.nextInt();
                 keyboard.nextLine();
 
@@ -106,15 +107,61 @@ public class Menu {
                     valide = true;
                 } else {
                     String selectionText = "Veuillez entrer 1, 2 ou 3.";
-                    toString(selectionText);
+                    displayMessage(selectionText);
                 }
             } catch (InputMismatchException e) {
                 String errorText = "Entrée invalide. Veuillez entrer un nombre (1, 2 ou 3).";
-                toString(errorText);
+                displayMessage(errorText);
                 keyboard.next();
             }
         }
         return choice;
+    }
+
+    public void mainMenu() throws InterruptedException {
+        boolean exit = false;
+        boolean playerCreated = false;
+
+        while (!exit) {
+            switch (displayMenu()) {
+                case 1: // Création personnage
+                    hero = createHero();
+                    manageHero(hero);
+                    playerCreated = true;
+                    break;
+                case 2: //Jouer
+                    if (playerCreated) {
+                        try {
+                            game.startingAGame();
+                            game.playingTheGame();
+                        } catch (HeroOutOfTheBoardException e) {
+                            displayMessage(e.getMessage());
+                        }
+                    } else {
+                        String errorText = "Vous devez créer un personnage avant de vous lancer dans l'aventure";
+                        displayMessage(errorText);
+                    }
+                    break;
+                case 3: // Quitter
+                    exit = true;
+                    String exitText = "Oh non... À toute !";
+                    displayMessage(exitText);
+                    break;
+                case 4: // Cheat pour le test, écris un perso auto et lance le jeu
+
+                    try {
+                        createCheatedHero();
+                        game.startingAGame();
+                        game.playingTheGame();
+                    } catch (HeroOutOfTheBoardException e) {
+                        displayMessage(e.getMessage());
+                    }
+                    break;
+                default:
+                    String invalidChoice = "Choix invalide !";
+                    displayMessage(invalidChoice);
+            }
+        }
     }
 
     /**
@@ -130,7 +177,7 @@ public class Menu {
                 2. Modifier le personnage
                 3. Jouer
                 Votre choix :\s""";
-        toString(characterMenu);
+        displayMessage(characterMenu);
         int choice = keyboard.nextInt();
         keyboard.nextLine();
         return choice;
@@ -163,7 +210,6 @@ public class Menu {
 
     public void manageHero(Hero hero) throws InterruptedException {
         boolean play = false;
-        Game game = new Game();
 
         while (!play) {
             switch (displayCharacterMenu()) {
@@ -181,12 +227,12 @@ public class Menu {
                         game.startingAGame();
                         game.playingTheGame();
                     } catch (HeroOutOfTheBoardException e) {
-                        toString(e.getMessage());
+                        displayMessage(e.getMessage());
                     }
                     break;
                 default:
                     String invalidChoice = "Choix invalide !";
-                    toString(invalidChoice);
+                    displayMessage(invalidChoice);
             }
         }
     }
@@ -197,7 +243,7 @@ public class Menu {
      * @param message that will be display
      */
 
-    public void toString(String message) {
+    public void displayMessage(String message) {
         System.out.println(message);
     }
 }

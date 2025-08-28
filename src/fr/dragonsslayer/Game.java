@@ -18,7 +18,6 @@ public class Game {
     private final ArrayList<Cell> board = new ArrayList<>();
     private final int[] ennemiesPosition = new int[5];
     private final int[] chestPosition = new int[5];
-    Menu menu = new Menu();
     public String voidText = "                          ";
 
     /**
@@ -48,7 +47,7 @@ public class Game {
                 voidText + "\n" +
                 "Votre position est : " + "\n" +
                 playerPosition;
-        menu.toString(intro);
+        System.out.println(intro);
         Thread.sleep(700);
     }
 
@@ -56,15 +55,15 @@ public class Game {
         while (playerPosition != 5) {
             int diceValue = 1;
             playerPosition += diceValue;
-            menu.toString(voidText + "Vous lancez le dé. Et vous faites : " + diceValue);
+            System.out.println(voidText + "Vous lancez le dé. Et vous faites : " + diceValue);
             String movingForward = "Vous avancez en case : " + playerPosition + voidText;
-            menu.toString(movingForward);
+            System.out.println(movingForward);
 
             if (playerPosition > 4) {
                 throw new HeroOutOfTheBoardException("Oups, vous êtes au-delà des méandres du vide !");
             } else if (playerPosition == 5) {
                 String winGame = "Bravo, vous avez gagné !";
-                menu.toString(winGame);
+                System.out.println(winGame);
                 return playerPosition;
             }
 
@@ -77,7 +76,7 @@ public class Game {
         while (true) {
                Thread.sleep(700);
                int diceValue = dice();
-               menu.toString(voidText + "Vous lancez le dé. Et vous faites : " + diceValue);
+               System.out.println(voidText + "Vous lancez le dé. Et vous faites : " + diceValue);
                Thread.sleep(700);
 
                playerPosition += diceValue;
@@ -86,12 +85,12 @@ public class Game {
                    throw new HeroOutOfTheBoardException("Oups, vous êtes au-delà des méandres du vide !");
                } else if (playerPosition == 64) {
                    String winGame = "Bravo, vous avez gagné !";
-                   menu.toString(winGame);
+                   System.out.println(winGame);
                    return playerPosition;
                }
 
                String movingForward = "Vous avancez en case : " + playerPosition + voidText;
-               menu.toString(movingForward);
+               System.out.println(movingForward);
            }
 
         */

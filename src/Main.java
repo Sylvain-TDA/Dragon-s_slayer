@@ -1,55 +1,9 @@
-import fr.dragonsslayer.Game;
-import fr.dragonsslayer.board.HeroOutOfTheBoardException;
 import fr.dragonsslayer.Menu;
-import fr.dragonsslayer.characters.Hero;
 
 public class Main {
     public static void main(String[] args)  throws InterruptedException {
         Menu menu = new Menu();
-        Hero hero;
-        Game game = new Game();
         menu.displayIntro();
-
-        boolean exit = false;
-        boolean playerCreated = false;
-
-        while (!exit) {
-            switch (menu.displayMenu()) {
-                case 1: // Création personnage
-                    hero = menu.createHero();
-                    menu.manageHero(hero);
-                    playerCreated = true;
-                    break;
-                case 2: //Jouer
-                    if (playerCreated) {
-                        try {
-                            game.startingAGame();
-                            game.playingTheGame();
-                        } catch (HeroOutOfTheBoardException e) {
-                            menu.toString(e.getMessage());
-                        }
-                    } else {
-                        String errorText = "Vous devez créer un personnage avant de vous lancer dans l'aventure";
-                        menu.toString(errorText);
-                    }
-                    break;
-                case 3: // Quitter
-                    exit = true;
-                    String exitText = "Oh non... À toute !";
-                    menu.toString(exitText);
-                    break;
-                case 4: // Cheat pour le test, écris un perso auto et lance le jeu
-                    try {
-                        menu.createCheatedHero();
-                        game.startingAGame();
-                        game.playingTheGame();
-                    } catch (HeroOutOfTheBoardException e) {
-                        menu.toString(e.getMessage());
-                    }
-                default:
-                    String invalidChoice = "Choix invalide !";
-                    menu.toString(invalidChoice);
-            }
-        }
+        menu.mainMenu();
     }
 }
