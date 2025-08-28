@@ -3,13 +3,19 @@ package fr.dragonsslayer;
 import java.util.ArrayList;
 import java.util.Random;
 
+import fr.dragonsslayer.board.*;
+import fr.dragonsslayer.ennemy.Sorcerer;
+import fr.dragonsslayer.equipment.Potion;
+import fr.dragonsslayer.equipment.Weapon;
+import fr.dragonsslayer.equipment.Spell;
+
 /**
  * This class handle the game in itself. I will start the game, initialize the board, display ennemies, rolling the dice...
  */
 
 public class Game {
     private int playerPosition;
-    private final ArrayList<String> board = new ArrayList<>();
+    private final ArrayList<Cell> board = new ArrayList<>();
     private final int[] ennemiesPosition = new int[5];
     private final int[] chestPosition = new int[5];
     Menu menu = new Menu();
@@ -47,14 +53,14 @@ public class Game {
     }
 
     public int playingTheGame() throws InterruptedException, HeroOutOfTheBoardException {
-        while(playerPosition != 5) {
+        while (playerPosition != 5) {
             int diceValue = 1;
             playerPosition += diceValue;
             menu.toString(voidText + "Vous lancez le dé. Et vous faites : " + diceValue);
             String movingForward = "Vous avancez en case : " + playerPosition + voidText;
             menu.toString(movingForward);
 
-            if (playerPosition > 5) {
+            if (playerPosition > 4) {
                 throw new HeroOutOfTheBoardException("Oups, vous êtes au-delà des méandres du vide !");
             } else if (playerPosition == 5) {
                 String winGame = "Bravo, vous avez gagné !";
@@ -62,7 +68,11 @@ public class Game {
                 return playerPosition;
             }
 
+            Cell currentCell = board.get(playerPosition);
+            currentCell.interact();
         }
+        return playerPosition;
+    }
         /*
         while (true) {
                Thread.sleep(700);
@@ -85,32 +95,32 @@ public class Game {
            }
 
         */
-        return playerPosition;
-    }
 
 
-    public int getPlayerPosition() {
-        return playerPosition;
-    }
 
-    public void getBoard() {
-        System.out.println(board);
-    }
+public int getPlayerPosition() {
+    return playerPosition;
+}
 
-    public void getEnnemyPosition() {
-        System.out.println(board.indexOf("Ennemy"));
-    }
+public void getBoard() {
+    System.out.println(board);
+}
 
-    public void getChestPosition() {
-        System.out.println(board.indexOf("Chest"));
-    }
+public void getEnnemyPosition() {
+    System.out.println(board.indexOf("Ennemy"));
+}
 
-    public void setBoard() {
-        board.add("Empty");
-        board.add("Ennemy");
-        board.add("Weapon");
-        board.add("Potion");
-    }
+public void getChestPosition() {
+    System.out.println(board.indexOf("Chest"));
+}
+
+public void setBoard() {
+    board.add(new EmptyCell(new Empty()));
+    board.add(new EmptyCell(new Empty()));
+    board.add(new EnnemyCell(new Sorcerer("Gildur")));
+    board.add(new WeaponCell(new Weapon("Huld", "spell",2)));
+    board.add(new PotionCell(new Potion("Potion de soin", "Soin", 2)));
+}
 
     /*
     public void setEnnemyPosition() {

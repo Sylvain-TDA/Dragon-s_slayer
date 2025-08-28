@@ -1,5 +1,7 @@
 package fr.dragonsslayer.equipment;
 
+import fr.dragonsslayer.board.Cell;
+
 /**
  * Super class to define defensive equipment
  */
@@ -40,8 +42,7 @@ public abstract class DefensiveEquipment {
     }
 
     public String toString() {
-        return "DefensiveEquipment{" +
-                "type='" + type + '\'' +
+        return "type='" + type + '\'' +
                 ", nom='" + name + '\'' +
                 ", Niveau de defense=" + DefenseLevel +
                 '}';

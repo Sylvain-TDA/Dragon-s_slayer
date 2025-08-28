@@ -1,4 +1,4 @@
-package fr.dragonsslayer;
+package fr.dragonsslayer.board;
 
 /**
  * Specific class to handle message exception if the player falls out of the board.

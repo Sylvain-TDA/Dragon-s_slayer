@@ -1,9 +1,7 @@
 import fr.dragonsslayer.Game;
-import fr.dragonsslayer.HeroOutOfTheBoardException;
+import fr.dragonsslayer.board.HeroOutOfTheBoardException;
 import fr.dragonsslayer.Menu;
 import fr.dragonsslayer.characters.Hero;
-import fr.dragonsslayer.equipment.DefensiveEquipment;
-import fr.dragonsslayer.equipment.OffensiveEquipment;
 
 public class Main {
     public static void main(String[] args)  throws InterruptedException {

@@ -1,5 +1,6 @@
 package fr.dragonsslayer;
 
+import fr.dragonsslayer.board.HeroOutOfTheBoardException;
 import fr.dragonsslayer.characters.Hero;
 import fr.dragonsslayer.characters.Warrior;
 import fr.dragonsslayer.characters.Magician;

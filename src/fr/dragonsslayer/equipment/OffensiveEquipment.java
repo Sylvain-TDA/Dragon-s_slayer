@@ -1,5 +1,7 @@
 package fr.dragonsslayer.equipment;
 
+import fr.dragonsslayer.board.Cell;
+
 /**
  * Super class to define offensive equipment
  */
@@ -40,8 +42,7 @@ public abstract class OffensiveEquipment {
     }
 
     public String toString() {
-        return "OffensiveEquipment{" +
-                "type='" + type + '\'' +
+        return "type='" + type + '\'' +
                 ", nom='" + name + '\'' +
                ", Niveau d'attaque=" + attackLevel +
                 '}';
