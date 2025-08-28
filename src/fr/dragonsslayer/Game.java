@@ -47,19 +47,21 @@ public class Game {
     }
 
     public int playingTheGame() throws InterruptedException, HeroOutOfTheBoardException {
-        int diceValue = 1;
-        menu.toString(voidText + "Vous lancez le dé. Et vous faites : " + diceValue);
-        playerPosition += diceValue;
+        while(playerPosition != 5) {
+            int diceValue = 1;
+            playerPosition += diceValue;
+            menu.toString(voidText + "Vous lancez le dé. Et vous faites : " + diceValue);
+            String movingForward = "Vous avancez en case : " + playerPosition + voidText;
+            menu.toString(movingForward);
 
-        while(true) {
-            if (playerPosition > 4) {
+            if (playerPosition > 5) {
                 throw new HeroOutOfTheBoardException("Oups, vous êtes au-delà des méandres du vide !");
             } else if (playerPosition == 5) {
                 String winGame = "Bravo, vous avez gagné !";
                 menu.toString(winGame);
                 return playerPosition;
             }
-            return playerPosition;
+
         }
         /*
         while (true) {
@@ -83,6 +85,7 @@ public class Game {
            }
 
         */
+        return playerPosition;
     }
 
 
