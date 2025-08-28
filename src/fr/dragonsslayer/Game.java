@@ -46,10 +46,10 @@ public class Game {
                 "Votre position est : " + "\n" +
                 playerPosition;
         menu.toString(intro);
-        Thread.sleep(2000);
+        Thread.sleep(700);
 
         while (true) {
-            Thread.sleep(1000);
+            Thread.sleep(700);
             int diceValue = dice();
             menu.toString(voidText + "Vous lancez le dé. Et vous faites : " + diceValue);
             Thread.sleep(700);
