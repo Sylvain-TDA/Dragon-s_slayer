@@ -101,7 +101,7 @@ public class Menu {
                 choice = keyboard.nextInt();
                 keyboard.nextLine();
 
-                if (choice >= 1 && choice <= 3) {
+                if (choice >= 1 && choice <= 4) {
                     valide = true;
                 } else {
                     String selectionText = "Veuillez entrer 1, 2 ou 3.";
@@ -150,6 +150,10 @@ public class Menu {
         }
     }
 
+    public Hero createCheatedHero() {
+        return new Warrior("Warrior", "Kanomi");
+    }
+
     /**
      * Handle the character menu and choose between printing the hero's info, modify it of play the game
      *
@@ -171,6 +175,8 @@ public class Menu {
                 case 3:
                     play = true;
                     try {
+                        game.setBoard();
+                        game.getBoard();
                         game.startingAGame();
                         game.playingTheGame();
                     } catch (HeroOutOfTheBoardException e) {

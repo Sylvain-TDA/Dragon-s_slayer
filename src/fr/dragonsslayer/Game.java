@@ -1,6 +1,6 @@
 package fr.dragonsslayer;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class Game {
     private int playerPosition;
-    private final String[] board = new String[64];
+    private final ArrayList<String> board = new ArrayList<>();
     private final int[] ennemiesPosition = new int[5];
     private final int[] chestPosition = new int[5];
     Menu menu = new Menu();
@@ -32,6 +32,7 @@ public class Game {
 
     public void startingAGame() throws InterruptedException {
         playerPosition = 0;
+        setBoard();
         String intro = voidText + "\n" +
                 "Votre aventure débute..." + "\n" +
                 voidText + "\n" +
@@ -43,10 +44,25 @@ public class Game {
                 playerPosition;
         menu.toString(intro);
         Thread.sleep(700);
-       }
+    }
 
-       public int playingTheGame () throws InterruptedException, HeroOutOfTheBoardException {
-           while (true) {
+    public int playingTheGame() throws InterruptedException, HeroOutOfTheBoardException {
+        int diceValue = 1;
+        menu.toString(voidText + "Vous lancez le dé. Et vous faites : " + diceValue);
+        playerPosition += diceValue;
+
+        while(true) {
+            if (playerPosition > 4) {
+                throw new HeroOutOfTheBoardException("Oups, vous êtes au-delà des méandres du vide !");
+            } else if (playerPosition == 5) {
+                String winGame = "Bravo, vous avez gagné !";
+                menu.toString(winGame);
+                return playerPosition;
+            }
+            return playerPosition;
+        }
+        /*
+        while (true) {
                Thread.sleep(700);
                int diceValue = dice();
                menu.toString(voidText + "Vous lancez le dé. Et vous faites : " + diceValue);
@@ -65,29 +81,35 @@ public class Game {
                String movingForward = "Vous avancez en case : " + playerPosition + voidText;
                menu.toString(movingForward);
            }
-       }
+
+        */
+    }
 
 
     public int getPlayerPosition() {
         return playerPosition;
     }
 
-    public String[] getBoard() {
-        return board;
+    public void getBoard() {
+        System.out.println(board);
     }
 
-    public int[] getEnnemyPosition() {
-        return ennemiesPosition;
+    public void getEnnemyPosition() {
+        System.out.println(board.indexOf("Ennemy"));
     }
 
-    public int[] getChestPosition() {
-        return chestPosition;
+    public void getChestPosition() {
+        System.out.println(board.indexOf("Chest"));
     }
 
     public void setBoard() {
-        Arrays.fill(board, "empty");
+        board.add("Empty");
+        board.add("Ennemy");
+        board.add("Weapon");
+        board.add("Potion");
     }
 
+    /*
     public void setEnnemyPosition() {
         Random random = new Random();
         int count = 0;
@@ -101,6 +123,8 @@ public class Game {
         }
     }
 
+
+
     public void setChestPosition() {
         Random random = new Random();
         int count = 0;
@@ -113,4 +137,5 @@ public class Game {
             }
         }
     }
+    */
 }

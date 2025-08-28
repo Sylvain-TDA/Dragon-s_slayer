@@ -40,9 +40,17 @@ public class Main {
                     String exitText = "Oh non... À toute !";
                     menu.toString(exitText);
                     break;
+                case 4: // Cheat pour le test, écris un perso auto et lance le jeu
+                    try {
+                        menu.createCheatedHero();
+                        game.startingAGame();
+                        game.playingTheGame();
+                    } catch (HeroOutOfTheBoardException e) {
+                        menu.toString(e.getMessage());
+                    }
                 default:
-                    String invalidChoise = "Choix invalide !";
-                    menu.toString(invalidChoise);
+                    String invalidChoice = "Choix invalide !";
+                    menu.toString(invalidChoice);
             }
         }
     }
