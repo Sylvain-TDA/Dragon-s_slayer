@@ -71,7 +71,6 @@ public abstract class Hero {
      * @param name choosing the name of the hero.
      */
 
-
     public void modify(String type, String name) {
         this.name = name;
         setTypeAndDefaults(type); // <-- réapplique les stats en fonction du type

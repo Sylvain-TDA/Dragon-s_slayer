@@ -20,6 +20,7 @@ public class Game {
     private final int[] chestPosition = new int[5];
     public String voidText = "                          ";
 
+
     /**
      * Initialize the dice and "roll it" by randomizing a number between 1 and 6.
      *
@@ -72,7 +73,6 @@ public class Game {
                 System.out.println("Bravo, vous avez gagné !");
                 return playerPosition;
             }
-
             Cell currentCell = board.get(playerPosition);
             currentCell.interact();
         }

@@ -13,7 +13,6 @@ import java.util.Scanner;
  * - Displaying menu (main, character,...)
  * - Hero's creation and modification
  * - Playing the game
- * <p>
  * Use {@link Scanner} to interact with the player.
  */
 
@@ -74,19 +73,67 @@ public class Menu {
     public String askType() {
         String typeSelection;
         String userInput;
+        int trynbr = 0;
 
         while (true) {
-            displayMessage("Entrer le type (Warrior ou Magician) : ");
+            displayMessage("""
+                    
+                    Vous allez devoir nous dire de quoi vous êtes fait. Plutôt :\s
+                     - Warrior
+                    ou plutôt
+                     - Magician\s
+                    """);
             userInput = keyboard.nextLine().trim();
 
             if (userInput.isEmpty()) {
-                displayMessage("Vous devez entrer un type. Réessayez.");
+                displayMessage("\n" + "Vous devez entrer un type. Réessayez.");
+                trynbr++;
                 continue;
             }
+
             if (userInput.equalsIgnoreCase("Warrior") || userInput.equalsIgnoreCase("Magician")) {
                 return userInput.substring(0, 1).toUpperCase() + userInput.substring(1).toLowerCase();
             } else {
-                displayMessage("Vous devez entrer soit 'Warrior' soit 'Magician'");
+                displayMessage("\n" + "Vous devez entrer soit 'Warrior' soit 'Magician'");
+                trynbr++;
+            }
+
+            if (trynbr < 4) {
+                displayMessage("");
+            } else if (trynbr > 4 && trynbr < 9) {
+                displayMessage("""
+                        \s
+                        On va y arriver... courage.
+                        """);
+            } else if (trynbr > 10) {
+                displayMessage("""
+                        \s
+                         Je retire ce que j'ai dit. C'est peine perdu.
+                        \s
+                          ___________.._______
+                         | .__________))______|
+                         | | / /      ||
+                         | |/ /       ||
+                         | | /        ||.-''.
+                         | |/         |/  _  \\
+                         | |          ||  `/,|
+                         | |          (\\\\`_.'
+                         | |         .-`--'.
+                         | |        /Y . . Y\\
+                         | |       // |   | \\\\
+                         | |      //  | . |  \\\\
+                         | |     ')   |   |   (`
+                         | |          ||'||
+                         | |          || ||
+                         | |          || ||
+                         | |          || ||
+                         | |         / | | \\
+                         ""\"""\"""\""|_`-' `-' |""\"|
+                         |"|""\"""\""\\ \\       '"|"|
+                         | |        \\ \\        | |
+                         : :         \\ \\       : :  
+                         . .          `'       . .
+                        \s""");
             }
         }
     }
@@ -101,7 +148,7 @@ public class Menu {
     public String askName() {
         String name;
         while (true) {
-            displayMessage("Veuillez entrer un nom : ");
+            displayMessage("Et votre nom est ? ");
             name = keyboard.nextLine().trim();
             if (name.isEmpty()) {
                 displayMessage("Bien tenté ' '");
@@ -134,7 +181,7 @@ public class Menu {
                         1. Nouveau personnage
                         2. Jouer
                         3. Quitter
-                        Votre choix :\s""";
+                        """;
 
                 displayMessage(menu);
                 choice = keyboard.nextInt();
