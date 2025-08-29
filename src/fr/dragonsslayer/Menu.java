@@ -22,9 +22,6 @@ public class Menu {
     private Hero hero;
     Game game = new Game();
 
-    public Menu() {
-    }
-
     /**
      * Display the intro's logo in ASCII art.
      */
@@ -79,8 +76,7 @@ public class Menu {
         String userInput;
 
         while (true) {
-            typeSelection = "Entrer le type (Warrior ou Magician) : ";
-            displayMessage(typeSelection);
+            displayMessage("Entrer le type (Warrior ou Magician) : ");
             userInput = keyboard.nextLine().trim();
 
             if (userInput.isEmpty()) {
@@ -90,8 +86,7 @@ public class Menu {
             if (userInput.equalsIgnoreCase("Warrior") || userInput.equalsIgnoreCase("Magician")) {
                 return userInput.substring(0, 1).toUpperCase() + userInput.substring(1).toLowerCase();
             } else {
-                String errorText = "Vous devez entrer soit 'Warrior' soit 'Magician'";
-                displayMessage(errorText);
+                displayMessage("Vous devez entrer soit 'Warrior' soit 'Magician'");
             }
         }
     }
@@ -160,7 +155,7 @@ public class Menu {
     }
 
     /**
-     * BMain loop for the menu.
+     * Main loop for the menu.
      * Handle the creation of the hero, starting a game or quiting a game.
      *
      * @throws InterruptedException if the thread is interrupted during the game.
@@ -174,12 +169,12 @@ public class Menu {
 
             while (!exit) {
                 switch (displayMenu()) {
-                    case 1: // Création personnage
+                    case 1: // Hero creation
                         hero = createHero();
                         manageHero(hero);
                         playerCreated = true;
                         break;
-                    case 2: //Jouer
+                    case 2: //Playing
                         if (playerCreated) {
                             try {
                                 game.startingAGame();
@@ -192,12 +187,12 @@ public class Menu {
                             displayMessage(errorText);
                         }
                         break;
-                    case 3: // Quitter
+                    case 3: // Exit
                         exit = true;
                         String exitText = "Oh non... À toute !";
                         displayMessage(exitText);
                         break;
-                    case 4: // Cheat pour le test, écris un perso auto et lance le jeu
+                    case 4: // For test, create a hero and launch the game
 
                         try {
                             createCheatedHero();
@@ -213,8 +208,7 @@ public class Menu {
                 }
             }
 
-        } catch (
-                InterruptedException e) {
+        } catch (InterruptedException e) {
             displayMessage("Le jeu a été interrompu.");
             Thread.currentThread().interrupt();
         }

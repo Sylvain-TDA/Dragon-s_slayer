@@ -68,9 +68,8 @@ public class Game {
 
             if (playerPosition > 4) {
                 throw new HeroOutOfTheBoardException("Oups, vous êtes au-delà des méandres du vide !");
-            } else if (playerPosition == 5) {
-                String winGame = "Bravo, vous avez gagné !";
-                System.out.println(winGame);
+            } else if (playerPosition == 4) {
+                System.out.println("Bravo, vous avez gagné !");
                 return playerPosition;
             }
 
