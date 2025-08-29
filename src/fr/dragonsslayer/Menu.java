@@ -9,7 +9,12 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * Handle everything related to the menu : introduction, selection, hero's creation...
+ * Handle the user interface of Dragon's Slayer, included :
+ * - Displaying menu (main, character,...)
+ * - Hero's creation and modification
+ * - Playing the game
+ * <p>
+ * Use {@link Scanner} to interact with the player.
  */
 
 public class Menu {
@@ -17,12 +22,12 @@ public class Menu {
     private Hero hero;
     Game game = new Game();
 
-    /**
-     * Printing the introduction of the game
-     */
-
     public Menu() {
     }
+
+    /**
+     * Display the intro's logo in ASCII art.
+     */
 
     public void displayIntro() {
         String intro = """
@@ -34,18 +39,36 @@ public class Menu {
         displayMessage(intro);
     }
 
-    public String getName() {
-        return hero.getName();
-    }
+    /**
+     * Getter for the name of the hero.
+     * @return NullPointerException If no hero has been created.
+     */
 
-    public String getType() {
-        return hero.getType();
+    public String getName() {
+        try {
+            return hero.getName();
+        } catch (NullPointerException npe) {
+            return "Aucun héro créé";
+        }
     }
 
     /**
-     * Ask the player what type he wants to play
-     *
-     * @return the type selected
+     * Getter for the type of the hero.
+     * @return NullPointerException If no hero has been created.
+     */
+
+    public String getType() {
+        try {
+            return hero.getType();
+        } catch (NullPointerException npe) {
+            return "Aucun héro créé";
+        }
+    }
+
+    /**
+     * Request the player what type he wants to play, either Warrior or Magician.
+     * The Scanner handle what the user entered.
+     * @return the type selected under a specific format.
      */
 
     public String askType() {
@@ -67,9 +90,9 @@ public class Menu {
     }
 
     /**
-     * Ask the player the name of his hero
-     *
-     * @return the name entered
+     * Request the player to enter the name of his hero.
+     * The Scanner handle what the user entered.
+     * @return the name entered.
      */
 
     public String askName() {
@@ -118,6 +141,15 @@ public class Menu {
         return choice;
     }
 
+    /**
+     * BMain loop for the menu.
+     * Handle the creation of the hero, starting a game or quiting a game.
+     *
+     * @throws InterruptedException if the thread is interrupted during the game.
+     * @throws HeroOutOfTheBoardException if the hero goes out of the board.
+     */
+
+
     public void mainMenu() throws InterruptedException {
         boolean exit = false;
         boolean playerCreated = false;
@@ -165,9 +197,9 @@ public class Menu {
     }
 
     /**
-     * Display the character menu where you can print infos, modify the character created or play
+     * Display the character menu where the player must choose between different options.
      *
-     * @return the selected menu
+     * @return the user's choice (1- display hero's information, 2- Modify the hero, 3- Play the game).
      */
 
     public int displayCharacterMenu() {
@@ -186,7 +218,7 @@ public class Menu {
     /**
      * Creating the hero by choosing the type and the name
      *
-     * @return A new hero with a type and a name
+     * @return An instance of {@link Warrior} or {@link Magician} corresponding to the user's choice.
      */
 
     public Hero createHero() {
@@ -198,14 +230,21 @@ public class Menu {
         }
     }
 
+    /**
+     * Create a specific hero for tests (Warrior named "Kanomi").
+     *
+     * @return An instance of {@link Warrior} with default values.
+     */
+
     public Hero createCheatedHero() {
         return new Warrior("Warrior", "Kanomi");
     }
 
     /**
-     * Handle the character menu and choose between printing the hero's info, modify it of play the game
+     * Handle the hero's menu : display hero's infos, modify the hero or playing the game.
      *
-     * @param hero information modify or not modify
+     * @param hero the hero created.
+     * @throws InterruptedException if the thread is interrupted during the game.
      */
 
     public void manageHero(Hero hero) throws InterruptedException {
@@ -238,7 +277,7 @@ public class Menu {
     }
 
     /**
-     * This method handle everything that need to be printed out.
+     * Display a message to the player
      *
      * @param message that will be display
      */

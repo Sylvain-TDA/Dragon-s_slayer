@@ -32,7 +32,8 @@ public class Game {
 
     /**
      * Start the game with a text introduction and the player's position at 0.
-     * Then it rolls the dice and move the player.
+     * It also sets the board as it is necessary at the beginning of a game.
+     * @throws InterruptedException if the thread is interrupted during the game.
      */
 
     public void startingAGame() throws InterruptedException {
@@ -51,7 +52,13 @@ public class Game {
         Thread.sleep(700);
     }
 
-    public int playingTheGame() throws InterruptedException, HeroOutOfTheBoardException {
+    /**
+     * Handle the game after is as begun.
+     * It rolls the dice, move the player and handle the encounter on specific cells.
+     * @throws HeroOutOfTheBoardException if the hero goes out of the board.
+     */
+
+    public int playingTheGame() throws HeroOutOfTheBoardException {
         while (playerPosition != 5) {
             int diceValue = 1;
             playerPosition += diceValue;
@@ -112,6 +119,10 @@ public void getEnnemyPosition() {
 public void getChestPosition() {
     System.out.println(board.indexOf("Chest"));
 }
+
+    /**
+     * Handle the initialization of the board.
+     */
 
 public void setBoard() {
     board.add(new EmptyCell(new Empty()));
