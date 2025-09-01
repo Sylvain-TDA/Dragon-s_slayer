@@ -328,7 +328,7 @@ public class Menu {
                     case 3:
                         play = true;
                         try {
-                            game.setBoard();
+                            game.initBoard();
                             game.getBoard();
                             game.startingAGame();
                             game.playingTheGame();

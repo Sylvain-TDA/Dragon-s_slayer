@@ -7,7 +7,6 @@ import fr.dragonsslayer.board.*;
 import fr.dragonsslayer.ennemy.Sorcerer;
 import fr.dragonsslayer.equipment.Potion;
 import fr.dragonsslayer.equipment.Weapon;
-import fr.dragonsslayer.equipment.Spell;
 
 /**
  * This class handle the game in itself. I will start the game, initialize the board, display ennemies, rolling the dice...
@@ -34,12 +33,13 @@ public class Game {
     /**
      * Start the game with a text introduction and the player's position at 0.
      * It also sets the board as it is necessary at the beginning of a game.
+     *
      * @throws InterruptedException if the thread is interrupted during the game.
      */
 
     public void startingAGame() throws InterruptedException {
         playerPosition = 0;
-        setBoard();
+        initBoard();
         String intro = voidText + "\n" +
                 "Votre aventure débute..." + "\n" +
                 voidText + "\n" +
@@ -56,6 +56,7 @@ public class Game {
     /**
      * Handle the game after is as begun.
      * It rolls the dice, move the player and handle the encounter on specific cells.
+     *
      * @throws HeroOutOfTheBoardException if the hero goes out of the board.
      */
 
@@ -101,35 +102,33 @@ public class Game {
 
         */
 
+    public int getPlayerPosition() {
+        return playerPosition;
+    }
 
+    public void getBoard() {
+        System.out.println(board);
+    }
 
-public int getPlayerPosition() {
-    return playerPosition;
-}
+    public void getEnnemyPosition() {
+        System.out.println(board.indexOf("Ennemy"));
+    }
 
-public void getBoard() {
-    System.out.println(board);
-}
-
-public void getEnnemyPosition() {
-    System.out.println(board.indexOf("Ennemy"));
-}
-
-public void getChestPosition() {
-    System.out.println(board.indexOf("Chest"));
-}
+    public void getChestPosition() {
+        System.out.println(board.indexOf("Chest"));
+    }
 
     /**
      * Handle the initialization of the board.
      */
 
-public void setBoard() {
-    board.add(new EmptyCell(new Empty()));
-    board.add(new EmptyCell(new Empty()));
-    board.add(new EnnemyCell(new Sorcerer("Gildur")));
-    board.add(new WeaponCell(new Weapon("Huld", "spell",2)));
-    board.add(new PotionCell(new Potion("Potion de soin", "Soin", 2)));
-}
+    public void initBoard() {
+        board.add(new EmptyCell(new Empty()));
+        board.add(new EmptyCell(new Empty()));
+        board.add(new EnnemyCell(new Sorcerer("Gildur")));
+        board.add(new WeaponCell(new Weapon("Huld", "spell", 2)));
+        board.add(new PotionCell(new Potion("Potion de soin", "Soin", 2)));
+    }
 
     /*
     public void setEnnemyPosition() {
