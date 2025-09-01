@@ -12,4 +12,9 @@ public class WeaponCell extends Cell{
     public void interact() {
         System.out.println("Vous avez trouvé une arme : " + ((Weapon) getContent()));
     }
+
+    @Override
+    public String getType() {
+        return "Weapon";
+    }
 }

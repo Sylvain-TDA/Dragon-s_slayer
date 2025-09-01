@@ -14,4 +14,9 @@ public class EnnemyCell extends Cell{
         System.out.println("Vous vous retrouvez face à un ennemi : ");
         System.out.println(ennemy.getAttribute()); // Appel de getAttribute()
     }
+
+    @Override
+    public String getType() {
+        return "Ennemy";
+    }
 }

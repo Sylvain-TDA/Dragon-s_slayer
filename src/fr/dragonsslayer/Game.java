@@ -1,5 +1,6 @@
 package fr.dragonsslayer;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -106,8 +107,8 @@ public class Game {
         return playerPosition;
     }
 
-    public void getBoard() {
-        System.out.println(board);
+    public ArrayList<Cell> getBoard() {
+        return board;
     }
 
     public void getEnnemyPosition() {
@@ -130,6 +131,9 @@ public class Game {
         board.add(new PotionCell(new Potion("Potion de soin", "Soin", 2)));
     }
 
+    public void showBoard(){
+        System.out.println(board);
+    }
     /*
     public void setEnnemyPosition() {
         Random random = new Random();

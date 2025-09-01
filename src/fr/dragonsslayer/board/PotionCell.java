@@ -11,4 +11,9 @@ public class PotionCell extends Cell{
     public void interact() {
         System.out.println("Vous avez trouvé une potion : " + ((Potion) getContent()));
     }
+
+    @Override
+    public String getType() {
+        return "Potion";
+    }
 }

@@ -1,8 +1,11 @@
 package fr.dragonsslayer.db;
 
+import fr.dragonsslayer.Game;
+import fr.dragonsslayer.board.Cell;
 import fr.dragonsslayer.characters.Hero;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DataBaseHandling {
 
@@ -84,5 +87,45 @@ public class DataBaseHandling {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void createBoard() {
+        String sql = "INSERT INTO `Board` (`Type`) VALUES (?)";
+        Game game = new Game();
+        game.initBoard();
+        ArrayList<Cell> cells = game.getBoard();
+
+        try (
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)
+        ) {
+            for (Cell cell : cells) {
+                statement.setString(1, cell.getType());
+                statement.addBatch();
+            }
+            int[] rowsInserted = statement.executeBatch();
+            System.out.println(rowsInserted.length + " ligne(s) insérée(s).");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getBoard() {
+        String sql = "SELECT * FROM `Board`";
+
+        try (
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql);
+                ResultSet resultSet = statement.executeQuery(sql)
+        ) {
+            while (resultSet.next()) {
+                String type = resultSet.getString("Type").trim();
+                int  id = resultSet.getInt("Id");
+                System.out.println("Board position : " + id + " Type : " + type);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

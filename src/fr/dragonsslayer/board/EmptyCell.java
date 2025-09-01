@@ -12,4 +12,9 @@ public class EmptyCell extends Cell {
     public void interact() {
         System.out.println("Vous êtes sur une case vide");
     }
+
+    @Override
+    public String getType() {
+        return "Empty";
+    }
 }
