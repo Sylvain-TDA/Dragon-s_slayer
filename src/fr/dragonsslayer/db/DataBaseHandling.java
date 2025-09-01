@@ -64,4 +64,25 @@ public class DataBaseHandling {
             e.printStackTrace();
         }
     }
+
+    public void changeLifePoints(Hero hero) {
+        String sql = "UPDATE `Character` " +
+                "SET `LifePoints` = ?" +
+                "WHERE Id = (SELECT MAX(Id) FROM `Character`)";
+        // ----------------
+        // le code sera à modifier ici suivant les nouveaux points de vie que l'on veut intégrer.
+
+        int newLifePoints = 1;
+        try (
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)
+        ) {
+            statement.setInt(3, newLifePoints);
+
+            int rowsInserted = statement.executeUpdate();
+            System.out.println(rowsInserted + " ligne(s) modifiée(s).");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
