@@ -4,6 +4,7 @@ import fr.dragonsslayer.board.HeroOutOfTheBoardException;
 import fr.dragonsslayer.characters.Hero;
 import fr.dragonsslayer.characters.Warrior;
 import fr.dragonsslayer.characters.Magician;
+import fr.dragonsslayer.db.DataBaseHandling;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -19,7 +20,13 @@ import java.util.Scanner;
 public class Menu {
     private final Scanner keyboard = new Scanner(System.in);
     private Hero hero;
-    Game game = new Game();
+    private DataBaseHandling db;
+    private Game game;
+
+    public Menu() {
+        this.db = new DataBaseHandling();
+        this.game = new Game();
+    }
 
     /**
      * Display the intro's logo in ASCII art.
@@ -287,12 +294,16 @@ public class Menu {
      */
 
     public Hero createHero() {
+        Hero hero;
 
         if (askType().equalsIgnoreCase("Warrior")) {
-            return new Warrior("Warrior", askName());
+            hero = new Warrior("Warrior", askName());
         } else {
-            return new Magician("Magician", askName());
+           hero = new Magician("Magician", askName());
         }
+
+        db.createHeroes(hero);
+        return hero;
     }
 
     /**

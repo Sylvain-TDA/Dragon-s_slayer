@@ -5,8 +5,7 @@ import java.sql.*;
 
 public class Main {
     public static void main(String[] args)  throws InterruptedException {
-        DataBaseHandling getHeroes = new DataBaseHandling();
-        getHeroes.getHeroes();
+        DataBaseHandling dbHandling = new DataBaseHandling();
         Menu menu = new Menu();
         menu.displayIntro();
         menu.mainMenu();

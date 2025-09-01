@@ -10,7 +10,8 @@ public abstract class Hero {
     private String name;
     private int life;
     private int attackLevel;
-    private String weapon;
+    private String OffensiveEquipment;
+    private String defensiveEquipment;
 
     /**
      * Creating the hero.
@@ -40,10 +41,13 @@ public abstract class Hero {
         return attackLevel;
     }
 
-    public String getWeapon() {
-        return weapon;
+    public String getOffensiveEquipment() {
+        return OffensiveEquipment;
     }
 
+    public String getDefensiveEquipment() {
+        return defensiveEquipment;
+    }
     public void setLife(int life) {
                    this.life = life;
     }
@@ -60,8 +64,12 @@ public abstract class Hero {
        this.attackLevel = attackLevel;
     }
 
-    public void setWeapon(String weapon) {
-        this.weapon = weapon;
+    public void setOffensiveEquipment(String offensiveEquipment) {
+        this.OffensiveEquipment = offensiveEquipment;
+    }
+
+    public void setDefensiveEquipment(String defensiveEquipment) {
+        this.defensiveEquipment = defensiveEquipment;
     }
 
     /**
@@ -81,12 +89,14 @@ public abstract class Hero {
             this.type = "Warrior";
             this.life = 10;
             this.attackLevel = 5;
-            this.weapon = "weapon";
+            this.OffensiveEquipment = "weapon";
+            this.defensiveEquipment = "shield";
         } else if (type.equalsIgnoreCase("Magician")) {
             this.type = "Magician";
             this.life = 6;
             this.attackLevel = 8;
-            this.weapon = "spell";
+            this.OffensiveEquipment = "spell";
+            this.defensiveEquipment = "shield";
         }
     }
 
@@ -101,7 +111,7 @@ public abstract class Hero {
                 "classe : '" + type + '\'' + "\n" +
                 "points de vie : " + life + "\n" +
                 "niveau d'attaque : " + attackLevel + "\n" +
-                "arme :'" + weapon + '\'' + "\n";
+                "arme :'" + OffensiveEquipment + '\'' + "\n";
     }
 
 }
