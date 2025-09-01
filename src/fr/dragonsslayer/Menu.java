@@ -299,7 +299,7 @@ public class Menu {
         if (askType().equalsIgnoreCase("Warrior")) {
             hero = new Warrior("Warrior", askName());
         } else {
-           hero = new Magician("Magician", askName());
+            hero = new Magician("Magician", askName());
         }
 
         db.createHeroes(hero);
@@ -335,6 +335,7 @@ public class Menu {
                         break;
                     case 2:
                         hero.modify(askType(), askName());
+                        db.editHeroes(hero);
                         break;
                     case 3:
                         play = true;

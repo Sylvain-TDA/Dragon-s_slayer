@@ -42,4 +42,26 @@ public class DataBaseHandling {
             e.printStackTrace();
         }
     }
+
+    public void editHeroes(Hero hero) {
+        String sql = "UPDATE `Character` " +
+                "SET `Type` = ?, `Name` = ?, `LifePoints` = ?, `Strength` = ?, `OffensiveEquipment` = ?, `DefensiveEquipment` = ? " +
+                "WHERE Id = (SELECT MAX(Id) FROM `Character`)";
+        try (
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)
+        ) {
+            statement.setString(1, hero.getType());
+            statement.setString(2, hero.getName());
+            statement.setInt(3, hero.getLife());
+            statement.setInt(4, hero.getAttackLevel());
+            statement.setString(5, hero.getOffensiveEquipment());
+            statement.setString(6, hero.getDefensiveEquipment());
+
+            int rowsInserted = statement.executeUpdate();
+            System.out.println(rowsInserted + " ligne(s) modifiée(s).");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
