@@ -49,27 +49,27 @@ public abstract class Hero {
         return defensiveEquipment;
     }
 
-    public void setLife(int life) {
+    protected void setLife(int life) {
         this.life = life;
     }
 
-    public void setType(String type) {
+    protected void setType(String type) {
         this.type = type;
     }
 
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
 
-    public void setAttackLevel(int attackLevel) {
+    protected void setAttackLevel(int attackLevel) {
         this.attackLevel = attackLevel;
     }
 
-    public void setOffensiveEquipment(String offensiveEquipment) {
+    protected void setOffensiveEquipment(String offensiveEquipment) {
         this.OffensiveEquipment = offensiveEquipment;
     }
 
-    public void setDefensiveEquipment(String defensiveEquipment) {
+    protected void setDefensiveEquipment(String defensiveEquipment) {
         this.defensiveEquipment = defensiveEquipment;
     }
 
