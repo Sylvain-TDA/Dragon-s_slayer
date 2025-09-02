@@ -39,8 +39,6 @@ public class Menu {
                 (| Dragon's slayer |)
                  '-----------------'\s
                  \\_~~~~~~~~~~~~~~~_/\s""";
-
-         db.getBoard();
     }
 
     /**
@@ -280,7 +278,8 @@ public class Menu {
                 ===== Menu Personnage =====
                 1. Afficher les infos
                 2. Modifier le personnage
-                3. Jouer
+                3. Pray for respect
+                4. Jouer
                 Votre choix :\s""";
         displayMessage(characterMenu);
         int choice = keyboard.nextInt();
@@ -302,7 +301,7 @@ public class Menu {
         } else {
             hero = new Magician("Magician", askName());
         }
-
+        db.toJson(hero);
         db.createHeroes(hero);
         return hero;
     }
@@ -339,6 +338,9 @@ public class Menu {
                         db.editHeroes(hero);
                         break;
                     case 3:
+                        game.prayForRespect();
+                        break;
+                    case 4:
                         play = true;
                         try {
                             game.initBoard();

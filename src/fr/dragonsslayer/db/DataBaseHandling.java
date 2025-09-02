@@ -1,5 +1,6 @@
 package fr.dragonsslayer.db;
 
+import com.google.gson.Gson;
 import fr.dragonsslayer.Game;
 import fr.dragonsslayer.board.Cell;
 import fr.dragonsslayer.characters.Hero;
@@ -70,8 +71,8 @@ public class DataBaseHandling {
 
     public void changeLifePoints(Hero hero) {
         String sql = "UPDATE `Character` " +
-                "SET `LifePoints` = ?" +
-                "WHERE Id = (SELECT MAX(Id) FROM `Character`)";
+                "SET `LifePoints` = ? " +
+                "WHERE `Id` = (SELECT MAX(`Id`) FROM `Character`)";
         // ----------------
         // le code sera à modifier ici suivant les nouveaux points de vie que l'on veut intégrer.
 
@@ -80,7 +81,7 @@ public class DataBaseHandling {
                 Connection connection = DatabaseConnection.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)
         ) {
-            statement.setInt(3, newLifePoints);
+            statement.setInt(1, newLifePoints);
 
             int rowsInserted = statement.executeUpdate();
             System.out.println(rowsInserted + " ligne(s) modifiée(s).");
@@ -127,5 +128,29 @@ public class DataBaseHandling {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public void toJson (Hero hero) {
+        Gson gson = new Gson();
+        String json = gson.toJson(hero);
+        String sql = "INSERT INTO `Character` (`Type`, `Name`, `LifePoints`, `Strength`, `OffensiveEquipment`, `DefensiveEquipment`, `JsonHero`) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)
+        ) {
+            statement.setString(1, hero.getType());
+            statement.setString(2, hero.getName());
+            statement.setInt(3, hero.getLife());
+            statement.setInt(4, hero.getAttackLevel());
+            statement.setString(5, hero.getOffensiveEquipment());
+            statement.setString(6, hero.getDefensiveEquipment());
+            statement.setString(7, json);
+
+            int rowsInserted = statement.executeUpdate();
+            System.out.println(rowsInserted + " ligne(s) insérée(s).");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

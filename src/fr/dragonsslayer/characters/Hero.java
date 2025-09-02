@@ -81,7 +81,7 @@ public abstract class Hero {
 
     public void modify(String type, String name) {
         this.name = name;
-        setTypeAndDefaults(type); // <-- réapplique les stats en fonction du type
+        setTypeAndDefaults(type);
     }
 
     private void setTypeAndDefaults(String type) {

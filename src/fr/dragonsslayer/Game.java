@@ -1,13 +1,14 @@
 package fr.dragonsslayer;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Random;
 
 import fr.dragonsslayer.board.*;
+import fr.dragonsslayer.characters.Hero;
 import fr.dragonsslayer.ennemy.Sorcerer;
 import fr.dragonsslayer.equipment.Potion;
 import fr.dragonsslayer.equipment.Weapon;
+import fr.dragonsslayer.db.DataBaseHandling;
 
 /**
  * This class handle the game in itself. I will start the game, initialize the board, display ennemies, rolling the dice...
@@ -15,10 +16,13 @@ import fr.dragonsslayer.equipment.Weapon;
 
 public class Game {
     private int playerPosition;
-    private final ArrayList<Cell> board = new ArrayList<>();
-    private final int[] ennemiesPosition = new int[5];
-    private final int[] chestPosition = new int[5];
-    public String voidText = "                          ";
+    private final ArrayList<Cell> board;
+    public String voidText;
+    private Hero hero;
+
+    public Game() {
+        board = new ArrayList<>();
+    }
 
 
     /**
@@ -131,8 +135,15 @@ public class Game {
         board.add(new PotionCell(new Potion("Potion de soin", "Soin", 2)));
     }
 
-    public void showBoard(){
+    public void showBoard() {
         System.out.println(board);
+    }
+
+    public void prayForRespect() {
+        DataBaseHandling db = new DataBaseHandling();
+        db.getHeroes();
+        db.changeLifePoints(hero);
+        System.out.println("Vous avez honorez ceux qui sont passés par là avant vous.Vous vous sentez plus revigoré");
     }
     /*
     public void setEnnemyPosition() {
