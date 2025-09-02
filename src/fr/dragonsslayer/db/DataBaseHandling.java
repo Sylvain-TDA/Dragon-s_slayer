@@ -40,7 +40,7 @@ public class DataBaseHandling {
      * @param hero to access the getters of the class Hero.
      */
 
-    public void createHeroes(Hero hero) {
+    private void createHeroes(Hero hero) {
         String sql = "INSERT INTO `Character` (`Type`, `Name`, `LifePoints`, `Strength`, `OffensiveEquipment`, `DefensiveEquipment`) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
         try (
@@ -120,7 +120,7 @@ public class DataBaseHandling {
      * Initialize the board and store it in the database.
      */
 
-    public void createBoard() {
+    private void createBoard() {
         String sql = "INSERT INTO `Board` (`Type`) VALUES (?)";
         Game game = new Game();
         game.initBoard();
@@ -188,7 +188,7 @@ public class DataBaseHandling {
      * Get the board from the database and display it.
      */
 
-    public void getBoard() {
+    private void getBoard() {
         String sql = "SELECT * FROM `Board`";
 
         try (

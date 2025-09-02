@@ -22,6 +22,7 @@ public class Game {
     private boolean hadPray;
 
     public Game() {
+        voidText = "                 ";
         board = new ArrayList<>();
     }
 
@@ -62,8 +63,13 @@ public class Game {
         while (playerPosition != 5) {
             int diceValue = 1;
             playerPosition += diceValue;
-            System.out.println(voidText + "Vous lancez le dé. Et vous faites : " + diceValue);
-            String movingForward = "Vous avancez en case : " + playerPosition + voidText;
+            System.out.println(voidText + "Vous lancez le dé. Et vous faites : " + diceValue + """
+                    
+                    """);
+            String movingForward = """
+            Vous avancez en case :\s""" + playerPosition +  """
+                      \s
+                   \s""" ;
             System.out.println(movingForward);
 
             if (playerPosition > 4) {
