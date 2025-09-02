@@ -6,6 +6,10 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 
+/**
+ * Handle the connection to the database.
+ */
+
 public class DatabaseConnection {
     private static final String URL = "jdbc:mysql://localhost:3306/dragons_slayer";
     private static final String USER = "laravel";

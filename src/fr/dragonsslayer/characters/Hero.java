@@ -48,8 +48,9 @@ public abstract class Hero {
     public String getDefensiveEquipment() {
         return defensiveEquipment;
     }
+
     public void setLife(int life) {
-                   this.life = life;
+        this.life = life;
     }
 
     public void setType(String type) {
@@ -61,7 +62,7 @@ public abstract class Hero {
     }
 
     public void setAttackLevel(int attackLevel) {
-       this.attackLevel = attackLevel;
+        this.attackLevel = attackLevel;
     }
 
     public void setOffensiveEquipment(String offensiveEquipment) {
@@ -107,7 +108,7 @@ public abstract class Hero {
      */
 
     public String toString() {
-        return  "nom : '" + name + '\'' + "\n" +
+        return "nom : '" + name + '\'' + "\n" +
                 "classe : '" + type + '\'' + "\n" +
                 "points de vie : " + life + "\n" +
                 "niveau d'attaque : " + attackLevel + "\n" +

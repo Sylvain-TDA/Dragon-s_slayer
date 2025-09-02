@@ -8,7 +8,16 @@ import fr.dragonsslayer.characters.Hero;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Handle the relation with the database.
+ */
+
 public class DataBaseHandling {
+
+
+    /**
+     * Display heroes in the database.
+     */
 
     public void getHeroes() {
         String sql = "SELECT `Name` FROM `Character`";
@@ -25,6 +34,11 @@ public class DataBaseHandling {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Create an hero and store it in the database.
+     * @param hero to access the getters of the class Hero.
+     */
 
     public void createHeroes(Hero hero) {
         String sql = "INSERT INTO `Character` (`Type`, `Name`, `LifePoints`, `Strength`, `OffensiveEquipment`, `DefensiveEquipment`) " +
@@ -46,6 +60,11 @@ public class DataBaseHandling {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Modify the hero and store the changes in the database.
+     * @param hero to access the getters of the class Hero.
+     */
 
     public void editHeroes(Hero hero) {
         String sql = "UPDATE `Character` " +
@@ -69,6 +88,11 @@ public class DataBaseHandling {
         }
     }
 
+    /**
+     * Modify the life points and sotre it in the database.
+     * @param hero to access the getters of the class Hero.
+     */
+
     public void changeLifePoints(Hero hero) {
         String sql = "UPDATE `Character` " +
                 "SET `LifePoints` = ? " +
@@ -89,6 +113,10 @@ public class DataBaseHandling {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Initialize the board and store it in the database.
+     */
 
     public void createBoard() {
         String sql = "INSERT INTO `Board` (`Type`) VALUES (?)";
@@ -111,6 +139,10 @@ public class DataBaseHandling {
         }
     }
 
+    /**
+     * Empty the table Board as it should only store the cells of the game played.
+     */
+
     public void deleteBoard() {
         String sql = "DELETE FROM `Board` WHERE Id > 0";
         try (
@@ -124,6 +156,10 @@ public class DataBaseHandling {
         }
     }
 
+    /**
+     * Get the board from the database and display it.
+     */
+
     public void getBoard() {
         String sql = "SELECT * FROM `Board`";
 
@@ -134,7 +170,7 @@ public class DataBaseHandling {
         ) {
             while (resultSet.next()) {
                 String type = resultSet.getString("Type").trim();
-                int  id = resultSet.getInt("Id");
+                int id = resultSet.getInt("Id");
                 System.out.println("Board position : " + id + " Type : " + type);
             }
         } catch (SQLException e) {
@@ -143,7 +179,12 @@ public class DataBaseHandling {
 
     }
 
-    public void toJson (Hero hero) {
+    /**
+     * Convert the object hero into a Json and store it in the database.
+     * @param hero to access the getters of the class Hero.
+     */
+
+    public void toJson(Hero hero) {
         Gson gson = new Gson();
         String json = gson.toJson(hero);
         String sql = "INSERT INTO `Character` (`Type`, `Name`, `LifePoints`, `Strength`, `OffensiveEquipment`, `DefensiveEquipment`, `JsonHero`) " +

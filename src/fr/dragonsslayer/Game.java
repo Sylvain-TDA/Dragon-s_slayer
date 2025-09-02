@@ -45,15 +45,7 @@ public class Game {
     public void startingAGame() throws InterruptedException {
         playerPosition = 0;
         initBoard();
-        String intro = voidText + "\n" +
-                "Votre aventure débute..." + "\n" +
-                voidText + "\n" +
-                "Vous êtes ensevelis sous un monticule de formes desquelles suintent un liquide étrange." + "\n" +
-                "Après avoir réveillé vos yeux, ce liquide semble être le sang qui s'écoule des cadavres qui vous entourent." + "\n" +
-                "Prenant votre courage à deux mains, vous dégagez celle d'un héro précédent pour vous mettre sur vos deux jambes, bien entières." + "\n" +
-                voidText + "\n" +
-                "Votre position est : " + "\n" +
-                playerPosition;
+        String intro = voidText + "\n" + "Votre aventure débute..." + "\n" + voidText + "\n" + "Vous êtes ensevelis sous un monticule de formes desquelles suintent un liquide étrange." + "\n" + "Après avoir réveillé vos yeux, ce liquide semble être le sang qui s'écoule des cadavres qui vous entourent." + "\n" + "Prenant votre courage à deux mains, vous dégagez celle d'un héro précédent pour vous mettre sur vos deux jambes, bien entières." + "\n" + voidText + "\n" + "Votre position est : " + "\n" + playerPosition;
         System.out.println(intro);
         Thread.sleep(700);
     }
@@ -84,28 +76,6 @@ public class Game {
         }
         return playerPosition;
     }
-        /*
-        while (true) {
-               Thread.sleep(700);
-               int diceValue = dice();
-               System.out.println(voidText + "Vous lancez le dé. Et vous faites : " + diceValue);
-               Thread.sleep(700);
-
-               playerPosition += diceValue;
-
-               if (playerPosition > 64) {
-                   throw new HeroOutOfTheBoardException("Oups, vous êtes au-delà des méandres du vide !");
-               } else if (playerPosition == 64) {
-                   String winGame = "Bravo, vous avez gagné !";
-                   System.out.println(winGame);
-                   return playerPosition;
-               }
-
-               String movingForward = "Vous avancez en case : " + playerPosition + voidText;
-               System.out.println(movingForward);
-           }
-
-        */
 
     public int getPlayerPosition() {
         return playerPosition;
@@ -139,39 +109,15 @@ public class Game {
         System.out.println(board);
     }
 
+    /**
+     * If the player choose to get the name of old players his life will be increase.
+     * Display a message that indicate that.
+     */
+
     public void prayForRespect() {
         DataBaseHandling db = new DataBaseHandling();
         db.getHeroes();
         db.changeLifePoints(hero);
         System.out.println("Vous avez honorez ceux qui sont passés par là avant vous.Vous vous sentez plus revigoré");
     }
-    /*
-    public void setEnnemyPosition() {
-        Random random = new Random();
-        int count = 0;
-
-        while (count < 10) {
-            int pos = random.nextInt(board.length);
-            if (board[pos].equals("empty")) {
-                board[pos] = "enemy";
-                count++;
-            }
-        }
-    }
-
-
-
-    public void setChestPosition() {
-        Random random = new Random();
-        int count = 0;
-
-        while (count < 15) {
-            int pos = random.nextInt(board.length);
-            if (board[pos] == null) {
-                board[pos] = "chest";
-                count++;
-            }
-        }
-    }
-    */
 }
