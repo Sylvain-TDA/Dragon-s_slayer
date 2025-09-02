@@ -1,9 +1,7 @@
 package fr.dragonsslayer;
 
 import fr.dragonsslayer.board.HeroOutOfTheBoardException;
-import fr.dragonsslayer.characters.Hero;
-import fr.dragonsslayer.characters.Warrior;
-import fr.dragonsslayer.characters.Magician;
+import fr.dragonsslayer.characters.*;
 import fr.dragonsslayer.db.DataBaseHandling;
 
 import java.util.InputMismatchException;
@@ -304,7 +302,7 @@ public class Menu {
             hero = new Magician("Magician", askName());
         }
         db.toJson(hero);
-        db.createHeroes(hero);
+        //db.createHeroes(hero);
         return hero;
     }
 

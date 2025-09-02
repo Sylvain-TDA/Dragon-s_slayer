@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 public class DataBaseHandling {
 
-
     /**
      * Display heroes in the database.
      */
@@ -28,7 +27,7 @@ public class DataBaseHandling {
         ) {
             while (resultSet.next()) {
                 String name = resultSet.getString("Name").trim();
-                System.out.println("Hero Name: " + name);
+                System.out.println("Nom du héro : " + name);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -37,6 +36,7 @@ public class DataBaseHandling {
 
     /**
      * Create an hero and store it in the database.
+     *
      * @param hero to access the getters of the class Hero.
      */
 
@@ -55,7 +55,7 @@ public class DataBaseHandling {
             statement.setString(6, hero.getDefensiveEquipment());
 
             int rowsInserted = statement.executeUpdate();
-            System.out.println(rowsInserted + " ligne(s) insérée(s).");
+            //System.out.println(rowsInserted + " ligne(s) insérée(s). CREATEHERO");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -63,6 +63,7 @@ public class DataBaseHandling {
 
     /**
      * Modify the hero and store the changes in the database.
+     *
      * @param hero to access the getters of the class Hero.
      */
 
@@ -82,7 +83,7 @@ public class DataBaseHandling {
             statement.setString(6, hero.getDefensiveEquipment());
 
             int rowsInserted = statement.executeUpdate();
-            System.out.println(rowsInserted + " ligne(s) modifiée(s).");
+            //System.out.println(rowsInserted + " ligne(s) modifiée(s). EDITHERO");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -90,6 +91,7 @@ public class DataBaseHandling {
 
     /**
      * Modify the life points and sotre it in the database.
+     *
      * @param hero to access the getters of the class Hero.
      */
 
@@ -108,7 +110,7 @@ public class DataBaseHandling {
             statement.setInt(1, newLifePoints);
 
             int rowsInserted = statement.executeUpdate();
-            System.out.println(rowsInserted + " ligne(s) modifiée(s).");
+            //System.out.println(rowsInserted + " ligne(s) modifiée(s). CHANGELIFEPOINTS");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -181,6 +183,7 @@ public class DataBaseHandling {
 
     /**
      * Convert the object hero into a Json and store it in the database.
+     *
      * @param hero to access the getters of the class Hero.
      */
 
@@ -202,7 +205,7 @@ public class DataBaseHandling {
             statement.setString(7, json);
 
             int rowsInserted = statement.executeUpdate();
-            System.out.println(rowsInserted + " ligne(s) insérée(s).");
+            //System.out.println(rowsInserted + " ligne(s) insérée(s).TOJSON");
         } catch (SQLException e) {
             e.printStackTrace();
         }

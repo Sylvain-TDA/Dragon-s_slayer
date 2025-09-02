@@ -19,6 +19,7 @@ public class Game {
     private final ArrayList<Cell> board;
     public String voidText;
     private Hero hero;
+    private boolean hadPray;
 
     public Game() {
         board = new ArrayList<>();
@@ -117,7 +118,17 @@ public class Game {
     public void prayForRespect() {
         DataBaseHandling db = new DataBaseHandling();
         db.getHeroes();
-        db.changeLifePoints(hero);
-        System.out.println("Vous avez honorez ceux qui sont passés par là avant vous.Vous vous sentez plus revigoré");
+        if (!hadPray) {
+            db.changeLifePoints(hero);
+            System.out.println("""
+                    
+                    Vous avez honorez ceux qui sont passés par là avant vous.Vous vous sentez plus revigoré.
+                    Voir votre nom semble être prémonitoire et vous laisse un sentiment étrange...
+                    
+                    \s""");
+        } else {
+            System.out.println("Les mort n'apprécient pas la triche.");
+        }
+        hadPray = true;
     }
 }
