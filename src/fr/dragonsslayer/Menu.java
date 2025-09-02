@@ -48,7 +48,7 @@ public class Menu {
      * @return NullPointerException If no hero has been created.
      */
 
-    public String getName() {
+    protected String getName() {
         try {
             return hero.getName();
         } catch (NullPointerException npe) {
@@ -62,7 +62,7 @@ public class Menu {
      * @return NullPointerException If no hero has been created.
      */
 
-    public String getType() {
+    protected String getType() {
         try {
             return hero.getType();
         } catch (NullPointerException npe) {
@@ -77,7 +77,7 @@ public class Menu {
      * @return the type selected under a specific format.
      */
 
-    public String askType() {
+    private String askType() {
         String typeSelection;
         String userInput;
         int trynbr = 0;
@@ -152,7 +152,7 @@ public class Menu {
      * @return the name entered.
      */
 
-    public String askName() {
+    private String askName() {
         String name;
         while (true) {
             displayMessage("Et votre nom est ? ");
@@ -175,7 +175,7 @@ public class Menu {
      * @return the selected menu
      */
 
-    public int displayMenu() {
+    protected int displayMenu() {
         int choice = 0;
         boolean valide = false;
 
@@ -274,7 +274,7 @@ public class Menu {
      * @return the user's choice (1- display hero's information, 2- Modify the hero, 3- Play the game).
      */
 
-    public int displayCharacterMenu() {
+    private int displayCharacterMenu() {
         String characterMenu = """
                 ===== Menu Personnage =====
                 1. Afficher les infos
@@ -294,7 +294,7 @@ public class Menu {
      * @return An instance of {@link Warrior} or {@link Magician} corresponding to the user's choice.
      */
 
-    public Hero createHero() {
+    private Hero createHero() {
         Hero hero;
 
         if (askType().equalsIgnoreCase("Warrior")) {
@@ -313,7 +313,7 @@ public class Menu {
      * @return An instance of {@link Warrior} with default values.
      */
 
-    public Hero createCheatedHero() {
+    private Hero createCheatedHero() {
         return new Warrior("Warrior", "Kanomi");
     }
 
@@ -324,7 +324,7 @@ public class Menu {
      * @throws InterruptedException if the thread is interrupted during the game.
      */
 
-    public void manageHero(Hero hero) throws InterruptedException {
+    private void manageHero(Hero hero) throws InterruptedException {
 
         boolean play = false;
 
@@ -370,7 +370,7 @@ public class Menu {
      * @param message that will be display
      */
 
-    public void displayMessage(String message) {
+    private void displayMessage(String message) {
         System.out.println(message);
     }
 }
