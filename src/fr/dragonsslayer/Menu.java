@@ -38,6 +38,7 @@ public class Menu {
                 (| Dragon's slayer |)
                  '-----------------'\s
                  \\_~~~~~~~~~~~~~~~_/\s""";
+        game.getBoard();
         displayMessage(intro);
     }
 

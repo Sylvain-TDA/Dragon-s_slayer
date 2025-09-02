@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         DataBaseHandling dbHandling = new DataBaseHandling();
         dbHandling.deleteBoard();
-        dbHandling.createBoard();
+        dbHandling.createJsonBoard();
         Menu menu = new Menu();
         menu.displayIntro();
         menu.mainMenu();

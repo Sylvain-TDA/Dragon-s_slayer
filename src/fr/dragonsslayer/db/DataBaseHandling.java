@@ -142,6 +142,32 @@ public class DataBaseHandling {
     }
 
     /**
+     * Initialize the board in Json and store it in the database.
+     */
+
+    public void createJsonBoard () {
+        Game game = new Game();
+        Gson gson = new Gson();
+        game.initBoard();
+
+        String json = gson.toJson(game.getBoard());
+        String sql = "INSERT INTO `Board` (`Type`) " +
+                "VALUES (?)";
+        try (
+                Connection connection = DatabaseConnection.getConnection();
+
+                PreparedStatement statement = connection.prepareStatement(sql)
+        ) {
+            statement.setString(1, json);
+
+            int rowsInserted = statement.executeUpdate();
+            //System.out.println(rowsInserted + " ligne(s) insérée(s).TOJSON");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Empty the table Board as it should only store the cells of the game played.
      */
 
