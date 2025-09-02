@@ -32,7 +32,7 @@ public class Game {
      * @return the result of the dice that have been rolled.
      */
 
-    public int dice() {
+    private int dice() {
         return new Random().nextInt(6) + 1;
     }
 
@@ -43,7 +43,7 @@ public class Game {
      * @throws InterruptedException if the thread is interrupted during the game.
      */
 
-    public void startingAGame() throws InterruptedException {
+    protected void startingAGame() throws InterruptedException {
         playerPosition = 0;
         initBoard();
         String intro = voidText + "\n" + "Votre aventure débute..." + "\n" + voidText + "\n" + "Vous êtes ensevelis sous un monticule de formes desquelles suintent un liquide étrange." + "\n" + "Après avoir réveillé vos yeux, ce liquide semble être le sang qui s'écoule des cadavres qui vous entourent." + "\n" + "Prenant votre courage à deux mains, vous dégagez celle d'un héro précédent pour vous mettre sur vos deux jambes, bien entières." + "\n" + voidText + "\n" + "Votre position est : " + "\n" + playerPosition;
@@ -58,7 +58,7 @@ public class Game {
      * @throws HeroOutOfTheBoardException if the hero goes out of the board.
      */
 
-    public int playingTheGame() throws HeroOutOfTheBoardException {
+    protected int playingTheGame() throws HeroOutOfTheBoardException {
         while (playerPosition != 5) {
             int diceValue = 1;
             playerPosition += diceValue;
@@ -78,7 +78,7 @@ public class Game {
         return playerPosition;
     }
 
-    public int getPlayerPosition() {
+    protected int getPlayerPosition() {
         return playerPosition;
     }
 
@@ -86,11 +86,11 @@ public class Game {
         return board;
     }
 
-    public void getEnnemyPosition() {
+    protected void getEnnemyPosition() {
         System.out.println(board.indexOf("Ennemy"));
     }
 
-    public void getChestPosition() {
+    protected void getChestPosition() {
         System.out.println(board.indexOf("Chest"));
     }
 
@@ -106,7 +106,7 @@ public class Game {
         board.add(new PotionCell(new Potion("Potion de soin", "Soin", 2)));
     }
 
-    public void showBoard() {
+    private void showBoard() {
         System.out.println(board);
     }
 
@@ -115,7 +115,7 @@ public class Game {
      * Display a message that indicate that.
      */
 
-    public void prayForRespect() {
+    protected void prayForRespect() {
         DataBaseHandling db = new DataBaseHandling();
         db.getHeroes();
         if (!hadPray) {
