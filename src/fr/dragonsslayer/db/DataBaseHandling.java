@@ -105,7 +105,20 @@ public class DataBaseHandling {
                 statement.addBatch();
             }
             int[] rowsInserted = statement.executeBatch();
-            System.out.println(rowsInserted.length + " ligne(s) insérée(s).");
+            //System.out.println(rowsInserted.length + " ligne(s) insérée(s).");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteBoard() {
+        String sql = "DELETE FROM `Board` WHERE Id > 0";
+        try (
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)
+        ) {
+
+            int rowsInserted = statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

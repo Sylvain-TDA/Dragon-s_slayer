@@ -18,7 +18,7 @@ import java.util.Scanner;
  */
 
 public class Menu {
-    private final Scanner keyboard = new Scanner(System.in);
+    private final Scanner keyboard;
     private Hero hero;
     private DataBaseHandling db;
     private Game game;
@@ -26,6 +26,7 @@ public class Menu {
     public Menu() {
         this.db = new DataBaseHandling();
         this.game = new Game();
+        this.keyboard = new Scanner(System.in);
     }
 
     /**
@@ -39,6 +40,7 @@ public class Menu {
                 (| Dragon's slayer |)
                  '-----------------'\s
                  \\_~~~~~~~~~~~~~~~_/\s""";
+        displayMessage(intro);
     }
 
     /**
