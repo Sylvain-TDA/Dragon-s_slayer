@@ -67,9 +67,9 @@ public class Game {
                     
                     """);
             String movingForward = """
-            Vous avancez en case :\s""" + playerPosition +  """
-                      \s
-                   \s""" ;
+                    Vous avancez en case :\s""" + playerPosition + """
+                       \s
+                    \s""";
             System.out.println(movingForward);
 
             if (playerPosition > 4) {
@@ -123,7 +123,8 @@ public class Game {
 
     protected void prayForRespect() {
         DataBaseHandling db = new DataBaseHandling();
-        db.getHeroes();
+        ArrayList<String> dbHeroes = db.getHeroes();
+        System.out.println("Vous avez prié : " + dbHeroes);
         if (!hadPray) {
             db.changeLifePoints(hero);
             System.out.println("""

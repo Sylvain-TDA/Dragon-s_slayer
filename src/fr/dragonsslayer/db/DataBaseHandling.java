@@ -18,8 +18,10 @@ public class DataBaseHandling {
      * Display heroes in the database.
      */
 
-    public void getHeroes() {
+    public ArrayList<String> getHeroes() {
         String sql = "SELECT `Name` FROM `Character`";
+        ArrayList<String> heroes = new ArrayList<>();
+
         try (
                 Connection connection = DatabaseConnection.getConnection();
                 Statement statement = connection.createStatement();
@@ -27,11 +29,12 @@ public class DataBaseHandling {
         ) {
             while (resultSet.next()) {
                 String name = resultSet.getString("Name").trim();
-                System.out.println("Nom du héro : " + name);
+                heroes.add(name);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return heroes;
     }
 
     /**
