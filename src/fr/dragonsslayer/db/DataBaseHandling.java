@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import fr.dragonsslayer.Game;
 import fr.dragonsslayer.board.Cell;
 import fr.dragonsslayer.characters.Hero;
+import fr.dragonsslayer.characters.Magician;
+import fr.dragonsslayer.characters.Warrior;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -37,13 +39,81 @@ public class DataBaseHandling {
         return heroes;
     }
 
+    public Hero getHeroFromDb(int heroId) {
+        String sql = "SELECT * FROM `Character` WHERE Id = ?";
+        try (
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)
+        ) {
+            statement.setInt(1, heroId);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String name = resultSet.getString("name");
+                String type = resultSet.getString("type");
+                int life = resultSet.getInt("lifePoints");
+                int attackLevel = resultSet.getInt("Strength");
+
+                return createHeroFromDb(type, name, life, attackLevel);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public int insertHeroAndGetId(Hero hero) {
+        String sql = "INSERT INTO `Character` (name, type, lifePoints, Strength) VALUES (?, ?, ?, ?)";
+        try (
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)
+        ) {
+            statement.setString(1, hero.getName());
+            statement.setString(2, hero.getType());
+            statement.setInt(3, hero.getLife());
+            statement.setInt(4, hero.getAttackLevel());
+
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Échec de l'insertion du héros, aucune ligne affectée.");
+            }
+
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1); // Récupère l'ID généré
+                } else {
+                    throw new SQLException("Échec de la récupération de l'ID généré.");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1; // Retourne -1 en cas d'erreur
+        }
+    }
+
+    private Hero createHeroFromDb(String type, String name, int life, int attackLevel) {
+        if ("Warrior".equalsIgnoreCase(type)) {
+            Warrior warrior = new Warrior(type, name);
+            warrior.setLife(life);
+            warrior.setAttackLevel(attackLevel);
+            return warrior;
+        } else if ("Magician".equalsIgnoreCase(type)) {
+            Magician magician = new Magician(type, name);
+            magician.setLife(life);
+            magician.setAttackLevel(attackLevel);
+            return magician;
+        } else {
+            throw new IllegalArgumentException("Type de héros inconnu : " + type);
+        }
+    }
+
     /**
      * Create an hero and store it in the database.
      *
      * @param hero to access the getters of the class Hero.
      */
 
-    private void createHeroes(Hero hero) {
+    private int createHeroes(Hero hero) {
         String sql = "INSERT INTO `Character` (`Type`, `Name`, `LifePoints`, `Strength`, `OffensiveEquipment`, `DefensiveEquipment`) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
         try (
@@ -59,8 +129,16 @@ public class DataBaseHandling {
 
             int rowsInserted = statement.executeUpdate();
             //System.out.println(rowsInserted + " ligne(s) insérée(s). CREATEHERO");
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1); // Récupère l'ID généré
+                } else {
+                    throw new SQLException("Échec de la récupération de l'ID généré.");
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+            return -1;
         }
     }
 
@@ -148,7 +226,7 @@ public class DataBaseHandling {
      * Initialize the board in Json and store it in the database.
      */
 
-    public void createJsonBoard () {
+    public void createJsonBoard() {
         Game game = new Game();
         Gson gson = new Gson();
         game.initBoard();

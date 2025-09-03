@@ -1,5 +1,7 @@
 package fr.dragonsslayer.board;
 
+import fr.dragonsslayer.characters.Hero;
+
 public abstract class Cell {
     private Object content;
 
@@ -13,5 +15,6 @@ public abstract class Cell {
 
     public abstract String getType();
 
-    public abstract void interact();
+    public void interact(Hero hero){
+    };
 }

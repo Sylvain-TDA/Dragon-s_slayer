@@ -10,7 +10,7 @@ public class EnnemyCell extends Cell{
     }
 
     @Override
-    public void interact() {
+    public void interact(Hero hero) {
         Hero ennemy = (Hero) getContent(); // Cast du contenu en Sorcerer
         System.out.println("Vous vous retrouvez face à un ennemi : ");
         System.out.println(ennemy.toString()); // Appel de getAttribute()

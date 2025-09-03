@@ -2,9 +2,12 @@ package fr.dragonsslayer;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 import fr.dragonsslayer.board.*;
 import fr.dragonsslayer.characters.Hero;
+import fr.dragonsslayer.characters.Magician;
+import fr.dragonsslayer.characters.Warrior;
 import fr.dragonsslayer.ennemy.*;
 import fr.dragonsslayer.equipment.*;
 import fr.dragonsslayer.db.DataBaseHandling;
@@ -19,10 +22,14 @@ public class Game {
     public String voidText;
     private Hero hero;
     private boolean hadPray;
+    private final Scanner keyboard;
+    private DataBaseHandling db;
 
     public Game() {
         voidText = "                 ";
         board = new ArrayList<>();
+        this.keyboard = new Scanner(System.in);
+        this.db = new DataBaseHandling();
     }
 
 
@@ -59,7 +66,7 @@ public class Game {
      */
 
     protected int playingTheGame() throws HeroOutOfTheBoardException {
-        while (playerPosition != 10) {
+           while (playerPosition != 10) {
             int diceValue = 1;
             playerPosition += diceValue;
             System.out.println(voidText + "Vous lancez le dé. Et vous faites : " + diceValue + """
@@ -78,8 +85,7 @@ public class Game {
                 return playerPosition;
             }
             Cell currentCell = board.get(playerPosition);
-
-            currentCell.interact();
+            currentCell.interact(hero);
         }
         return playerPosition;
     }
@@ -142,5 +148,142 @@ public class Game {
             System.out.println("Les mort n'apprécient pas la triche.");
         }
         hadPray = true;
+    }
+
+    public void setHero(Hero hero) {
+        this.hero = hero;
+    }
+
+    /**
+     * Creating the hero by choosing the type and the name
+     *
+     * @return An instance of {@link Warrior} or {@link Magician} corresponding to the user's choice.
+     */
+
+    public Hero createHero() {
+        Hero hero;
+
+        if (askType().equalsIgnoreCase("Warrior")) {
+            hero = new Warrior("Warrior", askName());
+        } else {
+            hero = new Magician("Magician", askName());
+        }
+        db.toJson(hero);
+        //db.createHeroes(hero);
+        return hero;
+    }
+
+    /**
+     * Create a specific hero for tests (Warrior named "Kanomi").
+     *
+     * @return An instance of {@link Warrior} with default values.
+     */
+
+    public Hero createCheatedHero() {
+        return new Warrior("Warrior", "Kanomi");
+    }
+
+
+    /**
+     * Request the player what type he wants to play, either Warrior or Magician.
+     * The Scanner handle what the user entered.
+     *
+     * @return the type selected under a specific format.
+     */
+
+    public String askType() {
+        String typeSelection;
+        String userInput;
+        int trynbr = 0;
+
+        while (true) {
+            displayMessage("""
+                    
+                    Vous allez devoir nous dire de quoi vous êtes fait. Plutôt :\s
+                     - Warrior
+                    ou plutôt
+                     - Magician\s
+                    """);
+            userInput = keyboard.nextLine().trim();
+
+            if (userInput.isEmpty()) {
+                displayMessage("\n" + "Vous devez entrer un type. Réessayez.");
+                trynbr++;
+                continue;
+            }
+
+            if (userInput.equalsIgnoreCase("Warrior") || userInput.equalsIgnoreCase("Magician")) {
+                return userInput.substring(0, 1).toUpperCase() + userInput.substring(1).toLowerCase();
+            } else {
+                displayMessage("\n" + "Vous devez entrer soit 'Warrior' soit 'Magician'");
+                trynbr++;
+            }
+
+            if (trynbr < 4) {
+                displayMessage("");
+            } else if (trynbr > 4 && trynbr < 9) {
+                displayMessage("""
+                        \s
+                        On va y arriver... courage.
+                        """);
+            } else if (trynbr > 10) {
+                displayMessage("""
+                        \s
+                         Je retire ce que j'ai dit. C'est peine perdu.
+                        \s
+                          ___________.._______
+                         | .__________))______|
+                         | | / /      ||
+                         | |/ /       ||
+                         | | /        ||.-''.
+                         | |/         |/  _  \\
+                         | |          ||  `/,|
+                         | |          (\\\\`_.'
+                         | |         .-`--'.
+                         | |        /Y . . Y\\
+                         | |       // |   | \\\\
+                         | |      //  | . |  \\\\
+                         | |     ')   |   |   (`
+                         | |          ||'||
+                         | |          || ||
+                         | |          || ||
+                         | |          || ||
+                         | |         / | | \\
+                         ""\"""\"""\""|_`-' `-' |""\"|
+                         |"|""\"""\""\\ \\       '"|"|
+                         | |        \\ \\        | |
+                         : :         \\ \\       : :  
+                         . .          `'       . .
+                        \s""");
+            }
+        }
+    }
+
+    /**
+     * Request the player to enter the name of his hero.
+     * The Scanner handle what the user entered.
+     *
+     * @return the name entered.
+     */
+
+    public String askName() {
+        String name;
+        while (true) {
+            displayMessage("Et votre nom est ? ");
+            name = keyboard.nextLine().trim();
+            if (name.isEmpty()) {
+                displayMessage("Bien tenté ' '");
+            } else if (name.length() > 10) {
+                displayMessage("Un chasseur de dragon doit malheureusement raccourcir son nom.");
+            } else if (!name.matches("[a-zA-Z0-9 ]+")) { // Autorise lettres, chiffres et espaces
+                displayMessage("Le nom contient des caractères interdits. Réessayez.");
+            } else {
+                return name;
+            }
+        }
+    }
+
+    private void displayMessage(String message) {
+        System.out.println(message);
     }
 }

@@ -31,6 +31,18 @@ public class Menu {
      * Display the intro's logo in ASCII art.
      */
 
+    private Hero createAndLoadHero() {
+        // Créez le héros en utilisant la méthode de Game
+        Hero newHero = game.createHero();
+
+        // Insérez le héros dans la base de données et récupérez son ID
+        int heroId = db.insertHeroAndGetId(newHero);
+
+        // Chargez le héros depuis la base de données avec l'ID obtenu
+        return db.getHeroFromDb(heroId);
+    }
+
+
     public void displayIntro() {
         String intro = """
                  /~_______________~\\\s
@@ -67,105 +79,6 @@ public class Menu {
             return hero.getType();
         } catch (NullPointerException npe) {
             return "Aucun héro créé";
-        }
-    }
-
-    /**
-     * Request the player what type he wants to play, either Warrior or Magician.
-     * The Scanner handle what the user entered.
-     *
-     * @return the type selected under a specific format.
-     */
-
-    private String askType() {
-        String typeSelection;
-        String userInput;
-        int trynbr = 0;
-
-        while (true) {
-            displayMessage("""
-                    
-                    Vous allez devoir nous dire de quoi vous êtes fait. Plutôt :\s
-                     - Warrior
-                    ou plutôt
-                     - Magician\s
-                    """);
-            userInput = keyboard.nextLine().trim();
-
-            if (userInput.isEmpty()) {
-                displayMessage("\n" + "Vous devez entrer un type. Réessayez.");
-                trynbr++;
-                continue;
-            }
-
-            if (userInput.equalsIgnoreCase("Warrior") || userInput.equalsIgnoreCase("Magician")) {
-                return userInput.substring(0, 1).toUpperCase() + userInput.substring(1).toLowerCase();
-            } else {
-                displayMessage("\n" + "Vous devez entrer soit 'Warrior' soit 'Magician'");
-                trynbr++;
-            }
-
-            if (trynbr < 4) {
-                displayMessage("");
-            } else if (trynbr > 4 && trynbr < 9) {
-                displayMessage("""
-                        \s
-                        On va y arriver... courage.
-                        """);
-            } else if (trynbr > 10) {
-                displayMessage("""
-                        \s
-                         Je retire ce que j'ai dit. C'est peine perdu.
-                        \s
-                          ___________.._______
-                         | .__________))______|
-                         | | / /      ||
-                         | |/ /       ||
-                         | | /        ||.-''.
-                         | |/         |/  _  \\
-                         | |          ||  `/,|
-                         | |          (\\\\`_.'
-                         | |         .-`--'.
-                         | |        /Y . . Y\\
-                         | |       // |   | \\\\
-                         | |      //  | . |  \\\\
-                         | |     ')   |   |   (`
-                         | |          ||'||
-                         | |          || ||
-                         | |          || ||
-                         | |          || ||
-                         | |         / | | \\
-                         ""\"""\"""\""|_`-' `-' |""\"|
-                         |"|""\"""\""\\ \\       '"|"|
-                         | |        \\ \\        | |
-                         : :         \\ \\       : :  
-                         . .          `'       . .
-                        \s""");
-            }
-        }
-    }
-
-    /**
-     * Request the player to enter the name of his hero.
-     * The Scanner handle what the user entered.
-     *
-     * @return the name entered.
-     */
-
-    private String askName() {
-        String name;
-        while (true) {
-            displayMessage("Et votre nom est ? ");
-            name = keyboard.nextLine().trim();
-            if (name.isEmpty()) {
-                displayMessage("Bien tenté ' '");
-            } else if (name.length() > 10) {
-                displayMessage("Un chasseur de dragon doit malheureusement raccourcir son nom.");
-            } else if (!name.matches("[a-zA-Z0-9 ]+")) { // Autorise lettres, chiffres et espaces
-                displayMessage("Le nom contient des caractères interdits. Réessayez.");
-            } else {
-                return name;
-            }
         }
     }
 
@@ -224,7 +137,8 @@ public class Menu {
             while (!exit) {
                 switch (displayMenu()) {
                     case 1: // Hero creation
-                        hero = createHero();
+                        this.hero = createAndLoadHero();
+                        this.game.setHero(this.hero);
                         manageHero(hero);
                         playerCreated = true;
                         break;
@@ -247,9 +161,9 @@ public class Menu {
                         displayMessage(exitText);
                         break;
                     case 4: // For test, create a hero and launch the game
-
                         try {
-                            createCheatedHero();
+                            this.hero = game.createCheatedHero();
+                            this.game.setHero(this.hero);
                             game.startingAGame();
                             game.playingTheGame();
                         } catch (HeroOutOfTheBoardException e) {
@@ -289,35 +203,6 @@ public class Menu {
     }
 
     /**
-     * Creating the hero by choosing the type and the name
-     *
-     * @return An instance of {@link Warrior} or {@link Magician} corresponding to the user's choice.
-     */
-
-    private Hero createHero() {
-        Hero hero;
-
-        if (askType().equalsIgnoreCase("Warrior")) {
-            hero = new Warrior("Warrior", askName());
-        } else {
-            hero = new Magician("Magician", askName());
-        }
-        db.toJson(hero);
-        //db.createHeroes(hero);
-        return hero;
-    }
-
-    /**
-     * Create a specific hero for tests (Warrior named "Kanomi").
-     *
-     * @return An instance of {@link Warrior} with default values.
-     */
-
-    private Hero createCheatedHero() {
-        return new Warrior("Warrior", "Kanomi");
-    }
-
-    /**
      * Handle the hero's menu : display hero's infos, modify the hero or playing the game.
      *
      * @param hero the hero created.
@@ -335,7 +220,7 @@ public class Menu {
                         System.out.println(hero);
                         break;
                     case 2:
-                        hero.modify(askType(), askName());
+                        hero.modify(game.askType(), game.askName());
                         db.editHeroes(hero);
                         break;
                     case 3:

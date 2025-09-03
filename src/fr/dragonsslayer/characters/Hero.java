@@ -49,7 +49,7 @@ public abstract class Hero {
         return defensiveEquipment;
     }
 
-    protected void setLife(int life) {
+    public void setLife(int life) {
         this.life = life;
     }
 
@@ -61,7 +61,7 @@ public abstract class Hero {
         this.name = name;
     }
 
-    protected void setAttackLevel(int attackLevel) {
+    public void setAttackLevel(int attackLevel) {
         this.attackLevel = attackLevel;
     }
 
