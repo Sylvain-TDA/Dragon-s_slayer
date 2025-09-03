@@ -66,8 +66,8 @@ public class Game {
      */
 
     protected int playingTheGame() throws HeroOutOfTheBoardException {
-           while (playerPosition != 10) {
-            int diceValue = 1;
+        while (playerPosition != 10) {
+            int diceValue = dice();
             playerPosition += diceValue;
             System.out.println(voidText + "Vous lancez le dé. Et vous faites : " + diceValue + """
                     
@@ -111,16 +111,101 @@ public class Game {
      */
 
     public void initBoard() {
-        board.add(new EmptyCell(new Empty()));
-        board.add(new EmptyCell(new Empty()));
-        board.add(new EnnemyCell(new Sorcerer("Gildur")));
-        board.add(new WeaponCell(new Club("Mace")));
-        board.add(new WeaponCell(new Sword("Epée")));
-        board.add(new WeaponCell(new Lightning("Eclairs")));
-        board.add(new WeaponCell(new FireBall("Boule de feu")));
-        board.add(new PotionCell(new Potion("Potion de soin",2)));
-        board.add(new LargePotionCell(new LargePotion("Grande potion de soin","Potion",5)));
-        board.add(new EnnemyCell(new Dragon("Hield")));
+
+        // Dragon's creation
+
+        board.set(45, new EnnemyCell(new Dragon("Hield")));
+        board.set(52, new EnnemyCell(new Dragon("Hield")));
+        board.set(56, new EnnemyCell(new Dragon("Hield")));
+        board.set(62, new EnnemyCell(new Dragon("Hield")));
+
+        // Sorcerer's creation
+
+        board.set(10, new EnnemyCell(new Sorcerer("Gildur")));
+        board.set(20, new EnnemyCell(new Sorcerer("Gildur")));
+        board.set(25, new EnnemyCell(new Sorcerer("Gildur")));
+        board.set(32, new EnnemyCell(new Sorcerer("Gildur")));
+        board.set(35, new EnnemyCell(new Sorcerer("Gildur")));
+        board.set(36, new EnnemyCell(new Sorcerer("Gildur")));
+        board.set(37, new EnnemyCell(new Sorcerer("Gildur")));
+        board.set(40, new EnnemyCell(new Sorcerer("Gildur")));
+        board.set(44, new EnnemyCell(new Sorcerer("Gildur")));
+        board.set(47, new EnnemyCell(new Sorcerer("Gildur")));
+
+        // Goblin's creation
+
+        board.set(3, new EnnemyCell(new Goblin("Wierk")));
+        board.set(6, new EnnemyCell(new Goblin("Wierk")));
+        board.set(9, new EnnemyCell(new Goblin("Wierk")));
+        board.set(12, new EnnemyCell(new Goblin("Wierk")));
+        board.set(15, new EnnemyCell(new Goblin("Wierk")));
+        board.set(18, new EnnemyCell(new Goblin("Wierk")));
+        board.set(21, new EnnemyCell(new Goblin("Wierk")));
+        board.set(24, new EnnemyCell(new Goblin("Wierk")));
+        board.set(27, new EnnemyCell(new Goblin("Wierk")));
+        board.set(30, new EnnemyCell(new Goblin("Wierk")));
+
+        // Club's creation
+
+        board.set(2, new WeaponCell(new Club("Mace")));
+        board.set(11, new WeaponCell(new Club("Mace")));
+        board.set(5, new WeaponCell(new Club("Mace")));
+        board.set(22, new WeaponCell(new Club("Mace")));
+        board.set(38, new WeaponCell(new Club("Mace")));
+
+        // Sword's creation
+
+        board.set(19, new WeaponCell(new Sword("Epée")));
+        board.set(26, new WeaponCell(new Sword("Epée")));
+        board.set(42, new WeaponCell(new Sword("Epée")));
+        board.set(53, new WeaponCell(new Sword("Epée")));
+
+        // Lightning's spell's creation
+
+        board.set(1, new WeaponCell(new Lightning("Eclairs")));
+        board.set(4, new WeaponCell(new Lightning("Eclairs")));
+        board.set(8, new WeaponCell(new Lightning("Eclairs")));
+        board.set(17, new WeaponCell(new Lightning("Eclairs")));
+        board.set(23, new WeaponCell(new Lightning("Eclairs")));
+
+        // Fireball's spell's creation
+
+        board.set(48, new WeaponCell(new FireBall("Boule de feu")));
+        board.set(49, new WeaponCell(new FireBall("Boule de feu")));
+
+        // Potion's creation
+
+        board.set(7, new PotionCell(new Potion("Potion de soin", 2)));
+        board.set(13, new PotionCell(new Potion("Potion de soin", 2)));
+        board.set(31, new PotionCell(new Potion("Potion de soin", 2)));
+        board.set(33, new PotionCell(new Potion("Potion de soin", 2)));
+        board.set(39, new PotionCell(new Potion("Potion de soin", 2)));
+        board.set(43, new PotionCell(new Potion("Potion de soin", 2)));
+
+        // LargePotion's creation
+
+        board.set(28, new LargePotionCell(new LargePotion("Grande potion de soin", "Potion", 5)));
+        board.set(41, new LargePotionCell(new LargePotion("Grande potion de soin", "Potion", 5)));
+
+        // Empty cell's creation
+
+        board.set(0, new EmptyCell(new Empty()));
+        board.set(14, new EmptyCell(new Empty()));
+        board.set(16, new EmptyCell(new Empty()));
+        board.set(19, new EmptyCell(new Empty()));
+        board.set(29, new EmptyCell(new Empty()));
+        board.set(34, new EmptyCell(new Empty()));
+        board.set(46, new EmptyCell(new Empty()));
+        board.set(50, new EmptyCell(new Empty()));
+        board.set(51, new EmptyCell(new Empty()));
+        board.set(54, new EmptyCell(new Empty()));
+        board.set(55, new EmptyCell(new Empty()));
+        board.set(57, new EmptyCell(new Empty()));
+        board.set(58, new EmptyCell(new Empty()));
+        board.set(59, new EmptyCell(new Empty()));
+        board.set(60, new EmptyCell(new Empty()));
+        board.set(61, new EmptyCell(new Empty()));
+        board.set(63, new EmptyCell(new Empty()));
     }
 
     private void showBoard() {
