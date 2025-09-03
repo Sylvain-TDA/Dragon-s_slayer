@@ -128,8 +128,6 @@ public class Game {
 
         placeRandomly(new PotionCell(new Potion("Potion de soin", 2)), 6);
         placeRandomly(new LargePotionCell(new LargePotion("Grande potion de soin", "Potion", 5)), 2);
-
-        showBoard();
     }
 
     /**
