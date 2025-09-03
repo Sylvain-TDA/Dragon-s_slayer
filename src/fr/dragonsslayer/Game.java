@@ -43,6 +43,10 @@ public class Game {
         return new Random().nextInt(6) + 1;
     }
 
+    public int criticDice() {
+        return new Random().nextInt(20) + 1;
+    }
+
     /**
      * Start the game with a text introduction and the player's position at 0.
      * It also sets the board as it is necessary at the beginning of a game.
@@ -79,7 +83,8 @@ public class Game {
             System.out.println(movingForward);
 
             if (playerPosition > 64) {
-                throw new HeroOutOfTheBoardException("Oups, vous êtes au-delà des méandres du vide !");
+                playerPosition = 64;
+                throw new HeroOutOfTheBoardException("Bravo, vous avez gagné");
             } else if (playerPosition == 64) {
                 System.out.println("Bravo, vous avez gagné !");
                 return playerPosition;
@@ -313,8 +318,8 @@ public class Game {
     }
 
     public void updatedPlayerPosition(int randomNumber) {
-        this.playerPosition = playerPosition-randomNumber;
-        if (playerPosition-randomNumber < 0) {
+        this.playerPosition = playerPosition - randomNumber;
+        if (playerPosition - randomNumber < 0) {
             this.playerPosition = 0;
         }
     }

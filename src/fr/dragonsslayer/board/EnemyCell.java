@@ -21,12 +21,19 @@ public class EnemyCell extends Cell {
         int enemyAttack = enemy.getAttackLevel();
         int enemyLife = enemy.getLife();
         int heroLife = hero.getLife();
-        int heroAttack = hero.getAttackLevel();
-        boolean fightEnded = false;
 
         switch (menu.displayFightMenu()) {
             case 1:
                 while (enemyLife > 0 && heroLife > 0) {
+                    int heroAttack = hero.getAttackLevel();
+                    int criticDice = game.criticDice();
+                    if (criticDice == 20) {
+                        heroAttack += 2;
+                        System.out.println("Vous faites un coup critique.");
+                    } else if(criticDice == 0) {
+                        heroAttack = 0;
+                        System.out.println("Vous faites un échec critique.");
+                    }
                     enemyLife -= heroAttack;
                     System.out.println("Vous attaquez l'ennemi");
                     if (enemyLife <= 0) {
