@@ -1,8 +1,6 @@
 package fr.dragonsslayer.ennemy;
 
-import fr.dragonsslayer.characters.Hero;
-
-public class Sorcerer extends Hero {
+public class Sorcerer extends Ennemy {
     public Sorcerer(String name) {
         super("Sorcerer", name);
         this.setLife(9);

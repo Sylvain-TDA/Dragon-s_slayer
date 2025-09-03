@@ -5,9 +5,8 @@ import java.util.Random;
 
 import fr.dragonsslayer.board.*;
 import fr.dragonsslayer.characters.Hero;
-import fr.dragonsslayer.ennemy.Sorcerer;
-import fr.dragonsslayer.equipment.Potion;
-import fr.dragonsslayer.equipment.Weapon;
+import fr.dragonsslayer.ennemy.*;
+import fr.dragonsslayer.equipment.*;
 import fr.dragonsslayer.db.DataBaseHandling;
 
 /**
@@ -60,7 +59,7 @@ public class Game {
      */
 
     protected int playingTheGame() throws HeroOutOfTheBoardException {
-        while (playerPosition != 5) {
+        while (playerPosition != 10) {
             int diceValue = 1;
             playerPosition += diceValue;
             System.out.println(voidText + "Vous lancez le dé. Et vous faites : " + diceValue + """
@@ -72,9 +71,9 @@ public class Game {
                     \s""";
             System.out.println(movingForward);
 
-            if (playerPosition > 4) {
+            if (playerPosition > 10) {
                 throw new HeroOutOfTheBoardException("Oups, vous êtes au-delà des méandres du vide !");
-            } else if (playerPosition == 4) {
+            } else if (playerPosition == 10) {
                 System.out.println("Bravo, vous avez gagné !");
                 return playerPosition;
             }
@@ -108,8 +107,13 @@ public class Game {
         board.add(new EmptyCell(new Empty()));
         board.add(new EmptyCell(new Empty()));
         board.add(new EnnemyCell(new Sorcerer("Gildur")));
-        board.add(new WeaponCell(new Weapon("Huld", "spell", 2)));
-        board.add(new PotionCell(new Potion("Potion de soin", "Soin", 2)));
+        board.add(new WeaponCell(new Club("Mace")));
+        board.add(new WeaponCell(new Sword("Epée")));
+        board.add(new WeaponCell(new Lightning("Eclairs")));
+        board.add(new WeaponCell(new FireBall("Boule de feu")));
+        board.add(new PotionCell(new Potion("Potion de soin",0)));
+        board.add(new PotionCell(new Potion("Grande potion de soin",0)));
+        board.add(new EnnemyCell(new Dragon("Hield")));
     }
 
     private void showBoard() {

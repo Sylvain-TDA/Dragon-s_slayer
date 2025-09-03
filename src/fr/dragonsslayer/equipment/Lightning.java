@@ -5,7 +5,7 @@ package fr.dragonsslayer.equipment;
  */
 
 public class Lightning extends OffensiveEquipment{
-    public Lightning(String name, String type, int attackLevel) {
+    public Lightning(String name) {
         super("Lightning", "Offensive equipment", 2);
     }
 }

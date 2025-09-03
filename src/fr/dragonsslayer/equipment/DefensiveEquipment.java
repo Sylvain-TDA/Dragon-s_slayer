@@ -8,14 +8,13 @@ import fr.dragonsslayer.characters.Hero;
  */
 
 public abstract class DefensiveEquipment {
-    private String type;
+    protected String type;
     private String name;
-    private int DefenseLevel;
+    protected int DefenseLevel;
 
-        public DefensiveEquipment(String name, String type, int defenseLevel) {
+    public DefensiveEquipment(String name, String type, int defenseLevel) {
         this.name = name;
         this.type = type;
-        setDefenseLevel(defenseLevel);
     }
 
     public String getType() {
@@ -50,9 +49,9 @@ public abstract class DefensiveEquipment {
     }
 
     protected int heal(Hero hero, int amount) {
-            int lifePoints = hero.getLife();
-            lifePoints += amount;
+        int lifePoints = hero.getLife();
+        lifePoints += amount;
 
-            return lifePoints;
+        return lifePoints;
     }
- }
+}

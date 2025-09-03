@@ -1,8 +1,6 @@
 package fr.dragonsslayer.ennemy;
 
-import fr.dragonsslayer.characters.Hero;
-
-public class Goblin extends Hero {
+public class Goblin extends Ennemy {
     public Goblin(String name) {
         super("Goblin", name);
         this.setLife(6);

@@ -5,7 +5,7 @@ package fr.dragonsslayer.equipment;
  */
 
 public class FireBall extends OffensiveEquipment{
-    public FireBall(String name, String type, int attackLevel) {
+    public FireBall(String name) {
         super("FireBall", "Offensive equipment", 7);
     }
 }
