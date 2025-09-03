@@ -78,6 +78,7 @@ public class Game {
                 return playerPosition;
             }
             Cell currentCell = board.get(playerPosition);
+
             currentCell.interact();
         }
         return playerPosition;
