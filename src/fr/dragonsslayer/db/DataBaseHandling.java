@@ -39,6 +39,13 @@ public class DataBaseHandling {
         return heroes;
     }
 
+    /**
+     * Allow the program to  get the Hero from the database
+     *
+     * @param heroId request the heroId to create
+     * @return a hero created with the method createHeroFromDb or null if it does not work
+     */
+
     public Hero getHeroFromDb(int heroId) {
         String sql = "SELECT * FROM `Character` WHERE Id = ?";
         try (
@@ -61,6 +68,13 @@ public class DataBaseHandling {
         return null;
     }
 
+    /**
+     * Inser tthe hero in the database.
+     *
+     * @param hero need and hero to get the info such as his name, type...
+     * @return the ID generated or -1 if an error occured.
+     */
+
     public int insertHeroAndGetId(Hero hero) {
         String sql = "INSERT INTO `Character` (name, type, lifePoints, Strength) VALUES (?, ?, ?, ?)";
         try (
@@ -80,16 +94,26 @@ public class DataBaseHandling {
 
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
-                    return generatedKeys.getInt(1); // Récupère l'ID généré
+                    return generatedKeys.getInt(1);
                 } else {
                     throw new SQLException("Échec de la récupération de l'ID généré.");
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return -1; // Retourne -1 en cas d'erreur
+            return -1;
         }
     }
+
+    /**
+     * Allow the program to create the object Hero from the database
+     *
+     * @param type to enter when the hero is created
+     * @param name to enter when the hero is created
+     * @param life to enter when the hero is created
+     * @param attackLevel to enter when the hero is created
+     * @return a hero created either it is a Warrior or a magician
+     */
 
     private Hero createHeroFromDb(String type, String name, int life, int attackLevel) {
         if ("Warrior".equalsIgnoreCase(type)) {
@@ -108,7 +132,7 @@ public class DataBaseHandling {
     }
 
     /**
-     * Create an hero and store it in the database.
+     * Create a hero and store it in the database.
      *
      * @param hero to access the getters of the class Hero.
      */
