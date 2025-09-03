@@ -48,7 +48,7 @@ public class Menu {
      * @return NullPointerException If no hero has been created.
      */
 
-    protected String getName() {
+    public String getName() {
         try {
             return hero.getName();
         } catch (NullPointerException npe) {
@@ -62,7 +62,7 @@ public class Menu {
      * @return NullPointerException If no hero has been created.
      */
 
-    protected String getType() {
+    public String getType() {
         try {
             return hero.getType();
         } catch (NullPointerException npe) {

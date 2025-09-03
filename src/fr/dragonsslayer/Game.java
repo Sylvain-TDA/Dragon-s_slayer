@@ -84,7 +84,7 @@ public class Game {
         return playerPosition;
     }
 
-    protected int getPlayerPosition() {
+    public int getPlayerPosition() {
         return playerPosition;
     }
 
@@ -92,11 +92,11 @@ public class Game {
         return board;
     }
 
-    protected void getEnnemyPosition() {
+    public void getEnnemyPosition() {
         System.out.println(board.indexOf("Ennemy"));
     }
 
-    protected void getChestPosition() {
+    public void getChestPosition() {
         System.out.println(board.indexOf("Chest"));
     }
 
