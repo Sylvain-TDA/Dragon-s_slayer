@@ -6,6 +6,6 @@ package fr.dragonsslayer.equipment;
 
 public class Sword extends Weapon {
     public Sword(String name) {
-        super("Sword", "Offensive Equipment", 5);
+        super("Epée", "Offensive Equipment", 5);
     }
 }

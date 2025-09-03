@@ -48,7 +48,7 @@ public abstract class DefensiveEquipment {
                 '}';
     }
 
-    protected int heal(Hero hero, int amount) {
+    public int heal(Hero hero, int amount) {
         int lifePoints = hero.getLife();
         lifePoints += amount;
 

@@ -1,6 +1,7 @@
 package fr.dragonsslayer.equipment;
 
 import fr.dragonsslayer.board.Cell;
+import fr.dragonsslayer.characters.Hero;
 
 /**
  * Super class to define offensive equipment
@@ -37,14 +38,16 @@ public abstract class OffensiveEquipment {
         this.name = name;
     }
 
-    public void setAttackLevel(int attackLevel) {
-      this.attackLevel = attackLevel;
+    public int setAttackLevel(Hero hero, int attackLevel) {
+        int strength = hero.getAttackLevel();
+        strength += attackLevel;
+        return strength;
     }
 
     public String toString() {
         return "type='" + type + '\'' +
                 ", nom='" + name + '\'' +
-               ", Niveau d'attaque=" + attackLevel +
+                ", Niveau d'attaque=" + attackLevel +
                 '}';
     }
 }

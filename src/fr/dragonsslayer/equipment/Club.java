@@ -6,6 +6,6 @@ package fr.dragonsslayer.equipment;
 
 public class Club extends Weapon {
     public Club(String name) {
-        super("Club", "Offensive Equipment", 3);
+        super("Masse", "Offensive Equipment", 3);
     }
 }

@@ -118,8 +118,8 @@ public class Game {
         board.add(new WeaponCell(new Sword("Epée")));
         board.add(new WeaponCell(new Lightning("Eclairs")));
         board.add(new WeaponCell(new FireBall("Boule de feu")));
-        board.add(new PotionCell(new Potion("Potion de soin",0)));
-        board.add(new PotionCell(new Potion("Grande potion de soin",0)));
+        board.add(new PotionCell(new Potion("Potion de soin",2)));
+        board.add(new LargePotionCell(new LargePotion("Grande potion de soin","Potion",5)));
         board.add(new EnnemyCell(new Dragon("Hield")));
     }
 
