@@ -1,8 +1,8 @@
 package fr.dragonsslayer.board;
 
+import fr.dragonsslayer.Game;
 import fr.dragonsslayer.characters.Hero;
 import fr.dragonsslayer.equipment.OffensiveEquipment;
-import fr.dragonsslayer.equipment.Potion;
 import fr.dragonsslayer.equipment.Spell;
 import fr.dragonsslayer.equipment.Weapon;
 
@@ -14,7 +14,7 @@ public class WeaponCell extends Cell {
     }
 
     @Override
-    public void interact(Hero hero) {
+    public void interact(Hero hero, Game game) {
         OffensiveEquipment equipment = (OffensiveEquipment) getContent();
 
         System.out.println("Vous avez trouvé une arme : " + getContent());

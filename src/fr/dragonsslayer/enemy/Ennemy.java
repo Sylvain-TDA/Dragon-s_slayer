@@ -1,4 +1,4 @@
-package fr.dragonsslayer.ennemy;
+package fr.dragonsslayer.enemy;
 
 import fr.dragonsslayer.characters.Hero;
 

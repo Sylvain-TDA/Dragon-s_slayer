@@ -249,6 +249,36 @@ public class Menu {
         }
     }
 
+    public int displayFightMenu() {
+        int choice = 0;
+        boolean valide = false;
+
+        while (!valide) {
+            try {
+                String fightMenu = """
+                                ===== Menu Combat =====
+                                1. Attaquer
+                                2. Fuir
+                        """;
+
+                displayMessage(fightMenu);
+                choice = keyboard.nextInt();
+                keyboard.nextLine();
+
+                if (choice >= 1 && choice <= 4) {
+                    valide = true;
+                } else {
+                    String selectionText = "Veuillez entrer 1 ou 2.";
+                    displayMessage(selectionText);
+                }
+            } catch (InputMismatchException e) {
+                displayMessage("Entrée invalide. Veuillez entrer un nombre (1 ou 2).");
+                keyboard.nextLine();
+            }
+        }
+        return choice;
+    }
+
     /**
      * Display a message to the player
      *

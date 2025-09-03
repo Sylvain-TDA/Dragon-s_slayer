@@ -8,7 +8,7 @@ import fr.dragonsslayer.board.*;
 import fr.dragonsslayer.characters.Hero;
 import fr.dragonsslayer.characters.Magician;
 import fr.dragonsslayer.characters.Warrior;
-import fr.dragonsslayer.ennemy.*;
+import fr.dragonsslayer.enemy.*;
 import fr.dragonsslayer.equipment.*;
 import fr.dragonsslayer.db.DataBaseHandling;
 
@@ -85,7 +85,7 @@ public class Game {
                 return playerPosition;
             }
             Cell currentCell = board.get(playerPosition);
-            currentCell.interact(hero);
+            currentCell.interact(hero, this);
         }
         return playerPosition;
     }
@@ -98,8 +98,8 @@ public class Game {
         return board;
     }
 
-    public void getEnnemyPosition() {
-        System.out.println(board.indexOf("Ennemy"));
+    public void getEnemyPosition() {
+        System.out.println(board.indexOf("Enemy"));
     }
 
     public void getChestPosition() {
@@ -117,9 +117,9 @@ public class Game {
         }
 
         // Placement des entités
-        placeRandomly(new EnnemyCell(new Dragon("Hield")), 4);
-        placeRandomly(new EnnemyCell(new Sorcerer("Hield")), 10);
-        placeRandomly(new EnnemyCell(new Goblin("Hield")), 10);
+        placeRandomly(new EnemyCell(new Dragon("Hield")), 4);
+        placeRandomly(new EnemyCell(new Sorcerer("Hield")), 10);
+        placeRandomly(new EnemyCell(new Goblin("Hield")), 10);
 
         placeRandomly(new WeaponCell(new Club("Hield")), 5);
         placeRandomly(new WeaponCell(new Sword("Hield")), 4);
@@ -309,6 +309,13 @@ public class Game {
             } else {
                 return name;
             }
+        }
+    }
+
+    public void updatedPlayerPosition(int randomNumber) {
+        this.playerPosition = playerPosition-randomNumber;
+        if (playerPosition-randomNumber < 0) {
+            this.playerPosition = 0;
         }
     }
 

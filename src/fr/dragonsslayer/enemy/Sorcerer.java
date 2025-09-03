@@ -1,10 +1,10 @@
-package fr.dragonsslayer.ennemy;
+package fr.dragonsslayer.enemy;
 
-public class Goblin extends Ennemy {
-    public Goblin(String name) {
-        super("Goblin", name);
-        this.setLife(6);
-        this.setAttackLevel(1);
+public class Sorcerer extends Ennemy {
+    public Sorcerer(String name) {
+        super("Sorcerer", name);
+        this.setLife(9);
+        this.setAttackLevel(2);
     }
 
     public String getAttribute() {

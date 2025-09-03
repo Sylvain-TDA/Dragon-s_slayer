@@ -1,8 +1,7 @@
 package fr.dragonsslayer.board;
 
+import fr.dragonsslayer.Game;
 import fr.dragonsslayer.characters.Hero;
-import fr.dragonsslayer.equipment.Potion;
-import fr.dragonsslayer.board.Empty;
 
 public class EmptyCell extends Cell {
     public EmptyCell(Empty empty) {
@@ -10,7 +9,7 @@ public class EmptyCell extends Cell {
     }
 
     @Override
-    public void interact(Hero hero) {
+    public void interact(Hero hero, Game game) {
         System.out.println("Vous êtes sur une case vide");
     }
 

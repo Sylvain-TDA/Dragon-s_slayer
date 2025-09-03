@@ -114,6 +114,7 @@ public abstract class Hero {
                 "niveau d'attaque : " + attackLevel + "\n" +
                 "arme :'" + OffensiveEquipment + '\'' + "\n";
     }
+
 }
 
 
