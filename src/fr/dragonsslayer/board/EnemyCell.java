@@ -1,6 +1,8 @@
 package fr.dragonsslayer.board;
 
 import fr.dragonsslayer.Game;
+import fr.dragonsslayer.board.dice.Dice;
+import fr.dragonsslayer.board.dice.TwentyFacesDice;
 import fr.dragonsslayer.characters.Hero;
 import fr.dragonsslayer.Menu;
 
@@ -17,6 +19,7 @@ public class EnemyCell extends Cell {
         System.out.println("Vous vous retrouvez face à un ennemi : ");
         System.out.println(enemy.toString());
         Menu menu = new Menu();
+        Dice twentyFacesDice = new TwentyFacesDice();
 
         int enemyAttack = enemy.getAttackLevel();
         int enemyLife = enemy.getLife();
@@ -26,7 +29,7 @@ public class EnemyCell extends Cell {
             case 1:
                 while (enemyLife > 0 && heroLife > 0) {
                     int heroAttack = hero.getAttackLevel();
-                    int criticDice = game.criticDice();
+                    int criticDice = twentyFacesDice.roll();
                     if (criticDice == 20) {
                         heroAttack += 2;
                         System.out.println("Vous faites un coup critique.");

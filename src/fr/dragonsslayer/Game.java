@@ -5,6 +5,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 import fr.dragonsslayer.board.*;
+import fr.dragonsslayer.board.dice.Dice;
+import fr.dragonsslayer.board.dice.SixFacesDice;
 import fr.dragonsslayer.characters.Hero;
 import fr.dragonsslayer.characters.Magician;
 import fr.dragonsslayer.characters.Warrior;
@@ -23,28 +25,15 @@ public class Game {
     private Hero hero;
     private boolean hadPray;
     private final Scanner keyboard;
-    private DataBaseHandling db;
+    private final DataBaseHandling db;
+    private final Dice dice;
 
     public Game() {
         voidText = "                 ";
         board = new ArrayList<>();
         this.keyboard = new Scanner(System.in);
         this.db = new DataBaseHandling();
-    }
-
-
-    /**
-     * Initialize the dice and "roll it" by randomizing a number between 1 and 6.
-     *
-     * @return the result of the dice that have been rolled.
-     */
-
-    private int dice() {
-        return new Random().nextInt(6) + 1;
-    }
-
-    public int criticDice() {
-        return new Random().nextInt(20) + 1;
+        this.dice = new SixFacesDice();
     }
 
     /**
@@ -71,7 +60,7 @@ public class Game {
 
     protected int playingTheGame() throws HeroOutOfTheBoardException {
         while (playerPosition != 64) {
-            int diceValue = dice();
+            int diceValue = dice.roll();
             playerPosition += diceValue;
             System.out.println(voidText + "Vous lancez le dé. Et vous faites : " + diceValue + """
                     
