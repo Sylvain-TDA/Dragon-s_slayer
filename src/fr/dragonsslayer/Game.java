@@ -66,7 +66,7 @@ public class Game {
      */
 
     protected int playingTheGame() throws HeroOutOfTheBoardException {
-        while (playerPosition != 10) {
+        while (playerPosition != 64) {
             int diceValue = dice();
             playerPosition += diceValue;
             System.out.println(voidText + "Vous lancez le dé. Et vous faites : " + diceValue + """
@@ -78,9 +78,9 @@ public class Game {
                     \s""";
             System.out.println(movingForward);
 
-            if (playerPosition > 10) {
+            if (playerPosition > 64) {
                 throw new HeroOutOfTheBoardException("Oups, vous êtes au-delà des méandres du vide !");
-            } else if (playerPosition == 10) {
+            } else if (playerPosition == 64) {
                 System.out.println("Bravo, vous avez gagné !");
                 return playerPosition;
             }
@@ -112,104 +112,50 @@ public class Game {
 
     public void initBoard() {
 
-        // Dragon's creation
+        for (int i = 0; i <= 64; i++) {
+            board.add(new EmptyCell(new Empty()));
+        }
 
-        board.set(45, new EnnemyCell(new Dragon("Hield")));
-        board.set(52, new EnnemyCell(new Dragon("Hield")));
-        board.set(56, new EnnemyCell(new Dragon("Hield")));
-        board.set(62, new EnnemyCell(new Dragon("Hield")));
+        // Placement des entités
+        placeRandomly(new EnnemyCell(new Dragon("Hield")), 4);
+        placeRandomly(new EnnemyCell(new Sorcerer("Hield")), 10);
+        placeRandomly(new EnnemyCell(new Goblin("Hield")), 10);
 
-        // Sorcerer's creation
+        placeRandomly(new WeaponCell(new Club("Hield")), 5);
+        placeRandomly(new WeaponCell(new Sword("Hield")), 4);
+        placeRandomly(new WeaponCell(new Lightning("Hield")), 5);
+        placeRandomly(new WeaponCell(new FireBall("Hield")), 2);
 
-        board.set(10, new EnnemyCell(new Sorcerer("Gildur")));
-        board.set(20, new EnnemyCell(new Sorcerer("Gildur")));
-        board.set(25, new EnnemyCell(new Sorcerer("Gildur")));
-        board.set(32, new EnnemyCell(new Sorcerer("Gildur")));
-        board.set(35, new EnnemyCell(new Sorcerer("Gildur")));
-        board.set(36, new EnnemyCell(new Sorcerer("Gildur")));
-        board.set(37, new EnnemyCell(new Sorcerer("Gildur")));
-        board.set(40, new EnnemyCell(new Sorcerer("Gildur")));
-        board.set(44, new EnnemyCell(new Sorcerer("Gildur")));
-        board.set(47, new EnnemyCell(new Sorcerer("Gildur")));
+        placeRandomly(new PotionCell(new Potion("Potion de soin", 2)), 6);
+        placeRandomly(new LargePotionCell(new LargePotion("Grande potion de soin", "Potion", 5)), 2);
 
-        // Goblin's creation
+        showBoard();
+    }
 
-        board.set(3, new EnnemyCell(new Goblin("Wierk")));
-        board.set(6, new EnnemyCell(new Goblin("Wierk")));
-        board.set(9, new EnnemyCell(new Goblin("Wierk")));
-        board.set(12, new EnnemyCell(new Goblin("Wierk")));
-        board.set(15, new EnnemyCell(new Goblin("Wierk")));
-        board.set(18, new EnnemyCell(new Goblin("Wierk")));
-        board.set(21, new EnnemyCell(new Goblin("Wierk")));
-        board.set(24, new EnnemyCell(new Goblin("Wierk")));
-        board.set(27, new EnnemyCell(new Goblin("Wierk")));
-        board.set(30, new EnnemyCell(new Goblin("Wierk")));
+    /**
+     * Initialize a random position in the board to fill it
+     *
+     * @param newCell new Cell type
+     * @param count   number of cell to be placed
+     */
 
-        // Club's creation
+    private void placeRandomly(Cell newCell, int count) {
+        Random rand = new Random();
+        int size = board.size();
 
-        board.set(2, new WeaponCell(new Club("Mace")));
-        board.set(11, new WeaponCell(new Club("Mace")));
-        board.set(5, new WeaponCell(new Club("Mace")));
-        board.set(22, new WeaponCell(new Club("Mace")));
-        board.set(38, new WeaponCell(new Club("Mace")));
-
-        // Sword's creation
-
-        board.set(19, new WeaponCell(new Sword("Epée")));
-        board.set(26, new WeaponCell(new Sword("Epée")));
-        board.set(42, new WeaponCell(new Sword("Epée")));
-        board.set(53, new WeaponCell(new Sword("Epée")));
-
-        // Lightning's spell's creation
-
-        board.set(1, new WeaponCell(new Lightning("Eclairs")));
-        board.set(4, new WeaponCell(new Lightning("Eclairs")));
-        board.set(8, new WeaponCell(new Lightning("Eclairs")));
-        board.set(17, new WeaponCell(new Lightning("Eclairs")));
-        board.set(23, new WeaponCell(new Lightning("Eclairs")));
-
-        // Fireball's spell's creation
-
-        board.set(48, new WeaponCell(new FireBall("Boule de feu")));
-        board.set(49, new WeaponCell(new FireBall("Boule de feu")));
-
-        // Potion's creation
-
-        board.set(7, new PotionCell(new Potion("Potion de soin", 2)));
-        board.set(13, new PotionCell(new Potion("Potion de soin", 2)));
-        board.set(31, new PotionCell(new Potion("Potion de soin", 2)));
-        board.set(33, new PotionCell(new Potion("Potion de soin", 2)));
-        board.set(39, new PotionCell(new Potion("Potion de soin", 2)));
-        board.set(43, new PotionCell(new Potion("Potion de soin", 2)));
-
-        // LargePotion's creation
-
-        board.set(28, new LargePotionCell(new LargePotion("Grande potion de soin", "Potion", 5)));
-        board.set(41, new LargePotionCell(new LargePotion("Grande potion de soin", "Potion", 5)));
-
-        // Empty cell's creation
-
-        board.set(0, new EmptyCell(new Empty()));
-        board.set(14, new EmptyCell(new Empty()));
-        board.set(16, new EmptyCell(new Empty()));
-        board.set(19, new EmptyCell(new Empty()));
-        board.set(29, new EmptyCell(new Empty()));
-        board.set(34, new EmptyCell(new Empty()));
-        board.set(46, new EmptyCell(new Empty()));
-        board.set(50, new EmptyCell(new Empty()));
-        board.set(51, new EmptyCell(new Empty()));
-        board.set(54, new EmptyCell(new Empty()));
-        board.set(55, new EmptyCell(new Empty()));
-        board.set(57, new EmptyCell(new Empty()));
-        board.set(58, new EmptyCell(new Empty()));
-        board.set(59, new EmptyCell(new Empty()));
-        board.set(60, new EmptyCell(new Empty()));
-        board.set(61, new EmptyCell(new Empty()));
-        board.set(63, new EmptyCell(new Empty()));
+        for (int i = 0; i < count; i++) {
+            int pos;
+            do {
+                pos = rand.nextInt(size);
+            } while (!(board.get(pos) instanceof EmptyCell));
+            board.set(pos, newCell);
+        }
     }
 
     private void showBoard() {
-        System.out.println(board);
+        for (int i = 0; i < board.size(); i++) {
+            System.out.println(board.get(i));
+        }
     }
 
     /**
