@@ -1,6 +1,7 @@
 package fr.dragonsslayer.equipment;
 
 import fr.dragonsslayer.board.Cell;
+import fr.dragonsslayer.characters.Hero;
 
 /**
  * Super class to define defensive equipment
@@ -47,4 +48,11 @@ public abstract class DefensiveEquipment {
                 ", Niveau de defense=" + DefenseLevel +
                 '}';
     }
-}
+
+    protected int heal(Hero hero, int amount) {
+            int lifePoints = hero.getLife();
+            lifePoints += amount;
+
+            return lifePoints;
+    }
+ }
