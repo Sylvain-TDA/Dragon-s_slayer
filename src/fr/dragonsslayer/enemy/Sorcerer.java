@@ -4,7 +4,7 @@ public class Sorcerer extends Ennemy {
     public Sorcerer(String name) {
         super("Sorcerer", name);
         this.setLife(9);
-        this.setAttackLevel(2);
+        this.setAttackLevel(20);
     }
 
     public String getAttribute() {

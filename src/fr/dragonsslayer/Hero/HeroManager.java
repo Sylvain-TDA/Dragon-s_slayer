@@ -24,6 +24,13 @@ public class HeroManager {
         return hero;
     }
 
+    public Hero createCheatedHero() {
+        Hero hero;
+        hero = new Warrior("Warrior", "Desctructor");
+        db.toJson(hero);
+        return hero;
+    }
+
     public String askType() {
         String typeSelection;
         String userInput;

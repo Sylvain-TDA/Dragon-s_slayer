@@ -1,8 +1,10 @@
 package fr.dragonsslayer.Game;
 
 import fr.dragonsslayer.db.DataBaseHandling;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import fr.dragonsslayer.Hero.*;
 
 /**
@@ -65,7 +67,7 @@ public class Menu {
                 displayMessage(menu);
                 choice = keyboard.nextInt();
                 keyboard.nextLine();
-                if (choice >= 1 && choice <= 3) {
+                if (choice >= 1 && choice <= 4) {
                     valid = true;
                 } else {
                     displayMessage("Veuillez entrer 1, 2 ou 3.");
@@ -104,6 +106,10 @@ public class Menu {
                     exit = true;
                     displayMessage("Oh non... À toute !");
                     break;
+                case 4:
+                    Hero cheatedHero = heroManager.createCheatedHero();
+                    game.setHero(cheatedHero);
+                    game.start();
                 default:
                     displayMessage("Choix invalide !");
             }

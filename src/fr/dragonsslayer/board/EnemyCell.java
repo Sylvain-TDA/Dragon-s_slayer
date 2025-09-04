@@ -51,6 +51,9 @@ public class EnemyCell extends Cell {
                         System.out.println("L'ennemi vous a attaqué, votre vie est maintenant à : " + heroLife);
                         hero.setLife(heroLife);
                     }
+                    if (heroLife <= 0) {
+                        System.out.println("Vous rejoingnez ceux que vous avez croisé lors de votre réveil.");
+                    }
                 }
                 break;
             case 2:

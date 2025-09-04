@@ -32,7 +32,10 @@ public class Game {
     }
 
     public void start() throws InterruptedException {
-        hero = heroManager.createHero();
+        initBoard();
+        if (hero == null) {
+            throw new IllegalStateException("Le héros n'a pas été défini. Utilisez setHero() avant de démarrer le jeu.");
+        }
         startingAGame();
         try {
             playingTheGame();
@@ -46,6 +49,7 @@ public class Game {
     }
 
     protected void startingAGame() throws InterruptedException {
+
         playerPosition = 0;
         String intro = """
                 Votre aventure débute...
