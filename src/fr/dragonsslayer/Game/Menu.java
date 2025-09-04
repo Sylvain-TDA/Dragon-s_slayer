@@ -119,6 +119,9 @@ public class Menu {
             case 3: // Aïe
                 game.initBoard(3);
                 break;
+            case 4:
+                game.initBoard(4);
+                break;
             default:
                 displayMessage("Choix invalide !");
 

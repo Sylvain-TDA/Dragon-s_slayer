@@ -30,22 +30,36 @@ public class EnemyCell extends Cell {
         System.out.println("Vous vous retrouvez face à un ennemi : ");
         System.out.println(enemy.toString());
         DataBaseHandling db = new DataBaseHandling();
+
+        if (Objects.equals(hero.getType(), "Warrior") && Objects.equals(enemy.getType(), "Orc")) {
+            initFight(game, hero);
+        } else if (Objects.equals(hero.getType(), "Warrior") && Objects.equals(enemy.getType(), "Bogle")) {
+            System.out.println("Le mauvais espirt fuit devant le manque cruel du votre.");
+        } else if (Objects.equals(hero.getType(), "Magician") && Objects.equals(enemy.getType(), "Bogle")) {
+            initFight(game, hero);
+        } else if (Objects.equals(hero.getType(), "Magician") && Objects.equals(enemy.getType(), "Orc")) {
+            System.out.println("L'orc est appeuré par vos pouvoirs");
+        } else {
+            initFight(game, hero);
+        }
+    }
+
+    @Override
+    public String getType() {
+        return "enemy";
+    }
+
+    private void initFight(Game game, Hero hero) {
+        Hero enemy = (Hero) getContent();
+        System.out.println("Vous vous retrouvez face à un ennemi : ");
+        System.out.println(enemy.toString());
+        DataBaseHandling db = new DataBaseHandling();
         Menu menu = new Menu(db, game, new HeroManager(db));
         Dice sixFacesDice = new SixFacesDice();
 
         switch (menu.displayFightMenu()) {
             case 1:
-                if (Objects.equals(hero.getType(), "Warrior") && Objects.equals(enemy.getType(), "Orc")) {
-                    fight(hero, game);
-                } else if (Objects.equals(hero.getType(), "Warrior") && Objects.equals(enemy.getType(), "Bogle")) {
-                    System.out.println("Le mauvais espirt fuit devant le manque cruel du votre.");
-                } else if (Objects.equals(hero.getType(), "Magician") && Objects.equals(enemy.getType(), "Bogle")) {
-                    fight(hero, game);
-                } else if (Objects.equals(hero.getType(), "Magician") && Objects.equals(enemy.getType(), "Orc")) {
-                    System.out.println("L'orc est appeuré par vos pouvoirs");
-                } else {
-                    fight(hero, game);
-                }
+                fight(hero, game);
                 break;
             case 2:
                 System.out.println("Vous tentez de fuir...");
@@ -63,11 +77,6 @@ public class EnemyCell extends Cell {
                     fight(hero, game);
                 }
         }
-    }
-
-    @Override
-    public String getType() {
-        return "enemy";
     }
 
     private void fight(Hero hero, Game game) {
@@ -114,6 +123,5 @@ public class EnemyCell extends Cell {
                 break;
             }
         }
-
     }
 }
