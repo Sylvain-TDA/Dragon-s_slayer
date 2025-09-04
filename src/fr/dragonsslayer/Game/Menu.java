@@ -53,7 +53,6 @@ public class Menu {
     /**
      * Displays the main menu and returns the user's choice.
      */
-
     protected int displayMenu() {
         int choice = 0;
         boolean valid = false;
@@ -81,6 +80,10 @@ public class Menu {
         return choice;
     }
 
+    /**
+     * Handle the display for the difficulty selection
+     * @return an int choose by the player that indicate the difficulty
+     */
     protected int displayDifficulty() {
         int choice = 0;
         boolean valid = false;
@@ -108,7 +111,10 @@ public class Menu {
         return choice;
     }
 
-    public void difficultyMenu() throws InterruptedException {
+    /**
+     * Handle the difficulty selection by initializing the board depending on the choice.
+     */
+    public void difficultyMenu() {
         switch (displayDifficulty()) {
             case 1: // Balade
                 game.initBoard(1);
@@ -119,7 +125,7 @@ public class Menu {
             case 3: // Aïe
                 game.initBoard(3);
                 break;
-            case 4:
+            case 4: // test pour les Orcs et Mauvais Esprits
                 game.initBoard(4);
                 break;
             default:
