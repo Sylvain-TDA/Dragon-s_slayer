@@ -6,6 +6,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import fr.dragonsslayer.Hero.*;
+import fr.dragonsslayer.equipment.Potion;
+import fr.dragonsslayer.equipment.Weapon;
 
 /**
  * Handles the user interface of Dragon's Slayer, including:
@@ -256,72 +258,58 @@ public class Menu {
         return choice;
     }
 
-    public int displayInventoryMenu() {
-        int choice = 0;
+    public String displayInventoryMenu() {
+        int choice;
         boolean valid = false;
+        String weaponType = null;
         while (!valid) {
-            try {
-                // HEADER
-                String inventoryHeader = """
-                        +-------------------------------------+
-                        |          VOTRE INVENTAIRE           |
-                        +-------------------------------------+
-                        |                                     |
-                        """;
-                displayMessage(inventoryHeader);
-                InventoryHandler.showInventory();
+            if (InventoryHandler.inventorySize() == 0) {
+                break;
+            } else {
+                try {
+                    // HEADER
+                    InventoryHandler.showInventory();
 
-                // INVENTORY
-                String weaponCountHeader = """
-                        |                                     |
-                        |   Nombre d'armes dans l'inventaire :|
-                        """;
-                displayMessage(weaponCountHeader);
-                InventoryHandler.inventorySize();
+                    // CHOICE
+                    String choosePrompt = """
+                            |          CHOISISSEZ UNE ARME        |
+                            |                                     |
+                            |   Entrez le numéro de l'arme que    |
+                            |          vous souhaitez :           |
+                            """;
+                    displayMessage(choosePrompt);
+                    choice = keyboard.nextInt() - 1;
+                    keyboard.nextLine();
 
-                // CHOICE
-                String choosePrompt = """
-                        +-------------------------------------+
-                        |          CHOISISSEZ UNE ARME         |
-                        +-------------------------------------+
-                        |                                     |
-                        |   Entrez le numéro de l'arme que    |
-                        |          vous souhaitez :          |
-                        |                                     |
-                        """;
-                displayMessage(choosePrompt);
-                choice = keyboard.nextInt()-1;
-                keyboard.nextLine();
+                    // SELECTED WEAPON
+                    String selectedWeaponHeader = """
+                            
+                            |          ARME SÉLECTIONNÉE          |
+                            """;
+                    displayMessage(selectedWeaponHeader);
 
-                // SELECTED WEAPON
-                String selectedWeaponHeader = """
-                        +-------------------------------------+
-                        |          ARME SÉLECTIONNÉE          |
-                        +-------------------------------------+
-                        |                                     |
-                        """;
-                displayMessage(selectedWeaponHeader);
+                    Object selectedItem = InventoryHandler.getItemFromInventory(choice);
+                    Weapon weapon = (Weapon) selectedItem;
+                    weaponType = weapon.getType();
 
-                Object selectedItem = InventoryHandler.getItemFromInventory(choice);
-                String selectedWeaponMessage = String.format("""
-                        |   Vous avez choisi : %s
-                        |                                     |
-                        +-------------------------------------+
-                        """, selectedItem.toString());
-                displayMessage(selectedWeaponMessage);
+                    String selectedWeaponMessage = String.format("""
+                            |   Vous avez choisi : %s             |
+                            """, selectedItem.toString());
+                    displayMessage(selectedWeaponMessage);
 
 
-                if (choice >= 0 && choice <= 10) {
-                    valid = true;
-                } else {
-                    displayMessage("Veuillez un nombre entrer entre 0 et 10.");
+                    if (choice >= 0 && choice <= 10) {
+                        valid = true;
+                    } else {
+                        displayMessage("Veuillez un nombre entrer entre 0 et 10.");
+                    }
+                } catch (InputMismatchException e) {
+                    displayMessage("Entrée invalide. Veuillez entrer un nombre (entre 0 et 10).");
+                    keyboard.nextLine();
                 }
-            } catch (InputMismatchException e) {
-                displayMessage("Entrée invalide. Veuillez entrer un nombre (entre 0 et 10).");
-                keyboard.nextLine();
             }
         }
-        return choice;
+        return weaponType;
     }
 
     /**

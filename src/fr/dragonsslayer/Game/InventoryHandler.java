@@ -32,8 +32,11 @@ public class InventoryHandler {
         System.out.println(item);
     }
 
-    public static void inventorySize() {
-        System.out.println("|        " + inventory.size() + " armes           |");
+    public static int inventorySize() {
+        System.out.println(inventory.size() + " armes" + """
+                
+                """);
+        return  inventory.size();
     }
 
     public static Object getItemFromInventory(int choice) {

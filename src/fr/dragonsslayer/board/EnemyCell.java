@@ -13,6 +13,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class EnemyCell extends Cell {
+    String choice;
     public EnemyCell(Hero enemy) {
         super(enemy);
     }
@@ -57,8 +58,8 @@ public class EnemyCell extends Cell {
 
         switch (menu.displayFightMenu()) {
             case 1:
-                menu.displayInventoryMenu();
-                fight(hero, game);
+                choice = menu.displayInventoryMenu();
+                fight(hero, game, choice);
                 break;
             case 2:
                 System.out.println("Vous tentez de fuir...");
@@ -73,17 +74,19 @@ public class EnemyCell extends Cell {
                             Votre tentative a échouée...
                             
                             """);
-                    fight(hero, game);
+                    fight(hero, game, choice);
                 }
         }
     }
 
-    private void fight(Hero hero, Game game) {
+    private void fight(Hero hero, Game game, String choice) {
         Dice twentyFacesDice = new TwentyFacesDice();
         Hero enemy = (Hero) getContent();
         int enemyAttack = enemy.getAttackLevel();
         int enemyLife = enemy.getLife();
         int heroLife = hero.getLife();
+        String enemyType = enemy.getType();
+
         while (enemyLife > 0 && heroLife > 0) {
             int heroAttack = hero.getAttackLevel();
             int criticDice = twentyFacesDice.roll();
@@ -93,6 +96,18 @@ public class EnemyCell extends Cell {
             } else if (criticDice == 0) {
                 heroAttack = 0;
                 System.out.println("Vous faites un échec critique.");
+            }
+
+            if (enemyType == "Dragon" && choice == "Bow") {
+                heroAttack += 6;
+            } else if (enemyType != "Dragon" && choice == "Bow") {
+                heroAttack += 4;
+            } else {
+                if (enemyType =="Bogle" && choice == "Invisibility") {
+                    heroAttack += 8;
+                } else if (enemyType != "Bogle" && choice == "Invisibility") {
+                    heroAttack += 5;
+                }
             }
             enemyLife -= heroAttack;
             System.out.println("Vous attaquez l'ennemi");
