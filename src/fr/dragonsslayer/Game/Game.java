@@ -17,20 +17,25 @@ import java.util.Random;
 public class Game {
     private int playerPosition;
     private final ArrayList<Cell> board;
-    private final HeroManager heroManager;
     private final UserInputHandler inputHandler;
     private final PrayerHandler prayerHandler;
     private final Dice dice;
     private Hero hero;
+    public boolean endTheGame = false;
 
     public Game() {
         board = new ArrayList<>();
-        this.heroManager = new HeroManager(new DataBaseHandling());
+        HeroManager heroManager = new HeroManager(new DataBaseHandling());
         this.inputHandler = new UserInputHandler();
         this.prayerHandler = new PrayerHandler(new DataBaseHandling());
         this.dice = new SixFacesDice();
     }
 
+    /**
+     * Init the board, initialize the game and start it.
+     *
+     * @throws InterruptedException if the Hero is after the 64th cell.
+     */
     public void start() throws InterruptedException {
         initBoard();
         if (hero == null) {
@@ -48,6 +53,11 @@ public class Game {
         this.hero = hero;
     }
 
+    /**
+     * Display the intro and initialize the hero position
+     *
+     * @throws InterruptedException to handle the thread sleep.
+     */
     protected void startingAGame() throws InterruptedException {
 
         playerPosition = 0;
@@ -62,20 +72,25 @@ public class Game {
         Thread.sleep(700);
     }
 
-    protected void playingTheGame() throws HeroOutOfTheBoardException {
-        while (playerPosition != 64) {
+    /**
+     * Handle the player position and if the game as ended.
+     * @throws HeroOutOfTheBoardException to handle the thread sleep.
+     * @throws InterruptedException to handle the thread sleep.
+     */
+    protected void playingTheGame() throws HeroOutOfTheBoardException, InterruptedException {
+        while (playerPosition < 64 && !endTheGame) {
             int diceValue = dice.roll();
             playerPosition += diceValue;
             inputHandler.displayMessage("Vous lancez le dé. Et vous faites : " + diceValue);
+            Thread.sleep(700);
             inputHandler.displayMessage("Vous avancez en case : " + playerPosition);
-            if (playerPosition > 64) {
+            if (playerPosition >= 64) {
                 playerPosition = 64;
-                throw new HeroOutOfTheBoardException("Bravo, vous avez gagné");
-            } else if (playerPosition == 64) {
-                inputHandler.displayMessage("Bravo, vous avez gagné !");
+                inputHandler.displayMessage("Bravo, vous avez gagné");
                 return;
             }
             Cell currentCell = board.get(playerPosition);
+            Thread.sleep(700);
             currentCell.interact(hero, this);
         }
     }
@@ -95,7 +110,6 @@ public class Game {
     /**
      * Handle the initialization of the board.
      */
-
     public void initBoard() {
 
         for (int i = 0; i <= 64; i++) {
@@ -122,7 +136,6 @@ public class Game {
      * @param newCell new Cell type
      * @param count   number of cell to be placed
      */
-
     private void placeRandomly(Cell newCell, int count) {
         Random rand = new Random();
         int size = board.size();

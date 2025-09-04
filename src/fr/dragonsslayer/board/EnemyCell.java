@@ -15,13 +15,19 @@ public class EnemyCell extends Cell {
         super(enemy);
     }
 
+    /**
+     * The cell interact and handle the battle.
+     * @param hero to acces the getter of the hero
+     * @param game send the value of true to end the game
+     */
+
     @Override
     public void interact(Hero hero, Game game) {
         Hero enemy = (Hero) getContent();
         System.out.println("Vous vous retrouvez face à un ennemi : ");
         System.out.println(enemy.toString());
         DataBaseHandling db = new DataBaseHandling();
-        Menu menu = new Menu(db,game, new HeroManager(db));
+        Menu menu = new Menu(db, game, new HeroManager(db));
         Dice twentyFacesDice = new TwentyFacesDice();
 
         int enemyAttack = enemy.getAttackLevel();
@@ -36,7 +42,7 @@ public class EnemyCell extends Cell {
                     if (criticDice == 20) {
                         heroAttack += 2;
                         System.out.println("Vous faites un coup critique.");
-                    } else if(criticDice == 0) {
+                    } else if (criticDice == 0) {
                         heroAttack = 0;
                         System.out.println("Vous faites un échec critique.");
                     }
@@ -48,16 +54,21 @@ public class EnemyCell extends Cell {
                     } else {
                         System.out.println("La vie de l'ennemi tombe : " + enemyLife);
                         heroLife -= enemyAttack;
-                        System.out.println("L'ennemi vous a attaqué, votre vie est maintenant à : " + heroLife);
+                        if (heroLife <= 0) {
+                            System.out.println("Vous rejoingnez ceux que vous avez croisé lors de votre réveil.");
+                        } else {
+                            System.out.println("L'ennemi vous a attaqué, votre vie est maintenant à : " + heroLife);
+                        }
                         hero.setLife(heroLife);
                     }
                     if (heroLife <= 0) {
-                        System.out.println("Vous rejoingnez ceux que vous avez croisé lors de votre réveil.");
+                        game.endTheGame = true;
+                        break;
                     }
                 }
                 break;
             case 2:
-                game.updatedPlayerPosition(new Random().nextInt(6)+1);
+                game.updatedPlayerPosition(new Random().nextInt(6) + 1);
                 System.out.println("Vous reculez en case : " + game.getPlayerPosition());
                 break;
         }

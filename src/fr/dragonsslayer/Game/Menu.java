@@ -53,6 +53,7 @@ public class Menu {
     /**
      * Displays the main menu and returns the user's choice.
      */
+
     protected int displayMenu() {
         int choice = 0;
         boolean valid = false;

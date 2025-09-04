@@ -13,6 +13,11 @@ public class HeroManager {
         this.db = db;
     }
 
+    /**
+     * Creating the hero by choosing the type and the name
+     *
+     * @return An instance of {@link Warrior} or {@link Magician} corresponding to the user's choice.
+     */
     public Hero createHero() {
         Hero hero;
         if (askType().equalsIgnoreCase("Warrior")) {
@@ -31,8 +36,13 @@ public class HeroManager {
         return hero;
     }
 
+    /**
+     * Request the player what type he wants to play, either Warrior or Magician.
+     * The Scanner handle what the user entered.
+     *
+     * @return the type selected under a specific format.
+     */
     public String askType() {
-        String typeSelection;
         String userInput;
         int trynbr = 0;
 
@@ -105,7 +115,6 @@ public class HeroManager {
      *
      * @return the name entered.
      */
-
     public String askName() {
         String name;
         while (true) {
