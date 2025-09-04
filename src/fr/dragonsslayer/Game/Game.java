@@ -1,9 +1,6 @@
 package fr.dragonsslayer.Game;
 
-import fr.dragonsslayer.Game.PrayerHandler;
-import fr.dragonsslayer.Game.UserInputHandler;
 import fr.dragonsslayer.Hero.Hero;
-import fr.dragonsslayer.Hero.HeroManager;
 import fr.dragonsslayer.board.*;
 import fr.dragonsslayer.board.dice.Dice;
 import fr.dragonsslayer.board.dice.SixFacesDice;
@@ -36,7 +33,6 @@ public class Game {
      * @throws InterruptedException if the Hero is after the 64th cell.
      */
     public void start() throws InterruptedException {
-        initBoard();
         if (hero == null) {
             throw new IllegalStateException("Le héros n'a pas été défini. Utilisez setHero() avant de démarrer le jeu.");
         }
@@ -72,8 +68,9 @@ public class Game {
 
     /**
      * Handle the player position and if the game as ended.
+     *
      * @throws HeroOutOfTheBoardException to handle the thread sleep.
-     * @throws InterruptedException to handle the thread sleep.
+     * @throws InterruptedException       to handle the thread sleep.
      */
     protected void playingTheGame() throws HeroOutOfTheBoardException, InterruptedException {
         while (playerPosition < 64 && !endTheGame) {
@@ -108,24 +105,53 @@ public class Game {
     /**
      * Handle the initialization of the board.
      */
-    public void initBoard() {
+    public void initBoard(int choice) {
 
         for (int i = 0; i <= 64; i++) {
             board.add(new EmptyCell(new Empty()));
         }
 
-        // Placement des entités
-        placeRandomly(new EnemyCell(new Dragon("Hield")), 4);
-        placeRandomly(new EnemyCell(new Sorcerer("Hield")), 10);
-        placeRandomly(new EnemyCell(new Goblin("Hield")), 10);
+        switch (choice) {
+            case 1:
+                placeRandomly(new EnemyCell(new Dragon(RandomNameGenerator.generateEnemyRandomName())), 2);
+                placeRandomly(new EnemyCell(new Sorcerer(RandomNameGenerator.generateEnemyRandomName())), 6);
+                placeRandomly(new EnemyCell(new Goblin(RandomNameGenerator.generateEnemyRandomName())), 8);
 
-        placeRandomly(new WeaponCell(new Club("Hield")), 5);
-        placeRandomly(new WeaponCell(new Sword("Hield")), 4);
-        placeRandomly(new WeaponCell(new Lightning("Hield")), 5);
-        placeRandomly(new WeaponCell(new FireBall("Hield")), 2);
+                placeRandomly(new WeaponCell(new Club(RandomNameGenerator.generateWeaponRandomName())), 6);
+                placeRandomly(new WeaponCell(new Sword(RandomNameGenerator.generateWeaponRandomName())), 5);
+                placeRandomly(new WeaponCell(new Lightning(RandomNameGenerator.generateWeaponRandomName())), 6);
+                placeRandomly(new WeaponCell(new FireBall(RandomNameGenerator.generateWeaponRandomName())), 2);
 
-        placeRandomly(new PotionCell(new Potion("Potion de soin", 2)), 6);
-        placeRandomly(new LargePotionCell(new LargePotion("Grande potion de soin", "Potion", 5)), 2);
+                placeRandomly(new PotionCell(new Potion("Potion de soin", 2)), 8);
+                placeRandomly(new LargePotionCell(new LargePotion("Grande potion de soin", "Potion", 5)), 3);
+                break;
+            case 2:
+                placeRandomly(new EnemyCell(new Dragon(RandomNameGenerator.generateEnemyRandomName())), 4);
+                placeRandomly(new EnemyCell(new Sorcerer(RandomNameGenerator.generateEnemyRandomName())), 10);
+                placeRandomly(new EnemyCell(new Goblin(RandomNameGenerator.generateEnemyRandomName())), 10);
+
+                placeRandomly(new WeaponCell(new Club(RandomNameGenerator.generateWeaponRandomName())), 5);
+                placeRandomly(new WeaponCell(new Sword(RandomNameGenerator.generateWeaponRandomName())), 4);
+                placeRandomly(new WeaponCell(new Lightning(RandomNameGenerator.generateWeaponRandomName())), 5);
+                placeRandomly(new WeaponCell(new FireBall(RandomNameGenerator.generateWeaponRandomName())), 2);
+
+                placeRandomly(new PotionCell(new Potion("Potion de soin", 2)), 6);
+                placeRandomly(new LargePotionCell(new LargePotion("Grande potion de soin", "Potion", 5)), 2);
+                break;
+            case 3:
+                placeRandomly(new EnemyCell(new Dragon(RandomNameGenerator.generateEnemyRandomName())), 5);
+                placeRandomly(new EnemyCell(new Sorcerer(RandomNameGenerator.generateEnemyRandomName())), 11);
+                placeRandomly(new EnemyCell(new Goblin(RandomNameGenerator.generateEnemyRandomName())), 11);
+
+                placeRandomly(new WeaponCell(new Club(RandomNameGenerator.generateWeaponRandomName())), 3);
+                placeRandomly(new WeaponCell(new Sword(RandomNameGenerator.generateWeaponRandomName())), 2);
+                placeRandomly(new WeaponCell(new Lightning(RandomNameGenerator.generateWeaponRandomName())), 3);
+                placeRandomly(new WeaponCell(new FireBall(RandomNameGenerator.generateWeaponRandomName())), 1);
+
+                placeRandomly(new PotionCell(new Potion("Potion de soin", 2)), 4);
+                placeRandomly(new LargePotionCell(new LargePotion("Grande potion de soin", "Potion", 5)), 2);
+                break;
+        }
     }
 
     /**
@@ -147,7 +173,7 @@ public class Game {
         }
     }
 
-    private void showBoard() {
+    public void showBoard() {
         for (int i = 0; i < board.size(); i++) {
             System.out.println(board.get(i));
         }
@@ -156,6 +182,8 @@ public class Game {
     public ArrayList<Cell> getBoard() {
         return board;
     }
+
+
 
 
 }

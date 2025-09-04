@@ -228,7 +228,7 @@ public class DataBaseHandling {
     private void createBoard() {
         String sql = "INSERT INTO `Board` (`Type`) VALUES (?)";
         Game game = new Game();
-        game.initBoard();
+        game.initBoard(2);
         ArrayList<Cell> cells = game.getBoard();
 
         try (
@@ -253,7 +253,7 @@ public class DataBaseHandling {
     public void createJsonBoard() {
         Game game = new Game();
         Gson gson = new Gson();
-        game.initBoard();
+        game.initBoard(2);
 
         String json = gson.toJson(game.getBoard());
         String sql = "INSERT INTO `Board` (`Type`) " +

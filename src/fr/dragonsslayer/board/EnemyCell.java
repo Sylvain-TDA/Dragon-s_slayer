@@ -31,7 +31,6 @@ public class EnemyCell extends Cell {
         DataBaseHandling db = new DataBaseHandling();
         Menu menu = new Menu(db, game, new HeroManager(db));
 
-
         switch (menu.displayFightMenu()) {
             case 1:
                 if (Objects.equals(hero.getType(), "Warrior") && Objects.equals(enemy.getType(), "Orc")) {
@@ -84,9 +83,10 @@ public class EnemyCell extends Cell {
                 System.out.println("La vie de l'ennemi tombe à : " + enemyLife);
                 heroLife -= enemyAttack;
                 if (heroLife <= 0) {
+                    System.out.println("L'ennemi vous a attaqué et vous a fait perdre " + enemyAttack + "points de vie.");
                     System.out.println("Vous rejoingnez ceux que vous avez croisé lors de votre réveil.");
                 } else {
-                    System.out.println("L'ennemi vous a attaqué, votre vie est maintenant à : " + heroLife);
+                    System.out.println("L'ennemi vous a attaqué, votre vie est maintenant à : " + heroLife + ".");
                 }
                 hero.setLife(heroLife);
             }

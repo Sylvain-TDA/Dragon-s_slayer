@@ -81,6 +81,50 @@ public class Menu {
         return choice;
     }
 
+    protected int displayDifficulty() {
+        int choice = 0;
+        boolean valid = false;
+        while (!valid) {
+            try {
+                String menu = """
+                        ===== Difficulté =====
+                            1. Balade
+                            2. Comme prévu
+                            3. Aïe
+                        """;
+                displayMessage(menu);
+                choice = keyboard.nextInt();
+                keyboard.nextLine();
+                if (choice >= 1 && choice <= 4) {
+                    valid = true;
+                } else {
+                    displayMessage("Veuillez entrer 1, 2 ou 3.");
+                }
+            } catch (InputMismatchException e) {
+                displayMessage("Entrée invalide. Veuillez entrer un nombre (1, 2 ou 3).");
+                keyboard.nextLine();
+            }
+        }
+        return choice;
+    }
+
+    public void difficultyMenu() throws InterruptedException {
+        switch (displayDifficulty()) {
+            case 1: // Balade
+                game.initBoard(1);
+                break;
+            case 2: // Comme prévu
+                game.initBoard(2);
+                break;
+            case 3: // Aïe
+                game.initBoard(3);
+                break;
+            default:
+                displayMessage("Choix invalide !");
+
+        }
+    }
+
     /**
      * Main loop for the menu.
      * Handles hero creation, starting the game, or quitting.
@@ -98,6 +142,7 @@ public class Menu {
                     break;
                 case 2: // Playing
                     if (playerCreated) {
+                        difficultyMenu();
                         game.start();
                     } else {
                         displayMessage("Vous devez créer un personnage avant de vous lancer dans l'aventure.");
@@ -110,6 +155,8 @@ public class Menu {
                 case 4:
                     Hero cheatedHero = heroManager.createCheatedHero();
                     game.setHero(cheatedHero);
+                    difficultyMenu();
+                    game.showBoard();
                     game.start();
                 default:
                     displayMessage("Choix invalide !");
@@ -156,6 +203,7 @@ public class Menu {
                     case 4:
                         play = true;
                         try {
+                            difficultyMenu();
                             game.start();
                         } catch (Exception e) {
                             displayMessage("Erreur lors du lancement du jeu : " + e.getMessage());

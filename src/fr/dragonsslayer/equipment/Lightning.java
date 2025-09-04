@@ -1,11 +1,13 @@
 package fr.dragonsslayer.equipment;
 
+import fr.dragonsslayer.Game.RandomNameGenerator;
+
 /**
  * Subclass of Offensive equipment
  */
 
-public class Lightning extends Spell{
+public class Lightning extends Spell {
     public Lightning(String name) {
-        super("Lightning", "Offensive equipment", 2);
+        super(RandomNameGenerator.generateWeaponRandomName(), "Offensive equipment", 2);
     }
 }
