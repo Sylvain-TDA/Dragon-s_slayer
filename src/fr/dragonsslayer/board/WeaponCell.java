@@ -34,9 +34,7 @@ public class WeaponCell extends Cell {
             game.addToInventory(weapon);
 
             System.out.println("""
-                    L'attaque de l'arme est de :\s""" + newStrength + """
-                    
-                    """);
+                    L'attaque de l'arme est de :\s""" + newStrength);
 
         } else if (equipment instanceof Weapon && Objects.equals(hero.getType(), "Magician")) {
             System.out.println("""

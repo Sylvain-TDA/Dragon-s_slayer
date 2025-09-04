@@ -84,6 +84,7 @@ public class EnemyCell extends Cell {
         int enemyLife = enemy.getLife();
         int heroLife = hero.getLife();
         String enemyType = enemy.getType();
+        int xpWon;
 
         while (enemyLife > 0 && heroLife > 0) {
             int heroAttack = hero.getAttackLevel();
@@ -111,6 +112,9 @@ public class EnemyCell extends Cell {
             System.out.println("Vous attaquez l'ennemi");
             if (enemyLife <= 0) {
                 System.out.println("L'ennemi succombe sous votre assaut");
+                xpWon = 10;
+                hero.storeXp(xpWon);
+                hero.setLevel(hero.getXp());
                 break;
             } else {
                 System.out.println("La vie de l'ennemi tombe à : " + enemyLife);

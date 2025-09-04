@@ -1,10 +1,7 @@
 package fr.dragonsslayer.Game;
 
-import fr.dragonsslayer.board.Inventory;
-import fr.dragonsslayer.board.InventoryField;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 
 public class InventoryHandler {
     public static ArrayList<Object> inventory;
