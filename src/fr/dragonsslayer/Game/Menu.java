@@ -3,6 +3,7 @@ package fr.dragonsslayer.Game;
 import fr.dragonsslayer.db.DataBaseHandling;
 
 import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Scanner;
 
 import fr.dragonsslayer.Hero.*;
@@ -262,14 +263,54 @@ public class Menu {
         int choice;
         boolean valid = false;
         String weaponType = null;
+
         while (!valid) {
             if (InventoryHandler.inventorySize() == 0) {
+                displayMessage("Votre inventaire est vide.");
                 break;
+            } else if (InventoryHandler.inventorySize() == 1) {
+                choice =0;
+                String selectedWeaponHeader = """
+                            
+                            |          ARME SÉLECTIONNÉE          |
+                            """;
+                displayMessage(selectedWeaponHeader);
+
+                Object selectedItem = InventoryHandler.getItemFromInventory(choice);
+                Weapon weapon = (Weapon) selectedItem;
+                weaponType = weapon.getType();
+
+                String selectedWeaponMessage = String.format("""
+                            |   Vous avez choisi : %s             |
+                            """, selectedItem.toString());
+                displayMessage(selectedWeaponMessage);
+                valid = true;
+
             } else {
                 try {
                     // HEADER
                     InventoryHandler.showInventory();
+                    String warriorStrengthChoices = """
+                            
+                            Epée +5
+                            Massue +3
+                            Arc +6 vs Dragons sinon +4
+                            
+                            """;
 
+                    String magicianStrenghtChoices = """
+                            
+                            Boule de feu +7
+                            Eclair +2
+                            Invisibilité +8 contre les mauvais esprits sinon +5
+                            
+                            """;
+
+                    if (Objects.equals(game.getHeroType(game.getHero()), "Warrior")) {
+                        displayMessage(warriorStrengthChoices);
+                    } else {
+                        displayMessage(magicianStrenghtChoices);
+                    }
                     // CHOICE
                     String choosePrompt = """
                             |          CHOISISSEZ UNE ARME        |

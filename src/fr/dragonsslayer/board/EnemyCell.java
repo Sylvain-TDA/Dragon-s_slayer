@@ -30,7 +30,6 @@ public class EnemyCell extends Cell {
         Hero enemy = (Hero) getContent();
         System.out.println("Vous vous retrouvez face à un ennemi : ");
         System.out.println(enemy.toString());
-        DataBaseHandling db = new DataBaseHandling();
 
         if (Objects.equals(hero.getType(), "Warrior") && Objects.equals(enemy.getType(), "Orc")) {
             initFight(game, hero);
@@ -51,7 +50,6 @@ public class EnemyCell extends Cell {
     }
 
     private void initFight(Game game, Hero hero) {
-        Hero enemy = (Hero) getContent();
         DataBaseHandling db = new DataBaseHandling();
         Menu menu = new Menu(db, game, new HeroManager(db));
         Dice sixFacesDice = new SixFacesDice();
@@ -98,14 +96,14 @@ public class EnemyCell extends Cell {
                 System.out.println("Vous faites un échec critique.");
             }
 
-            if (enemyType == "Dragon" && choice == "Bow") {
+            if (Objects.equals(enemyType, "Dragon") && Objects.equals(choice, "Bow")) {
                 heroAttack += 6;
-            } else if (enemyType != "Dragon" && choice == "Bow") {
+            } else if (!Objects.equals(enemyType, "Dragon") && Objects.equals(choice, "Bow")) {
                 heroAttack += 4;
             } else {
-                if (enemyType =="Bogle" && choice == "Invisibility") {
+                if (Objects.equals(enemyType, "Bogle") && Objects.equals(choice, "Invisibility")) {
                     heroAttack += 8;
-                } else if (enemyType != "Bogle" && choice == "Invisibility") {
+                } else if (!Objects.equals(enemyType, "Bogle") && Objects.equals(choice, "Invisibility")) {
                     heroAttack += 5;
                 }
             }
@@ -125,7 +123,7 @@ public class EnemyCell extends Cell {
                 }
                 heroLife -= enemyAttack;
                 if (heroLife <= 0) {
-                    System.out.println("L'ennemi vous a attaqué et vous a fait perdre " + enemyAttack + "points de vie.");
+                    System.out.println("L'ennemi vous a attaqué et vous a fait perdre " + enemyAttack + " points de vie.");
                     System.out.println("Vous rejoingnez ceux que vous avez croisé lors de votre réveil.");
                 } else {
                     System.out.println("L'ennemi vous a attaqué, votre vie est maintenant à : " + heroLife + ".");

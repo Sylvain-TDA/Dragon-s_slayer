@@ -51,6 +51,14 @@ public class Game {
         this.hero = hero;
     }
 
+    public String getHeroType (Hero hero) {
+        return hero.getType();
+    }
+
+    public Hero getHero () {
+        return this.hero;
+    }
+
     /**
      * Display the intro and initialize the hero position
      *
@@ -67,7 +75,7 @@ public class Game {
                 Votre position est : %d
                 """.formatted(playerPosition);
         inputHandler.displayMessage(intro);
-        Thread.sleep(700);
+        Thread.sleep(3000);
     }
 
     /**
@@ -91,6 +99,7 @@ public class Game {
             Cell currentCell = board.get(playerPosition);
             Thread.sleep(700);
             currentCell.interact(hero, this);
+            Thread.sleep(700);
         }
     }
 
@@ -155,7 +164,6 @@ public class Game {
                 placeRandomly(new WeaponCell(new FireBall(RandomNameGenerator.generateWeaponRandomName())), 1);
                 placeRandomly(new WeaponCell(new Bow(RandomNameGenerator.generateWeaponRandomName())), 1);
                 placeRandomly(new WeaponCell(new Invisibility(RandomNameGenerator.generateWeaponRandomName())), 1);
-
 
                 placeRandomly(new PotionCell(new Potion("Potion de soin", 2)), 4);
                 placeRandomly(new LargePotionCell(new LargePotion("Grande potion de soin", "Potion", 5)), 2);

@@ -45,7 +45,6 @@ public abstract class OffensiveEquipment {
     public String toString() {
         return "type='" + type + '\'' +
                 ", nom='" + name + '\'' +
-                ", Niveau d'attaque=" + attackLevel +
                 '}';
     }
 }

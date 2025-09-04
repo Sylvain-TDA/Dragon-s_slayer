@@ -32,10 +32,9 @@ public class WeaponCell extends Cell {
                     """);
             int newStrength = weapon.setAttackLevel(hero, equipment.getAttackLevel());
             game.addToInventory(weapon);
-            hero.setAttackLevel(newStrength);
 
             System.out.println("""
-                    Votre attaque est maintenant à :\s""" + newStrength + """
+                    L'attaque de l'arme est de :\s""" + newStrength + """
                     
                     """);
 
@@ -43,14 +42,12 @@ public class WeaponCell extends Cell {
             System.out.println("""
                      Qu'est-ce qu'un magicien pourrait bien faire de\s
                     \s""" + equipment.getName());
-        } else if (equipment instanceof Spell && Objects.equals(hero.getType(), "Magician")) {
-            Spell spell = (Spell) equipment;
+        } else if (equipment instanceof Spell spell && Objects.equals(hero.getType(), "Magician")) {
             System.out.println("""
                     Apprendre le sort\s
                    \s""" + equipment.getName() + " a été d'une grande facilité. Vous voilà plus fort");
             int newStrength = spell.setAttackLevel(hero, equipment.getAttackLevel());
             game.addToInventory(spell);
-            hero.setAttackLevel(newStrength);
             System.out.println("""
                     Votre attaque est maintenant à :\s""" + newStrength + """
                     

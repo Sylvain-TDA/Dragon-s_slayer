@@ -27,11 +27,6 @@ public class InventoryHandler {
         System.out.println(inventoryBorder);
     }
 
-    public static void showItemInInventory(int choice) {
-        Object item = inventory.get(choice);
-        System.out.println(item);
-    }
-
     public static int inventorySize() {
         System.out.println(inventory.size() + " armes" + """
                 
