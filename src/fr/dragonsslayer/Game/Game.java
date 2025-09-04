@@ -14,6 +14,7 @@ import java.util.Random;
 public class Game {
     private int playerPosition;
     private final ArrayList<Cell> board;
+    public ArrayList<Object> inventory;
     private final UserInputHandler inputHandler;
     private final PrayerHandler prayerHandler;
     private final Dice dice;
@@ -22,6 +23,7 @@ public class Game {
 
     public Game() {
         board = new ArrayList<>();
+        inventory = new ArrayList<>();
         this.inputHandler = new UserInputHandler();
         this.prayerHandler = new PrayerHandler(new DataBaseHandling());
         this.dice = new SixFacesDice();
@@ -154,17 +156,26 @@ public class Game {
                 placeRandomly(new LargePotionCell(new LargePotion("Grande potion de soin", "Potion", 5)), 2);
                 break;
             case 4:
-                placeRandomly(new EnemyCell(new Orc(RandomNameGenerator.generateEnemyRandomName())), 20);
-                placeRandomly(new EnemyCell(new Bogle(RandomNameGenerator.generateEnemyRandomName())), 20);
-
-                placeRandomly(new WeaponCell(new Club(RandomNameGenerator.generateWeaponRandomName())), 3);
-                placeRandomly(new WeaponCell(new Sword(RandomNameGenerator.generateWeaponRandomName())), 2);
-                placeRandomly(new WeaponCell(new Lightning(RandomNameGenerator.generateWeaponRandomName())), 3);
-                placeRandomly(new WeaponCell(new FireBall(RandomNameGenerator.generateWeaponRandomName())), 1);
+                placeRandomly(new WeaponCell(new Club(RandomNameGenerator.generateWeaponRandomName())), 20);
+                placeRandomly(new WeaponCell(new Sword(RandomNameGenerator.generateWeaponRandomName())), 20);
+                //placeRandomly(new WeaponCell(new Lightning(RandomNameGenerator.generateWeaponRandomName())), 10);
+                //placeRandomly(new WeaponCell(new FireBall(RandomNameGenerator.generateWeaponRandomName())), 10);
 
                 placeRandomly(new PotionCell(new Potion("Potion de soin", 2)), 4);
                 placeRandomly(new LargePotionCell(new LargePotion("Grande potion de soin", "Potion", 5)), 2);
                 break;
+        }
+    }
+
+    public void initInventory () {
+        for (int i = 0; i <= 10; i++) {
+            inventory.add(new InventoryField(new Inventory()));
+        }
+    }
+
+    public void showInventory() {
+        for (int i = 0; i < inventory.size(); i++) {
+            System.out.println(inventory.get(i));
         }
     }
 
@@ -196,8 +207,4 @@ public class Game {
     public ArrayList<Cell> getBoard() {
         return board;
     }
-
-
-
-
 }

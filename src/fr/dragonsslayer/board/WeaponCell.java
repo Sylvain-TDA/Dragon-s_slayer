@@ -31,6 +31,8 @@ public class WeaponCell extends Cell {
                     
                     """);
             int newStrength = weapon.setAttackLevel(hero, equipment.getAttackLevel());
+            game.inventory.add(weapon);
+            game.showInventory();
             hero.setAttackLevel(newStrength);
 
             System.out.println("""
@@ -48,6 +50,8 @@ public class WeaponCell extends Cell {
                     Apprendre le sort 
                     """ + equipment.getName() + " a été d'une grande facilité. Vous voilà plus fort");
             int newStrength = spell.setAttackLevel(hero, equipment.getAttackLevel());
+            game.inventory.add(spell);
+            game.showInventory();
             hero.setAttackLevel(newStrength);
             System.out.println("""
                     Votre attaque est maintenant à :\s""" + newStrength + """

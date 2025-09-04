@@ -15,7 +15,6 @@ import fr.dragonsslayer.Hero.*;
  */
 public class Menu {
     private final Scanner keyboard;
-    private Hero hero;
     private final DataBaseHandling db;
     private final Game game;
     private final HeroManager heroManager;
@@ -118,15 +117,19 @@ public class Menu {
         switch (displayDifficulty()) {
             case 1: // Balade
                 game.initBoard(1);
+                game.initInventory();
                 break;
             case 2: // Comme prévu
                 game.initBoard(2);
+                game.initInventory();
                 break;
             case 3: // Aïe
                 game.initBoard(3);
+                game.initInventory();
                 break;
             case 4: // test pour les Orcs et Mauvais Esprits
                 game.initBoard(4);
+                game.initInventory();
                 break;
             default:
                 displayMessage("Choix invalide !");
@@ -144,8 +147,8 @@ public class Menu {
         while (!exit) {
             switch (displayMenu()) {
                 case 1: // Hero creation
-                    this.hero = createAndLoadHero();
-                    this.game.setHero(this.hero);
+                    Hero hero = createAndLoadHero();
+                    this.game.setHero(hero);
                     manageHero(hero);
                     playerCreated = true;
                     break;
@@ -165,7 +168,6 @@ public class Menu {
                     Hero cheatedHero = heroManager.createCheatedHero();
                     game.setHero(cheatedHero);
                     difficultyMenu();
-                    game.showBoard();
                     game.start();
                 default:
                     displayMessage("Choix invalide !");

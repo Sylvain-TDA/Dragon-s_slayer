@@ -1,9 +1,9 @@
 package fr.dragonsslayer.board;
 
-public class Empty {
+public class Inventory {
     private String type;
 
-    public Empty() {
+    public Inventory() {
         this.type = "Empty";
     }
 
