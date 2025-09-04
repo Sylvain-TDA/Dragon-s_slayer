@@ -11,10 +11,9 @@ public abstract class OffensiveEquipment {
     private String name;
     private int attackLevel;
 
-    public OffensiveEquipment(String name, String type, int attackLevel) {
+    public OffensiveEquipment(String name, String type) {
         this.name = name;
         this.type = type;
-        this.attackLevel = attackLevel;
     }
 
     public String getType() {

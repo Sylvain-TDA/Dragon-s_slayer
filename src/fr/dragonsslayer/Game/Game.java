@@ -151,14 +151,17 @@ public class Game {
 
                 placeRandomly(new WeaponCell(new Club(RandomNameGenerator.generateWeaponRandomName())), 3);
                 placeRandomly(new WeaponCell(new Sword(RandomNameGenerator.generateWeaponRandomName())), 2);
-                placeRandomly(new WeaponCell(new Lightning(RandomNameGenerator.generateWeaponRandomName())), 3);
+                placeRandomly(new WeaponCell(new Lightning(RandomNameGenerator.generateWeaponRandomName())), 2);
                 placeRandomly(new WeaponCell(new FireBall(RandomNameGenerator.generateWeaponRandomName())), 1);
+                placeRandomly(new WeaponCell(new Bow(RandomNameGenerator.generateWeaponRandomName())), 1);
+                placeRandomly(new WeaponCell(new Invisibility(RandomNameGenerator.generateWeaponRandomName())), 1);
+
 
                 placeRandomly(new PotionCell(new Potion("Potion de soin", 2)), 4);
                 placeRandomly(new LargePotionCell(new LargePotion("Grande potion de soin", "Potion", 5)), 2);
                 break;
             case 4:
-                placeRandomly(new WeaponCell(new Bow(RandomNameGenerator.generateWeaponRandomName(),1)), 30);
+                placeRandomly(new WeaponCell(new Bow(RandomNameGenerator.generateWeaponRandomName())), 30);
                 placeRandomly(new EnemyCell(new Dragon(RandomNameGenerator.generateEnemyRandomName())), 20);
                 //placeRandomly(new WeaponCell(new Sword(RandomNameGenerator.generateWeaponRandomName())), 20);
                 //placeRandomly(new EnemyCell(new Goblin(RandomNameGenerator.generateEnemyRandomName())), 10);
