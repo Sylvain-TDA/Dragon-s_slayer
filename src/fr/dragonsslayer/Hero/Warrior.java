@@ -1,4 +1,4 @@
-package fr.dragonsslayer.characters;
+package fr.dragonsslayer.Hero;
 
 public class Warrior extends Hero {
     /**

@@ -1,4 +1,4 @@
-package fr.dragonsslayer.characters;
+package fr.dragonsslayer.Hero;
 
 /**
  * The class is handling the hero : name, type, life, attack level and weapon.

@@ -1,8 +1,5 @@
 package fr.dragonsslayer.equipment;
 
-import fr.dragonsslayer.db.DataBaseHandling;
-import fr.dragonsslayer.characters.Hero;
-
 /**
  * Subclass of Defensive equipment
  */

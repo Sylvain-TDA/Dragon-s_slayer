@@ -1,7 +1,7 @@
 package fr.dragonsslayer.board;
 
-import fr.dragonsslayer.Game;
-import fr.dragonsslayer.characters.Hero;
+import fr.dragonsslayer.Game.Game;
+import fr.dragonsslayer.Hero.Hero;
 import fr.dragonsslayer.equipment.LargePotion;
 
 public class LargePotionCell extends Cell {

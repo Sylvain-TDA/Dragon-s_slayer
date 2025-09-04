@@ -1,6 +1,6 @@
 package fr.dragonsslayer.enemy;
 
-import fr.dragonsslayer.characters.Hero;
+import fr.dragonsslayer.Hero.Hero;
 
 public class Ennemy extends Hero {
     public Ennemy(String name, String type) {

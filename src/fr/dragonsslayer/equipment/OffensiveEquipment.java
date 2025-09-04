@@ -1,7 +1,6 @@
 package fr.dragonsslayer.equipment;
 
-import fr.dragonsslayer.board.Cell;
-import fr.dragonsslayer.characters.Hero;
+import fr.dragonsslayer.Hero.Hero;
 
 /**
  * Super class to define offensive equipment

@@ -1,11 +1,11 @@
 package fr.dragonsslayer.db;
 
 import com.google.gson.Gson;
-import fr.dragonsslayer.Game;
+import fr.dragonsslayer.Game.Game;
 import fr.dragonsslayer.board.Cell;
-import fr.dragonsslayer.characters.Hero;
-import fr.dragonsslayer.characters.Magician;
-import fr.dragonsslayer.characters.Warrior;
+import fr.dragonsslayer.Hero.Hero;
+import fr.dragonsslayer.Hero.Magician;
+import fr.dragonsslayer.Hero.Warrior;
 
 import java.sql.*;
 import java.util.ArrayList;

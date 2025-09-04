@@ -1,10 +1,12 @@
 package fr.dragonsslayer.board;
 
-import fr.dragonsslayer.Game;
+import fr.dragonsslayer.Game.Game;
+import fr.dragonsslayer.Hero.HeroManager;
 import fr.dragonsslayer.board.dice.Dice;
 import fr.dragonsslayer.board.dice.TwentyFacesDice;
-import fr.dragonsslayer.characters.Hero;
-import fr.dragonsslayer.Menu;
+import fr.dragonsslayer.Hero.Hero;
+import fr.dragonsslayer.Game.Menu;
+import fr.dragonsslayer.db.DataBaseHandling;
 
 import java.util.Random;
 
@@ -18,7 +20,8 @@ public class EnemyCell extends Cell {
         Hero enemy = (Hero) getContent();
         System.out.println("Vous vous retrouvez face à un ennemi : ");
         System.out.println(enemy.toString());
-        Menu menu = new Menu();
+        DataBaseHandling db = new DataBaseHandling();
+        Menu menu = new Menu(db,game, new HeroManager(db));
         Dice twentyFacesDice = new TwentyFacesDice();
 
         int enemyAttack = enemy.getAttackLevel();

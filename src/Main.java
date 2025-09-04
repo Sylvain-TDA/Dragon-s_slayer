@@ -1,15 +1,14 @@
-import fr.dragonsslayer.Menu;
+import fr.dragonsslayer.Game.Game;
+import fr.dragonsslayer.Hero.HeroManager;
+import fr.dragonsslayer.Game.Menu;
 import fr.dragonsslayer.db.DataBaseHandling;
-import fr.dragonsslayer.db.DatabaseConnection;
-
-import java.sql.*;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         DataBaseHandling dbHandling = new DataBaseHandling();
         dbHandling.deleteBoard();
         dbHandling.createJsonBoard();
-        Menu menu = new Menu();
+        Menu menu = new Menu(dbHandling, new Game(),new HeroManager(dbHandling));
         menu.displayIntro();
         menu.mainMenu();
     }
