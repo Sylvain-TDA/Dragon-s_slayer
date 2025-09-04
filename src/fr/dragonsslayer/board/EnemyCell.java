@@ -51,14 +51,13 @@ public class EnemyCell extends Cell {
 
     private void initFight(Game game, Hero hero) {
         Hero enemy = (Hero) getContent();
-        System.out.println("Vous vous retrouvez face à un ennemi : ");
-        System.out.println(enemy.toString());
         DataBaseHandling db = new DataBaseHandling();
         Menu menu = new Menu(db, game, new HeroManager(db));
         Dice sixFacesDice = new SixFacesDice();
 
         switch (menu.displayFightMenu()) {
             case 1:
+                menu.displayInventoryMenu();
                 fight(hero, game);
                 break;
             case 2:

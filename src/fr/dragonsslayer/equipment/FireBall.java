@@ -8,6 +8,6 @@ import fr.dragonsslayer.Game.RandomNameGenerator;
 
 public class FireBall extends Spell{
     public FireBall(String name) {
-        super(RandomNameGenerator.generateWeaponRandomName(), "Offensive equipment", 7);
+        super(RandomNameGenerator.generateWeaponRandomName(), "Boule de feu", 7);
     }
 }

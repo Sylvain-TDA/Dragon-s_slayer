@@ -7,7 +7,7 @@ public class RandomNameGenerator {
     private static final String[] ENEMYMIDDLES = {"ath", "oth", "um", "ar", "ak", "ix", "or", "an", "ur", "ok"};
     private static final String[] ENEMYENDS = {"oth", "ar", "ak", "ix", "or", "an", "ur", "ok", "ash", "oth"};
     private static final String[] WEAPONBEGINNINGS = {"Dar", "Ful", "Elc", "Sul", "Fal", "Gda", "Klu"};
-    private static final String[] WEAPONENDS = {"des flammes de l'enfer", "source du massacre", "qui défait les goblins", "venant de l'amère agonie", "avortée de l'abysse"};
+    private static final String[] WEAPONENDS = {" des flammes de l'enfer", " source du massacre", " qui défait les goblins", " venant de l'amère agonie", " avortée de l'abysse"};
 
     public static String generateEnemyRandomName() {
         Random random = new Random();

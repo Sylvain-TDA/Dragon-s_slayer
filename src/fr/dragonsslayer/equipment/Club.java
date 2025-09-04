@@ -8,6 +8,6 @@ import fr.dragonsslayer.Game.RandomNameGenerator;
 
 public class Club extends Weapon {
     public Club(String name) {
-        super(RandomNameGenerator.generateWeaponRandomName(), "Offensive Equipment", 3);
+        super(RandomNameGenerator.generateWeaponRandomName(), "Masse", 3);
     }
 }

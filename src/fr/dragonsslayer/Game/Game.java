@@ -14,19 +14,20 @@ import java.util.Random;
 public class Game {
     private int playerPosition;
     private final ArrayList<Cell> board;
-    public ArrayList<Object> inventory;
+
     private final UserInputHandler inputHandler;
     private final PrayerHandler prayerHandler;
     private final Dice dice;
     private Hero hero;
     public boolean endTheGame = false;
+    public InventoryHandler inventoryHandler;
 
     public Game() {
         board = new ArrayList<>();
-        inventory = new ArrayList<>();
         this.inputHandler = new UserInputHandler();
         this.prayerHandler = new PrayerHandler(new DataBaseHandling());
         this.dice = new SixFacesDice();
+        inventoryHandler = new InventoryHandler();
     }
 
     /**
@@ -158,6 +159,7 @@ public class Game {
             case 4:
                 placeRandomly(new WeaponCell(new Club(RandomNameGenerator.generateWeaponRandomName())), 20);
                 placeRandomly(new WeaponCell(new Sword(RandomNameGenerator.generateWeaponRandomName())), 20);
+                placeRandomly(new EnemyCell(new Goblin(RandomNameGenerator.generateEnemyRandomName())), 10);
                 //placeRandomly(new WeaponCell(new Lightning(RandomNameGenerator.generateWeaponRandomName())), 10);
                 //placeRandomly(new WeaponCell(new FireBall(RandomNameGenerator.generateWeaponRandomName())), 10);
 
@@ -167,17 +169,7 @@ public class Game {
         }
     }
 
-    public void initInventory () {
-        for (int i = 0; i <= 10; i++) {
-            inventory.add(new InventoryField(new Inventory()));
-        }
-    }
 
-    public void showInventory() {
-        for (int i = 0; i < inventory.size(); i++) {
-            System.out.println(inventory.get(i));
-        }
-    }
 
     /**
      * Initialize a random position in the board to fill it
@@ -206,5 +198,10 @@ public class Game {
 
     public ArrayList<Cell> getBoard() {
         return board;
+    }
+
+
+    public void addToInventory(Object newItem) {
+        this.inventoryHandler.inventory.add(newItem);
     }
 }

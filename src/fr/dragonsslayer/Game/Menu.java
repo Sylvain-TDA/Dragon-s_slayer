@@ -81,6 +81,7 @@ public class Menu {
 
     /**
      * Handle the display for the difficulty selection
+     *
      * @return an int choose by the player that indicate the difficulty
      */
     protected int displayDifficulty() {
@@ -114,22 +115,19 @@ public class Menu {
      * Handle the difficulty selection by initializing the board depending on the choice.
      */
     public void difficultyMenu() {
+        InventoryHandler inventoryHandler = new InventoryHandler();
         switch (displayDifficulty()) {
             case 1: // Balade
                 game.initBoard(1);
-                game.initInventory();
                 break;
             case 2: // Comme prévu
                 game.initBoard(2);
-                game.initInventory();
                 break;
             case 3: // Aïe
                 game.initBoard(3);
-                game.initInventory();
                 break;
             case 4: // test pour les Orcs et Mauvais Esprits
                 game.initBoard(4);
-                game.initInventory();
                 break;
             default:
                 displayMessage("Choix invalide !");
@@ -252,6 +250,74 @@ public class Menu {
                 }
             } catch (InputMismatchException e) {
                 displayMessage("Entrée invalide. Veuillez entrer un nombre (1 ou 2).");
+                keyboard.nextLine();
+            }
+        }
+        return choice;
+    }
+
+    public int displayInventoryMenu() {
+        int choice = 0;
+        boolean valid = false;
+        while (!valid) {
+            try {
+                // HEADER
+                String inventoryHeader = """
+                        +-------------------------------------+
+                        |          VOTRE INVENTAIRE           |
+                        +-------------------------------------+
+                        |                                     |
+                        """;
+                displayMessage(inventoryHeader);
+                InventoryHandler.showInventory();
+
+                // INVENTORY
+                String weaponCountHeader = """
+                        |                                     |
+                        |   Nombre d'armes dans l'inventaire :|
+                        """;
+                displayMessage(weaponCountHeader);
+                InventoryHandler.inventorySize();
+
+                // CHOICE
+                String choosePrompt = """
+                        +-------------------------------------+
+                        |          CHOISISSEZ UNE ARME         |
+                        +-------------------------------------+
+                        |                                     |
+                        |   Entrez le numéro de l'arme que    |
+                        |          vous souhaitez :          |
+                        |                                     |
+                        """;
+                displayMessage(choosePrompt);
+                choice = keyboard.nextInt()-1;
+                keyboard.nextLine();
+
+                // SELECTED WEAPON
+                String selectedWeaponHeader = """
+                        +-------------------------------------+
+                        |          ARME SÉLECTIONNÉE          |
+                        +-------------------------------------+
+                        |                                     |
+                        """;
+                displayMessage(selectedWeaponHeader);
+
+                Object selectedItem = InventoryHandler.getItemFromInventory(choice);
+                String selectedWeaponMessage = String.format("""
+                        |   Vous avez choisi : %s
+                        |                                     |
+                        +-------------------------------------+
+                        """, selectedItem.toString());
+                displayMessage(selectedWeaponMessage);
+
+
+                if (choice >= 0 && choice <= 10) {
+                    valid = true;
+                } else {
+                    displayMessage("Veuillez un nombre entrer entre 0 et 10.");
+                }
+            } catch (InputMismatchException e) {
+                displayMessage("Entrée invalide. Veuillez entrer un nombre (entre 0 et 10).");
                 keyboard.nextLine();
             }
         }

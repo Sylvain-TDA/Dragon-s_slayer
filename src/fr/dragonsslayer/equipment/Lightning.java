@@ -8,6 +8,6 @@ import fr.dragonsslayer.Game.RandomNameGenerator;
 
 public class Lightning extends Spell {
     public Lightning(String name) {
-        super(RandomNameGenerator.generateWeaponRandomName(), "Offensive equipment", 2);
+        super(RandomNameGenerator.generateWeaponRandomName(), "Eclair", 2);
     }
 }

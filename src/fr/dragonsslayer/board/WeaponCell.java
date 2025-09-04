@@ -1,6 +1,7 @@
 package fr.dragonsslayer.board;
 
 import fr.dragonsslayer.Game.Game;
+import fr.dragonsslayer.Game.InventoryHandler;
 import fr.dragonsslayer.Hero.Hero;
 import fr.dragonsslayer.equipment.OffensiveEquipment;
 import fr.dragonsslayer.equipment.Spell;
@@ -16,7 +17,6 @@ public class WeaponCell extends Cell {
     @Override
     public void interact(Hero hero, Game game) {
         OffensiveEquipment equipment = (OffensiveEquipment) getContent();
-
         System.out.println("Vous avez trouvé une arme : " + getContent());
         if (equipment instanceof Spell && Objects.equals(hero.getType(), "Warrior")) {
             System.out.println("""
@@ -31,8 +31,7 @@ public class WeaponCell extends Cell {
                     
                     """);
             int newStrength = weapon.setAttackLevel(hero, equipment.getAttackLevel());
-            game.inventory.add(weapon);
-            game.showInventory();
+            game.addToInventory(weapon);
             hero.setAttackLevel(newStrength);
 
             System.out.println("""
@@ -46,12 +45,11 @@ public class WeaponCell extends Cell {
                     \s""" + equipment.getName());
         } else if (equipment instanceof Spell && Objects.equals(hero.getType(), "Magician")) {
             Spell spell = (Spell) equipment;
-            System.out.println(""" 
-                    Apprendre le sort 
-                    """ + equipment.getName() + " a été d'une grande facilité. Vous voilà plus fort");
+            System.out.println("""
+                    Apprendre le sort\s
+                   \s""" + equipment.getName() + " a été d'une grande facilité. Vous voilà plus fort");
             int newStrength = spell.setAttackLevel(hero, equipment.getAttackLevel());
-            game.inventory.add(spell);
-            game.showInventory();
+            game.addToInventory(spell);
             hero.setAttackLevel(newStrength);
             System.out.println("""
                     Votre attaque est maintenant à :\s""" + newStrength + """
