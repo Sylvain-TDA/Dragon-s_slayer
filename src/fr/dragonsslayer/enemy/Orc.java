@@ -6,4 +6,9 @@ public class Orc extends Ennemy{
         this.setLife(10);
         this.setAttackLevel(6);
     }
+
+    @Override
+    public String getType() {
+        return "Orc";
+    }
 }

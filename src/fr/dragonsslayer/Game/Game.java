@@ -142,6 +142,8 @@ public class Game {
                 placeRandomly(new EnemyCell(new Dragon(RandomNameGenerator.generateEnemyRandomName())), 5);
                 placeRandomly(new EnemyCell(new Sorcerer(RandomNameGenerator.generateEnemyRandomName())), 11);
                 placeRandomly(new EnemyCell(new Goblin(RandomNameGenerator.generateEnemyRandomName())), 11);
+                placeRandomly(new EnemyCell(new Orc(RandomNameGenerator.generateEnemyRandomName())), 3);
+                placeRandomly(new EnemyCell(new Bogle(RandomNameGenerator.generateEnemyRandomName())), 3);
 
                 placeRandomly(new WeaponCell(new Club(RandomNameGenerator.generateWeaponRandomName())), 3);
                 placeRandomly(new WeaponCell(new Sword(RandomNameGenerator.generateWeaponRandomName())), 2);

@@ -3,6 +3,7 @@ package fr.dragonsslayer.board;
 import fr.dragonsslayer.Game.Game;
 import fr.dragonsslayer.Hero.HeroManager;
 import fr.dragonsslayer.board.dice.Dice;
+import fr.dragonsslayer.board.dice.SixFacesDice;
 import fr.dragonsslayer.board.dice.TwentyFacesDice;
 import fr.dragonsslayer.Hero.Hero;
 import fr.dragonsslayer.Game.Menu;
@@ -30,6 +31,7 @@ public class EnemyCell extends Cell {
         System.out.println(enemy.toString());
         DataBaseHandling db = new DataBaseHandling();
         Menu menu = new Menu(db, game, new HeroManager(db));
+        Dice sixFacesDice = new SixFacesDice();
 
         switch (menu.displayFightMenu()) {
             case 1:
@@ -46,10 +48,20 @@ public class EnemyCell extends Cell {
                 }
                 break;
             case 2:
-                game.updatedPlayerPosition(new
-                        Random().nextInt(6) + 1);
-                System.out.println("Vous reculez en case : " + game.getPlayerPosition());
-                break;
+                System.out.println("Vous tentez de fuir...");
+                if (sixFacesDice.roll() == 1) {
+                    game.updatedPlayerPosition(new
+                            Random().nextInt(6) + 1);
+                    System.out.println("Vous reculez en case : " + game.getPlayerPosition());
+                    break;
+                } else {
+                    System.out.println("""
+                            
+                            Votre tentative a échouée...
+                            
+                            """);
+                    fight(hero, game);
+                }
         }
     }
 
@@ -81,6 +93,13 @@ public class EnemyCell extends Cell {
                 break;
             } else {
                 System.out.println("La vie de l'ennemi tombe à : " + enemyLife);
+                if (criticDice == 20) {
+                    enemyAttack += 2;
+                    System.out.println("L'ennemi fait un coup critique.");
+                } else if (criticDice == 0) {
+                    enemyAttack = 0;
+                    System.out.println("L'enemi fait un échec critique.");
+                }
                 heroLife -= enemyAttack;
                 if (heroLife <= 0) {
                     System.out.println("L'ennemi vous a attaqué et vous a fait perdre " + enemyAttack + "points de vie.");

@@ -6,4 +6,10 @@ public class Bogle extends Ennemy{
         this.setLife(15);
         this.setAttackLevel(4);
     }
+
+
+    @Override
+    public String getType() {
+        return "Bogle";
+    }
 }
