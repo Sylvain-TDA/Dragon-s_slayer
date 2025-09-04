@@ -18,7 +18,7 @@ public class PrayerHandler {
         ArrayList<String> dbHeroes = db.getHeroes();
         System.out.println("Vous avez prié : " + dbHeroes);
         if (!hadPray) {
-            db.changeLifePoints(hero);
+            hero.setLife(hero.getLife() + 1);
             System.out.println("Vous vous sentez plus revigoré.");
         } else {
             System.out.println("Les morts n'apprécient pas la triche.");

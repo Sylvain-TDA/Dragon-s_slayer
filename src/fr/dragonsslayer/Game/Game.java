@@ -25,7 +25,6 @@ public class Game {
 
     public Game() {
         board = new ArrayList<>();
-        HeroManager heroManager = new HeroManager(new DataBaseHandling());
         this.inputHandler = new UserInputHandler();
         this.prayerHandler = new PrayerHandler(new DataBaseHandling());
         this.dice = new SixFacesDice();
@@ -59,7 +58,6 @@ public class Game {
      * @throws InterruptedException to handle the thread sleep.
      */
     protected void startingAGame() throws InterruptedException {
-
         playerPosition = 0;
         String intro = """
                 Votre aventure débute...
