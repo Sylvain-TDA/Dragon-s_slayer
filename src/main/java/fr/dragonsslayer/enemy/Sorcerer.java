@@ -1,9 +1,9 @@
 package fr.dragonsslayer.enemy;
 
 public class Sorcerer extends Ennemy {
-    public Sorcerer(String name) {
-        super("Sorcerer", name);
-        this.setLife(9);
+    public Sorcerer(String name, int lifePoints) {
+        super("Sorcerer", name, lifePoints);
+        this.setLife(9+lifePoints);
         this.setAttackLevel(2);
     }
 

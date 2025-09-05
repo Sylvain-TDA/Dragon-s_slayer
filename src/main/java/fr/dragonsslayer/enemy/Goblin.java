@@ -1,9 +1,9 @@
 package fr.dragonsslayer.enemy;
 
 public class Goblin extends Ennemy {
-    public Goblin(String name) {
-        super("Goblin", name);
-        this.setLife(6);
+    public Goblin(String name, int lifePoints) {
+        super("Goblin", name, lifePoints);
+        this.setLife(6+lifePoints);
         this.setAttackLevel(1);
     }
 

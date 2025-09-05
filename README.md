@@ -14,12 +14,17 @@ Le but est de combattre des ennemis, trouver des trésors et survivre jusqu’à
 - Respecter les bonnes pratiques de développement (noms de variables, getters/setters, méthodes courtes, etc.).
 - Minimiser le code dans la classe Main pour favoriser la modularité.
 
-
 ## Technologies Utilisées
 
 - Langage : Java (version 8 ou supérieure)
 - Paradigme : Programation Orientée Objet
 - Outils : Terminal, IDE IntelliJ
+
+## Dependences
+
+- gson-2.10.1
+- mysql-connector-j-9.3.0
+- protobuf-java-4.29.0
 
 ## Structure du Projet
 

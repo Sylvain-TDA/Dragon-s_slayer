@@ -19,8 +19,8 @@ public class Board {
             cells.add(new EmptyCell(new Empty()));
         }
         // Placement des entités
-        placeRandomly(new EnemyCell(new Dragon("Hield")), 4);
-        placeRandomly(new EnemyCell(new Sorcerer("Hield")), 10);
+        placeRandomly(new EnemyCell(new Dragon("Hield",0)), 4);
+        placeRandomly(new EnemyCell(new Sorcerer("Hield",0)), 10);
         // ... autres placements
     }
 

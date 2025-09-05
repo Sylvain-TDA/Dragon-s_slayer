@@ -30,12 +30,12 @@ public class Menu {
     }
 
     /**
-     * Creates and loads a hero using HeroManager and DataBaseHandling.
+     * Creates and loads a hero using HeroManager.
      */
     private Hero createAndLoadHero() {
         Hero newHero = heroManager.createHero();
-        int heroId = db.insertHeroAndGetId(newHero);
-        return db.getHeroFromDb(heroId);
+
+        return newHero;
     }
 
     /**
@@ -149,10 +149,9 @@ public class Menu {
             switch (displayMenu()) {
                 case 1: // Hero creation
                     Hero hero = createAndLoadHero();
-                    this.game.setHero(hero);
+                    game.setHero(hero);
                     manageHero(hero);
                     playerCreated = true;
-                    break;
                 case 2: // Playing
                     if (playerCreated) {
                         difficultyMenu();

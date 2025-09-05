@@ -1,6 +1,6 @@
 package fr.dragonsslayer.db;
 
-//import com.google.gson.Gson;
+import com.google.gson.Gson;
 import fr.dragonsslayer.Game.Game;
 import fr.dragonsslayer.board.Cell;
 import fr.dragonsslayer.Hero.Hero;
@@ -249,7 +249,7 @@ public class DataBaseHandling {
     /**
      * Initialize the board in Json and store it in the database.
      */
-/*
+
     public void createJsonBoard() {
         Game game = new Game();
         Gson gson = new Gson();
@@ -274,7 +274,6 @@ public class DataBaseHandling {
 
     /**
      * Empty the table Board as it should only store the cells of the game played.
-     * @deprecated
      */
 
     public void deleteBoard() {
@@ -318,7 +317,7 @@ public class DataBaseHandling {
      *
      * @param hero to access the getters of the class Hero.
      */
-/*
+
     public void toJson(Hero hero) {
         Gson gson = new Gson();
         String json = gson.toJson(hero);
@@ -342,6 +341,4 @@ public class DataBaseHandling {
             e.printStackTrace();
         }
     }
-
- */
 }

@@ -1,9 +1,9 @@
 package fr.dragonsslayer.enemy;
 
 public class Orc extends Ennemy{
-    public Orc(String name) {
-        super("Orc", name);
-        this.setLife(10);
+    public Orc(String name, int lifePoints) {
+        super("Orc", name, lifePoints);
+        this.setLife(10+lifePoints);
         this.setAttackLevel(6);
     }
 

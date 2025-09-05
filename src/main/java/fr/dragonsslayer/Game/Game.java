@@ -134,15 +134,15 @@ public class Game {
         switch (choice) {
             case 1:
                 for (int i = 0; i <= 2; i++) {
-                    placeRandomly(new EnemyCell(new Dragon(RandomNameGenerator.generateEnemyRandomName())), 1);
+                    placeRandomly(new EnemyCell(new Dragon(RandomNameGenerator.generateEnemyRandomName(),-2)), 1);
                 }
                 ;
                 for (int i = 0; i <= 6; i++) {
-                    placeRandomly(new EnemyCell(new Sorcerer(RandomNameGenerator.generateEnemyRandomName())), 1);
+                    placeRandomly(new EnemyCell(new Sorcerer(RandomNameGenerator.generateEnemyRandomName(),-1)), 1);
                 }
                 ;
                 for (int i = 0; i <= 9; i++) {
-                    placeRandomly(new EnemyCell(new Goblin(RandomNameGenerator.generateEnemyRandomName())), 1);
+                    placeRandomly(new EnemyCell(new Goblin(RandomNameGenerator.generateEnemyRandomName(),-1)), 1);
                 }
 
                 for (int i = 0; i <= 6; i++) {
@@ -164,15 +164,15 @@ public class Game {
                 break;
             case 2:
                 for (int i = 0; i <= 4; i++) {
-                    placeRandomly(new EnemyCell(new Dragon(RandomNameGenerator.generateEnemyRandomName())), 1);
+                    placeRandomly(new EnemyCell(new Dragon(RandomNameGenerator.generateEnemyRandomName(),0)), 1);
                 }
                 ;
                 for (int i = 0; i <= 10; i++) {
-                    placeRandomly(new EnemyCell(new Sorcerer(RandomNameGenerator.generateEnemyRandomName())), 1);
+                    placeRandomly(new EnemyCell(new Sorcerer(RandomNameGenerator.generateEnemyRandomName(),0)), 1);
                 }
                 ;
                 for (int i = 0; i <= 10; i++) {
-                    placeRandomly(new EnemyCell(new Goblin(RandomNameGenerator.generateEnemyRandomName())), 1);
+                    placeRandomly(new EnemyCell(new Goblin(RandomNameGenerator.generateEnemyRandomName(),0)), 1);
                 }
 
                 for (int i = 0; i <= 5; i++) {
@@ -193,21 +193,21 @@ public class Game {
                 break;
             case 3:
                 for (int i = 0; i <= 5; i++) {
-                    placeRandomly(new EnemyCell(new Dragon(RandomNameGenerator.generateEnemyRandomName())), 1);
+                    placeRandomly(new EnemyCell(new Dragon(RandomNameGenerator.generateEnemyRandomName(),5)), 1);
                 }
                 ;
                 for (int i = 0; i <= 11; i++) {
-                    placeRandomly(new EnemyCell(new Sorcerer(RandomNameGenerator.generateEnemyRandomName())), 1);
+                    placeRandomly(new EnemyCell(new Sorcerer(RandomNameGenerator.generateEnemyRandomName(),3)), 1);
                 }
                 ;
                 for (int i = 0; i <= 11; i++) {
-                    placeRandomly(new EnemyCell(new Goblin(RandomNameGenerator.generateEnemyRandomName())), 1);
+                    placeRandomly(new EnemyCell(new Goblin(RandomNameGenerator.generateEnemyRandomName(),2)), 1);
                 }
                 for (int i = 0; i <= 3; i++) {
-                    placeRandomly(new EnemyCell(new Orc(RandomNameGenerator.generateEnemyRandomName())), 1);
+                    placeRandomly(new EnemyCell(new Orc(RandomNameGenerator.generateEnemyRandomName(),1)), 1);
                 }
                 for (int i = 0; i <= 3; i++) {
-                    placeRandomly(new EnemyCell(new Bogle(RandomNameGenerator.generateEnemyRandomName())), 1);
+                    placeRandomly(new EnemyCell(new Bogle(RandomNameGenerator.generateEnemyRandomName(),4)), 1);
                 }
 
                 for (int i = 0; i <= 3; i++) {
@@ -231,7 +231,7 @@ public class Game {
                     placeRandomly(new WeaponCell(new Bow(RandomNameGenerator.generateWeaponRandomName())), 1);
                 }
                 for (int i = 0; i <= 10; i++) {
-                    placeRandomly(new EnemyCell(new Dragon(RandomNameGenerator.generateEnemyRandomName())), 1);
+                    placeRandomly(new EnemyCell(new Dragon(RandomNameGenerator.generateEnemyRandomName(),10)), 1);
                 }
 
                 //placeRandomly(new WeaponCell(new Sword(RandomNameGenerator.generateWeaponRandomName())), 20);

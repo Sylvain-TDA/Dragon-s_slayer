@@ -1,9 +1,9 @@
 package fr.dragonsslayer.enemy;
 
 public class Dragon extends Ennemy {
-    public Dragon(String name) {
-        super("Dragon", name);
-        this.setLife(15);
+    public Dragon(String name, int lifePoints) {
+        super("Dragon", name, lifePoints);
+        this.setLife(15+lifePoints);
         this.setAttackLevel(4);
     }
 

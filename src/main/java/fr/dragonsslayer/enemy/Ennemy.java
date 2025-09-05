@@ -3,7 +3,7 @@ package fr.dragonsslayer.enemy;
 import fr.dragonsslayer.Hero.Hero;
 
 public class Ennemy extends Hero {
-    public Ennemy(String name, String type) {
+    public Ennemy(String name, String type, int lifePoints) {
         super(name, type);
     }
 
