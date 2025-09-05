@@ -14,6 +14,7 @@ import java.util.Random;
 
 public class EnemyCell extends Cell {
     String choice;
+
     public EnemyCell(Hero enemy) {
         super(enemy);
     }
@@ -29,15 +30,15 @@ public class EnemyCell extends Cell {
     public void interact(Hero hero, Game game) {
         Hero enemy = (Hero) getContent();
         System.out.println("""
-       \s
-        Vous vous retrouvez face à un ennemi :\s
-       \s""");
+                \s
+                 Vous vous retrouvez face à un ennemi :\s
+                \s""");
         System.out.println(enemy.toString());
 
         if (Objects.equals(hero.getType(), "Warrior") && Objects.equals(enemy.getType(), "Orc")) {
             initFight(game, hero);
         } else if (Objects.equals(hero.getType(), "Warrior") && Objects.equals(enemy.getType(), "Bogle")) {
-            System.out.println("Le mauvais espirt fuit devant le manque cruel du votre.");
+            System.out.println("Le mauvais esprit fuit devant le manque cruel du votre.");
         } else if (Objects.equals(hero.getType(), "Magician") && Objects.equals(enemy.getType(), "Bogle")) {
             initFight(game, hero);
         } else if (Objects.equals(hero.getType(), "Magician") && Objects.equals(enemy.getType(), "Orc")) {
@@ -95,13 +96,10 @@ public class EnemyCell extends Cell {
             int heroAttack = hero.getAttackLevel();
             int enemyAttack = enemy.getAttackLevel();
             int criticDice = twentyFacesDice.roll();
-            if (criticDice == 20) {
-                heroAttack += 2;
-                System.out.println("Vous faites un coup critique.");
-            } else if (criticDice == 1) {
-                heroAttack = 0;
-                System.out.println("Vous faites un échec critique.");
-            }
+
+            // HERO'S TURN
+
+            heroAttack = applyCriticalEffect(heroAttack, criticDice, hero.getName());
 
             if (Objects.equals(enemyType, "Dragon") && Objects.equals(choice, "Bow")) {
                 heroAttack += 6;
@@ -119,11 +117,11 @@ public class EnemyCell extends Cell {
             if (enemyLife <= 0) {
                 System.out.println("L'ennemi succombe sous votre assaut");
                 System.out.println("""
-                ====================
-                """);
+                        ====================
+                        """);
                 if (Objects.equals(enemyType, "Dragon")) {
                     xpWon = 20;
-                } else if (Objects.equals(enemyType, "Goblin")){
+                } else if (Objects.equals(enemyType, "Goblin")) {
                     xpWon = 8;
                 } else {
                     xpWon = 12;
@@ -134,20 +132,18 @@ public class EnemyCell extends Cell {
             } else {
                 System.out.println("La vie de l'ennemi tombe à : " + enemyLife);
                 int enemyCriticalDice = twentyFacesDice.roll();
-                if (enemyCriticalDice == 20) {
-                    enemyAttack += 2;
-                    System.out.println("L'ennemi fait un coup critique.");
-                } else if (enemyCriticalDice == 1) {
-                    enemyAttack = 0;
-                    System.out.println("L'enemi fait un échec critique.");
-                }
+
+                // ENEMY'S TURN
+
+                enemyAttack = applyCriticalEffect(enemyAttack, enemyCriticalDice, enemy.getName());
                 heroLife -= enemyAttack;
+
                 if (heroLife <= 0) {
                     System.out.println("L'ennemi vous a attaqué et vous a fait perdre " + enemyAttack + " points de vie.");
                     System.out.println("Vous rejoingnez ceux que vous avez croisé lors de votre réveil.");
                     System.out.println("""
-                --------------------
-                """);
+                            --------------------
+                            """);
                 } else {
                     System.out.println("L'ennemi vous a attaqué, votre vie est maintenant à : " + heroLife + ".");
                     if (heroLife <= 0) {
@@ -164,5 +160,16 @@ public class EnemyCell extends Cell {
                 break;
             }
         }
+    }
+
+    private int applyCriticalEffect(int attackLevel, int criticDice, String attackerName) {
+        if (criticDice == 20) {
+            attackLevel += 2;
+            System.out.println(attackerName + " faites un coup critique.");
+        } else if (criticDice == 1) {
+            attackLevel = 0;
+            System.out.println(attackerName + " faites un échec critique.");
+        }
+        return attackLevel;
     }
 }
