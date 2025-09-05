@@ -10,5 +10,7 @@ public class Warrior extends Hero {
     public Warrior(String type, String name) {
         super("Warrior", name);
         modify("Warrior", name);
+        setAttackLevel(5);
+        setLife(10);
     }
 }

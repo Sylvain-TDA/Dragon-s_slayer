@@ -88,6 +88,7 @@ public class EnemyCell extends Cell {
         int heroLife = hero.getLife();
         String enemyType = enemy.getType();
         int xpWon;
+
         System.out.println("""
                 ====================
                 """);
@@ -99,19 +100,13 @@ public class EnemyCell extends Cell {
 
             // HERO'S TURN
 
+            // Critical hit
             heroAttack = applyCriticalEffect(heroAttack, criticDice, hero.getName());
 
-            if (Objects.equals(enemyType, "Dragon") && Objects.equals(choice, "Bow")) {
-                heroAttack += 6;
-            } else if (!Objects.equals(enemyType, "Dragon") && Objects.equals(choice, "Bow")) {
-                heroAttack += 4;
-            } else {
-                if (Objects.equals(enemyType, "Bogle") && Objects.equals(choice, "Invisibility")) {
-                    heroAttack += 8;
-                } else if (!Objects.equals(enemyType, "Bogle") && Objects.equals(choice, "Invisibility")) {
-                    heroAttack += 5;
-                }
-            }
+            // Weapon selected bonus
+
+            heroAttack += weaponBonusEffect(enemyType, heroAttack, choice);
+
             enemyLife -= heroAttack;
             System.out.println("Vous attaquez l'ennemi");
             if (enemyLife <= 0) {
@@ -119,13 +114,7 @@ public class EnemyCell extends Cell {
                 System.out.println("""
                         ====================
                         """);
-                if (Objects.equals(enemyType, "Dragon")) {
-                    xpWon = 20;
-                } else if (Objects.equals(enemyType, "Goblin")) {
-                    xpWon = 8;
-                } else {
-                    xpWon = 12;
-                }
+                xpWon = xpGained(enemyType);
                 hero.storeXp(xpWon);
                 hero.setLevel(hero.getXp());
                 break;
@@ -171,5 +160,30 @@ public class EnemyCell extends Cell {
             System.out.println(attackerName + " faites un échec critique.");
         }
         return attackLevel;
+    }
+
+    private int weaponBonusEffect (String enemyType, int heroAttack, String choice) {
+        if (Objects.equals(enemyType, "Dragon") && Objects.equals(choice, "Bow")) {
+            heroAttack += 6;
+        } else if (!Objects.equals(enemyType, "Dragon") && Objects.equals(choice, "Bow")) {
+            heroAttack += 4;
+        } else {
+            if (Objects.equals(enemyType, "Bogle") && Objects.equals(choice, "Invisibility")) {
+                heroAttack += 8;
+            } else if (!Objects.equals(enemyType, "Bogle") && Objects.equals(choice, "Invisibility")) {
+                heroAttack += 5;
+            }
+        } return heroAttack;
+    }
+
+    private int xpGained (String enemyType) {
+        int xpWon;
+        if (Objects.equals(enemyType, "Dragon")) {
+            xpWon = 20;
+        } else if (Objects.equals(enemyType, "Goblin")) {
+            xpWon = 8;
+        } else {
+            xpWon = 12;
+        } return  xpWon;
     }
 }

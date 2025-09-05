@@ -11,5 +11,7 @@ public class Magician extends Hero {
     public Magician(String type, String name) {
         super("Magician", name);
         modify("Magician", name);
+        setAttackLevel(8);
+        setLife(6);
     }
 }

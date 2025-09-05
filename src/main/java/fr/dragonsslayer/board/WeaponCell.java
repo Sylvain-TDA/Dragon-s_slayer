@@ -1,7 +1,6 @@
 package fr.dragonsslayer.board;
 
 import fr.dragonsslayer.Game.Game;
-import fr.dragonsslayer.Game.InventoryHandler;
 import fr.dragonsslayer.Hero.Hero;
 import fr.dragonsslayer.equipment.OffensiveEquipment;
 import fr.dragonsslayer.equipment.Spell;

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test.RandomNameGeneratorTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-09-05T13:13:48.926Z" hostname="sylvain-Inspiron-14-5410" time="0.03">
+  <properties/>
+  <testcase name="testGenerateWeaponRandomName_UniqueNames()" classname="test.RandomNameGeneratorTest" time="0.017"/>
+  <testcase name="testGenerateWeaponRandomName_NotEmpty()" classname="test.RandomNameGeneratorTest" time="0.002"/>
+  <testcase name="testGenerateWeaponRandomName_NotNull()" classname="test.RandomNameGeneratorTest" time="0.001"/>
+  <testcase name="testGenerateWeaponRandomName_Format()" classname="test.RandomNameGeneratorTest" time="0.001"/>
+  <testcase name="testGenerateWeaponRandomName_Consistency()" classname="test.RandomNameGeneratorTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

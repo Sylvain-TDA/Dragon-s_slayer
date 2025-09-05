@@ -16,6 +16,11 @@ public abstract class Hero {
     private String defensiveEquipment;
     private int level;
     private int xp;
+    private static final int[] XP_THRESHOLDS = {0, 30, 50, 70, 90};
+    private static final double[] LIFE_MULTIPLIERS = {1.0, 1.2, 1.4, 1.6, 1.8};
+    private static final double[] ATTACK_MULTIPLIERS = {1.0, 1.2, 1.4, 1.6, 1.0};
+    private int baseLife;
+    private int baseAttackLevel;
 
     /**
      * Creating the hero.
@@ -73,7 +78,7 @@ public abstract class Hero {
     protected void setName(String name) {
         this.name = name;
     }
-
+/*
     public void setLevel(int level) {
         if (xp < 30) {
             this.level = 1;
@@ -133,6 +138,7 @@ public abstract class Hero {
             System.out.println("Points d'attaque : " + attackLevel);
         }
     }
+    */
 
     public void setAttackLevel(int attackLevel) {
         this.attackLevel = attackLevel;
@@ -197,6 +203,49 @@ public abstract class Hero {
                 "points de vie : " + life + "\n" +
                 "niveau d'attaque : " + attackLevel + "\n" +
                 "arme : '" + OffensiveEquipment + "'\n";
+    }
+
+
+    private void displayLevelUpMessage(int level) {
+        System.out.printf("""
+                Vous êtes niveau %d.
+                ******************
+                Points de vie : %d
+                Points d'attaque : %d
+                """, level, this.life, this.attackLevel);
+    }
+
+    public void setLevel(int xp) {
+        this.xp = xp; // Met à jour l'XP actuelle
+        int newLevel = calculateLevel(xp);
+
+        // Ne recalcule les stats que si le niveau a changé
+        if (newLevel != this.level) {
+            this.level = newLevel;
+            updateStats(newLevel);
+            displayLevelUpMessage(newLevel);
+        }
+    }
+
+    private int calculateLevel(int xp) {
+        for (int i = XP_THRESHOLDS.length - 1; i >= 0; i--) {
+            if (xp >= XP_THRESHOLDS[i]) {
+                return i;
+            }
+        }
+        return 1; // Niveau minimum
+    }
+
+    private void updateStats(int level) {
+        // Sauvegarde les valeurs de base si ce n'est pas déjà fait
+        if (this.level == 1) {
+            this.baseLife = this.life;
+            this.baseAttackLevel = this.attackLevel;
+        }
+
+        // Applique les multiplicateurs
+        this.life = (int) Math.ceil(this.baseLife * LIFE_MULTIPLIERS[level]);
+        this.attackLevel = (int) Math.ceil(this.baseAttackLevel * ATTACK_MULTIPLIERS[level]);
     }
 
 }
