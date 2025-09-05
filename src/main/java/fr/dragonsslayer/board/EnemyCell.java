@@ -53,6 +53,12 @@ public class EnemyCell extends Cell {
         return "enemy";
     }
 
+    /**
+     * Initialize the figth, display the fiigth menu, inventory menu and the escape possibility
+     * @param game to send it to the figth method
+     * @param hero to send it to the figth method
+     */
+
     private void initFight(Game game, Hero hero) {
         DataBaseHandling db = new DataBaseHandling();
         Menu menu = new Menu(db, game, new HeroManager(db));
@@ -80,6 +86,13 @@ public class EnemyCell extends Cell {
                 }
         }
     }
+
+    /**
+     * Handle the figth with the hero's attack, enemy's attack, leveling up and winning xp.
+     * @param hero to access hero's method
+     * @param game to access game's method
+     * @param choice to send the for the weapon bonus
+     */
 
     private void fight(Hero hero, Game game, String choice) {
         Dice twentyFacesDice = new TwentyFacesDice();
@@ -151,6 +164,14 @@ public class EnemyCell extends Cell {
         }
     }
 
+    /**
+     * Handle the critical hit
+     * @param attackLevel take the attack level to return it modify
+     * @param criticDice take the critical dice result to know if it's a critical hit or not
+     * @param attackerName take the attacker name to display it after (either the hero or the enemy)
+     * @return the new attack level
+     */
+
     private int applyCriticalEffect(int attackLevel, int criticDice, String attackerName) {
         if (criticDice == 20) {
             attackLevel += 2;
@@ -161,6 +182,14 @@ public class EnemyCell extends Cell {
         }
         return attackLevel;
     }
+
+    /**
+     * Handle the attack level modification depending on the chosen weapon
+     * @param enemyType because the bonus depend on it
+     * @param heroAttack to send it back modified
+     * @param choice because the bonus depend on it
+     * @return the attack level modified
+     */
 
     private int weaponBonusEffect (String enemyType, int heroAttack, String choice) {
         if (Objects.equals(enemyType, "Dragon") && Objects.equals(choice, "Bow")) {
@@ -175,6 +204,12 @@ public class EnemyCell extends Cell {
             }
         } return heroAttack;
     }
+
+    /**
+     * The xp vary depending on the enemy
+     * @param enemyType to change the xp bonus
+     * @return the xp won on the battle depending on the enemy
+     */
 
     private int xpGained (String enemyType) {
         int xpWon;
