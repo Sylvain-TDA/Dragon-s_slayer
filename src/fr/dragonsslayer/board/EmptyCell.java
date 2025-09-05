@@ -10,7 +10,11 @@ public class EmptyCell extends Cell {
 
     @Override
     public void interact(Hero hero, Game game) {
-        System.out.println("Vous êtes sur une case vide");
+        System.out.println("""
+    
+    La pièce semble très sombre, mais vide. Vous relancez le dés.
+    
+    """);
     }
 
     @Override

@@ -68,12 +68,13 @@ public class Game {
         playerPosition = 0;
         endTheGame = false;
         String intro = """
+                
                 Votre aventure débute...
                 Vous êtes ensevelis sous un monticule de formes desquelles suintent un liquide étrange.
                 Après avoir réveillé vos yeux, ce liquide semble être le sang qui s'écoule des cadavres qui vous entourent.
                 Prenant votre courage à deux mains, vous dégagez celle d'un héro précédent pour vous mettre sur vos deux jambes, bien entières.
-                Votre position est : %d
-                """.formatted(playerPosition);
+                
+                """;
         inputHandler.displayMessage(intro);
         Thread.sleep(3000);
     }
@@ -90,10 +91,16 @@ public class Game {
             playerPosition += diceValue;
             inputHandler.displayMessage("Vous lancez le dé. Et vous faites : " + diceValue);
             Thread.sleep(700);
-            inputHandler.displayMessage("Vous avancez en case : " + playerPosition);
+            inputHandler.displayMessage("""
+           \s
+            Vous avancez en case : """ + playerPosition);
             if (playerPosition >= 64) {
                 playerPosition = 64;
-                inputHandler.displayMessage("Bravo, vous avez gagné");
+                inputHandler.displayMessage("""
+                
+                Bravo, vous avez gagné
+                
+                """);
                 return;
             }
             Cell currentCell = board.get(playerPosition);

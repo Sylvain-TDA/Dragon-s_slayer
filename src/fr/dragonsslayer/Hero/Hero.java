@@ -1,5 +1,7 @@
 package fr.dragonsslayer.Hero;
 
+import static java.lang.Math.ceil;
+
 /**
  * The class is handling the hero : name, type, life, attack level and weapon.
  */
@@ -44,7 +46,9 @@ public abstract class Hero {
         return attackLevel;
     }
 
-    public int getLevel() {return level;}
+    public int getLevel() {
+        return level;
+    }
 
     public String getOffensiveEquipment() {
         return OffensiveEquipment;
@@ -71,21 +75,53 @@ public abstract class Hero {
     }
 
     public void setLevel(int level) {
-        if (xp < 50) {
+        if (xp < 30) {
             this.level = 1;
-            System.out.println("Vous êtes niveau 1.");
-        } else if (xp > 50 && xp < 70) {
+            System.out.println("""
+                    Vous êtes niveau 1.
+                    ******************
+                    """);
+        } else if (xp > 30 && xp < 50) {
             this.level = 2;
-            System.out.println("Vous êtes niveau 2.");
-        } else if (xp > 70 && xp > 90 ) {
+            double lifeValue = life * 1.2;
+            this.life = (int) Math.ceil(lifeValue);
+            double strengthValue = attackLevel * 1.2;
+            this.attackLevel = (int) Math.ceil(strengthValue);
+            System.out.println("""
+                    Vous êtes niveau 2.
+                    ******************
+                    """);
+
+        } else if (xp > 50 && xp < 70) {
             this.level = 3;
-            System.out.println("Vous êtes niveau 3.");
-        } else if (xp > 90 && xp < 100) {
+            double lifeValue = life * 1.4;
+            this.life = (int) Math.ceil(lifeValue);
+            double strengthValue = attackLevel * 1.4;
+            this.attackLevel = (int) Math.ceil(strengthValue);
+            System.out.println("""
+                    Vous êtes niveau 3.
+                    ******************
+                    """);
+        } else if (xp > 70 && xp < 90) {
             this.level = 4;
-            System.out.println("Vous êtes niveau 4.");
-        } else if(xp > 100) {
+            double lifeValue = life * 1.6;
+            this.life = (int) Math.ceil(lifeValue);
+            double strengthValue = attackLevel * 1.6;
+            this.attackLevel = (int) Math.ceil(strengthValue);
+            System.out.println("""
+                    Vous êtes niveau 4.
+                    ******************
+                    """);
+        } else if (xp > 90 ) {
             this.level = 5;
-            System.out.println("Vous êtes niveau 5.");
+            double lifeValue = life * 1.8;
+            this.life = (int) Math.ceil(lifeValue);
+            double strengthValue = attackLevel * 1.;
+            this.attackLevel = (int) Math.ceil(strengthValue);
+            System.out.println("""
+                    Vous êtes niveau 5.
+                    ******************
+                    """);
         }
     }
 
@@ -103,7 +139,10 @@ public abstract class Hero {
 
     public void storeXp(int xp) {
         this.xp += xp;
-        System.out.println("Vous avez gagné :" + xp + " xp.");
+        System.out.println("""
+                ******************
+                Vous avez gagné :
+                """ + xp + " xp.");
     }
 
     /**
@@ -141,11 +180,14 @@ public abstract class Hero {
      */
 
     public String toString() {
-        return "nom : '" + name + '\'' + "\n" +
-                "classe : '" + type + '\'' + "\n" +
+        String BOLD = "\u001B[1m";
+        String RESET = "\u001B[0m";
+
+        return BOLD + "nom : '" + name + "'" + RESET + "\n" +
+                "classe : '" + type + "'\n" +
                 "points de vie : " + life + "\n" +
                 "niveau d'attaque : " + attackLevel + "\n" +
-                "arme :'" + OffensiveEquipment + '\'' + "\n";
+                "arme : '" + OffensiveEquipment + "'\n";
     }
 
 }

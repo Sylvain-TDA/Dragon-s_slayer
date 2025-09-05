@@ -28,7 +28,10 @@ public class EnemyCell extends Cell {
     @Override
     public void interact(Hero hero, Game game) {
         Hero enemy = (Hero) getContent();
-        System.out.println("Vous vous retrouvez face à un ennemi : ");
+        System.out.println("""
+       \s
+        Vous vous retrouvez face à un ennemi :\s
+       \s""");
         System.out.println(enemy.toString());
 
         if (Objects.equals(hero.getType(), "Warrior") && Objects.equals(enemy.getType(), "Orc")) {
@@ -85,6 +88,9 @@ public class EnemyCell extends Cell {
         int heroLife = hero.getLife();
         String enemyType = enemy.getType();
         int xpWon;
+        System.out.println("""
+                ====================
+                """);
 
         while (enemyLife > 0 && heroLife > 0) {
             int heroAttack = hero.getAttackLevel();
@@ -112,7 +118,16 @@ public class EnemyCell extends Cell {
             System.out.println("Vous attaquez l'ennemi");
             if (enemyLife <= 0) {
                 System.out.println("L'ennemi succombe sous votre assaut");
-                xpWon = 10;
+                System.out.println("""
+                ====================
+                """);
+                if (Objects.equals(enemyType, "Dragon")) {
+                    xpWon = 20;
+                } else if (Objects.equals(enemyType, "Goblin")){
+                    xpWon = 8;
+                } else {
+                    xpWon = 12;
+                }
                 hero.storeXp(xpWon);
                 hero.setLevel(hero.getXp());
                 break;
@@ -129,6 +144,9 @@ public class EnemyCell extends Cell {
                 if (heroLife <= 0) {
                     System.out.println("L'ennemi vous a attaqué et vous a fait perdre " + enemyAttack + " points de vie.");
                     System.out.println("Vous rejoingnez ceux que vous avez croisé lors de votre réveil.");
+                    System.out.println("""
+                --------------------
+                """);
                 } else {
                     System.out.println("L'ennemi vous a attaqué, votre vie est maintenant à : " + heroLife + ".");
                 }

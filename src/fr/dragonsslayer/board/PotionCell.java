@@ -12,12 +12,17 @@ public class PotionCell extends Cell {
     @Override
     public void interact(Hero hero, Game game) {
         Potion potion = (Potion) getContent();
-        System.out.println("Vous avez trouvé une potion : " + potion);
+        System.out.println("""
+         
+         Vous avez trouvé une potion :\s
+        \s"""
+         + potion);
 
         int newLifePoints = potion.heal(hero, potion.getHealAmount());
         hero.setLife(newLifePoints);
 
         System.out.println("""
+                
                 Votre vie est maintenant à :\s""" + newLifePoints + """
                 
                 """);
