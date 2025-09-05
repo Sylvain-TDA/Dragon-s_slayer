@@ -78,67 +78,6 @@ public abstract class Hero {
     protected void setName(String name) {
         this.name = name;
     }
-/*
-    public void setLevel(int level) {
-        if (xp < 30) {
-            this.level = 1;
-            System.out.println("""
-                    Vous êtes niveau 1.
-                    ******************
-                    """);
-            System.out.println("Points de vie : " + life);
-            System.out.println("Points d'attaque : " + attackLevel);
-        } else if (xp > 30 && xp < 50) {
-            this.level = 2;
-            double lifeValue = life * 1.2;
-            this.life = (int) Math.ceil(lifeValue);
-            double strengthValue = attackLevel * 1.2;
-            this.attackLevel = (int) Math.ceil(strengthValue);
-            System.out.println("""
-                    Vous êtes niveau 2.
-                    ******************
-                    """);
-            System.out.println("Points de vie : " + life);
-            System.out.println("Points d'attaque : " + attackLevel);
-        } else if (xp > 50 && xp < 70) {
-            this.level = 3;
-            double lifeValue = life * 1.4;
-            this.life = (int) Math.ceil(lifeValue);
-            double strengthValue = attackLevel * 1.4;
-            this.attackLevel = (int) Math.ceil(strengthValue);
-            System.out.println("""
-                    Vous êtes niveau 3.
-                    ******************
-                    """);
-            System.out.println("Points de vie : " + life);
-            System.out.println("Points d'attaque : " + attackLevel);
-        } else if (xp > 70 && xp < 90) {
-            this.level = 4;
-            double lifeValue = life * 1.6;
-            this.life = (int) Math.ceil(lifeValue);
-            double strengthValue = attackLevel * 1.6;
-            this.attackLevel = (int) Math.ceil(strengthValue);
-            System.out.println("""
-                    Vous êtes niveau 4.
-                    ******************
-                    """);
-            System.out.println("Points de vie : " + life);
-            System.out.println("Points d'attaque : " + attackLevel);
-        } else if (xp > 90) {
-            this.level = 5;
-            double lifeValue = life * 1.8;
-            this.life = (int) Math.ceil(lifeValue);
-            double strengthValue = attackLevel * 1.;
-            this.attackLevel = (int) Math.ceil(strengthValue);
-            System.out.println("""
-                    Vous êtes niveau 5.
-                    ******************
-                    """);
-            System.out.println("Points de vie : " + life);
-            System.out.println("Points d'attaque : " + attackLevel);
-        }
-    }
-    */
 
     public void setAttackLevel(int attackLevel) {
         this.attackLevel = attackLevel;
@@ -151,6 +90,11 @@ public abstract class Hero {
     protected void setDefensiveEquipment(String defensiveEquipment) {
         this.defensiveEquipment = defensiveEquipment;
     }
+
+    /**
+     * Store the xp amount in the Hero's class
+     * @param xp to be added to the xp amount
+     */
 
     public void storeXp(int xp) {
         this.xp += xp;
@@ -171,6 +115,11 @@ public abstract class Hero {
         this.name = name;
         setTypeAndDefaults(type);
     }
+
+    /**
+     * Set defaults attributes
+     * @param type the determine the default hero type.
+     */
 
     private void setTypeAndDefaults(String type) {
         if (type.equalsIgnoreCase("Warrior")) {
@@ -205,6 +154,10 @@ public abstract class Hero {
                 "arme : '" + OffensiveEquipment + "'\n";
     }
 
+    /**
+     * Handle the display when the hero level up
+     * @param level to be display
+     */
 
     private void displayLevelUpMessage(int level) {
         System.out.printf("""
@@ -215,11 +168,15 @@ public abstract class Hero {
                 """, level, this.life, this.attackLevel);
     }
 
+    /**
+     * Set the new level of the hero
+     * @param xp to set the new level
+     */
+
     public void setLevel(int xp) {
-        this.xp = xp; // Met à jour l'XP actuelle
+        this.xp = xp;
         int newLevel = calculateLevel(xp);
 
-        // Ne recalcule les stats que si le niveau a changé
         if (newLevel != this.level) {
             this.level = newLevel;
             updateStats(newLevel);
@@ -227,23 +184,31 @@ public abstract class Hero {
         }
     }
 
+    /**
+     * Calculate if the hero go to a new level
+     * @param xp that determine if the hero level up or not
+     * @return the level or 1 (initial level)
+     */
     private int calculateLevel(int xp) {
         for (int i = XP_THRESHOLDS.length - 1; i >= 0; i--) {
             if (xp >= XP_THRESHOLDS[i]) {
                 return i;
             }
         }
-        return 1; // Niveau minimum
+        return 1;
     }
 
+    /**
+     * Update the stats depending on the level
+     * @param level that determine the stats
+     */
+
     private void updateStats(int level) {
-        // Sauvegarde les valeurs de base si ce n'est pas déjà fait
         if (this.level == 1) {
             this.baseLife = this.life;
             this.baseAttackLevel = this.attackLevel;
         }
 
-        // Applique les multiplicateurs
         this.life = (int) Math.ceil(this.baseLife * LIFE_MULTIPLIERS[level]);
         this.attackLevel = (int) Math.ceil(this.baseAttackLevel * ATTACK_MULTIPLIERS[level]);
     }
