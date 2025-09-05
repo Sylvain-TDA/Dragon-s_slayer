@@ -1,7 +1,5 @@
 package fr.dragonsslayer.Hero;
 
-import static java.lang.Math.ceil;
-
 /**
  * The class is handling the hero : name, type, life, attack level and weapon.
  */

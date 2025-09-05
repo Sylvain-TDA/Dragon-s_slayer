@@ -87,6 +87,7 @@ public class Game {
      */
     protected void playingTheGame() throws HeroOutOfTheBoardException, InterruptedException {
         while (playerPosition < 64 && !endTheGame) {
+
             int diceValue = dice.roll();
             playerPosition += diceValue;
             inputHandler.displayMessage("Vous lancez le dé. Et vous faites : " + diceValue);
@@ -233,11 +234,6 @@ public class Game {
                 for (int i = 0; i <= 10; i++) {
                     placeRandomly(new EnemyCell(new Dragon(RandomNameGenerator.generateEnemyRandomName(),10)), 1);
                 }
-
-                //placeRandomly(new WeaponCell(new Sword(RandomNameGenerator.generateWeaponRandomName())), 20);
-                //placeRandomly(new EnemyCell(new Goblin(RandomNameGenerator.generateEnemyRandomName())), 10);
-                //placeRandomly(new WeaponCell(new Lightning(RandomNameGenerator.generateWeaponRandomName())), 10);
-                //placeRandomly(new WeaponCell(new FireBall(RandomNameGenerator.generateWeaponRandomName())), 10);
 
                 placeRandomly(new PotionCell(new Potion("Potion de soin", 2)), 4);
                 placeRandomly(new LargePotionCell(new LargePotion("Grande potion de soin", "Potion", 5)), 2);

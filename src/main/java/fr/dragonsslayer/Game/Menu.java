@@ -7,7 +7,6 @@ import java.util.Objects;
 import java.util.Scanner;
 
 import fr.dragonsslayer.Hero.*;
-import fr.dragonsslayer.equipment.Potion;
 import fr.dragonsslayer.equipment.Weapon;
 
 /**
@@ -63,19 +62,18 @@ public class Menu {
                 String menu = """
                         ===== Menu Principal =====
                         1. Nouveau personnage
-                        2. Jouer
-                        3. Quitter
+                        2. Quitter
                         """;
                 displayMessage(menu);
                 choice = keyboard.nextInt();
                 keyboard.nextLine();
-                if (choice >= 1 && choice <= 4) {
+                if (choice >= 1 && choice <= 3) {
                     valid = true;
                 } else {
-                    displayMessage("Veuillez entrer 1, 2 ou 3.");
+                    displayMessage("Veuillez entrer 1 ou 2.");
                 }
             } catch (InputMismatchException e) {
-                displayMessage("Entrée invalide. Veuillez entrer un nombre (1, 2 ou 3).");
+                displayMessage("Entrée invalide. Veuillez entrer un nombre (1 ou 2).");
                 keyboard.nextLine();
             }
         }
@@ -129,7 +127,7 @@ public class Menu {
             case 3: // Aïe
                 game.initBoard(3);
                 break;
-            case 4: // test pour les Orcs et Mauvais Esprits
+            case 4: // Pour les tests, pipe le board
                 game.initBoard(4);
                 break;
             default:
@@ -144,33 +142,21 @@ public class Menu {
      */
     public void mainMenu() throws InterruptedException {
         boolean exit = false;
-        boolean playerCreated = false;
         while (!exit) {
             switch (displayMenu()) {
                 case 1: // Hero creation
                     Hero hero = createAndLoadHero();
                     game.setHero(hero);
                     manageHero(hero);
-                    playerCreated = true;
-                case 2: // Playing
-                    if (playerCreated) {
-                        difficultyMenu();
-                        game.start();
-                    } else {
-                        displayMessage("Vous devez créer un personnage avant de vous lancer dans l'aventure.");
-                    }
-                    break;
-                case 3: // Exit
+                case 2: // Exit
                     exit = true;
                     displayMessage("Oh non... À toute !");
                     break;
-                case 4:
+                case 3:
                     Hero cheatedHero = heroManager.createCheatedHero();
                     game.setHero(cheatedHero);
                     difficultyMenu();
                     game.start();
-                default:
-                    displayMessage("Choix invalide !");
             }
         }
     }
@@ -268,11 +254,11 @@ public class Menu {
                 displayMessage("Votre inventaire est vide.");
                 break;
             } else if (InventoryHandler.inventorySize() == 1) {
-                choice =0;
+                choice = 0;
                 String selectedWeaponHeader = """
-                            
-                            |          ARME SÉLECTIONNÉE          |
-                            """;
+                        
+                        |          ARME SÉLECTIONNÉE          |
+                        """;
                 displayMessage(selectedWeaponHeader);
 
                 Object selectedItem = InventoryHandler.getItemFromInventory(choice);
@@ -280,8 +266,8 @@ public class Menu {
                 weaponType = weapon.getType();
 
                 String selectedWeaponMessage = String.format("""
-                            |   Vous avez choisi : %s             |
-                            """, selectedItem.toString());
+                        |   Vous avez choisi : %s             |
+                        """, selectedItem.toString());
                 displayMessage(selectedWeaponMessage);
                 valid = true;
 
